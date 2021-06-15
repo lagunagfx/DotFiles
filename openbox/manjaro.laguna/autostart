@@ -1,0 +1,35 @@
+### use arandr to set screen preference
+### save as ~/.screenlayout/dual-head.sh
+### uncomment next line
+# ~/.screenlayout/dual-head.sh
+
+### compositor
+sleep 1; manjaro-compositor --start &
+# nitrogen (wallpaper manager)
+sleep 1; nitrogen --restore &
+# tint2 (taskbar)
+sleep 0.5; manjaro-tint2-session &
+# polybar
+sleep 0.5; manjaro-polybar-session &
+# conky (onscreen info)
+sleep 0.5; manjaro-conky-session &
+### Openbox autostart
+sleep 1; ob-autostart -d &
+# Xfce power manager (uninstalled)
+# sleep 2; xfce4-power-manager
+### volumeicon
+sleep 1; volumeicon &
+### PolicyKit authentication
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+### Side shortcuts for file managers
+xdg-user-dirs-gtk-update &
+### enable numlock
+### uncomment next line
+sleep 0.5; numlockx &
+### launch thunar in daemon mode
+sleep 1; thunar --daemon &
+### Required for xfce settings to work
+xfsettingsd &
+# Seafile GUI client
+sleep 1 ; seafile-applet &
+
