@@ -32,4 +32,3 @@ sleep 1; thunar --daemon &
 xfsettingsd &
 # Seafile GUI client
 sleep 1 ; seafile-applet &
-

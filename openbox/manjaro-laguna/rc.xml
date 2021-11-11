@@ -209,10 +209,10 @@
         <desktop>10</desktop>
       </action>
     </keybind>
-    <keybind key="C-A-Right">
+    <keybind key="W-Right">
       <action name="DesktopNext"/>
     </keybind>
-    <keybind key="C-A-Left">
+    <keybind key="W-Left">
       <action name="DesktopPrevious"/>
     </keybind>
     <!-- basic window operations : CLOSE, MENU, DECORATION, SHOW DESKTOP/HIDE and TOGGLE FULLSCREEN -->
@@ -369,7 +369,7 @@
         <command>xfce4-settings-manager</command>
       </action>
     </keybind>
-    <keybind key="Print">
+    <keybind key="W-Print">
       <action name="Execute">
         <command>scrot 'screenshot_%Y%m%d-%H%M%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES) ; viewnior $$(xdg-user-dir PICTURES)/$f'</command>
       </action>
