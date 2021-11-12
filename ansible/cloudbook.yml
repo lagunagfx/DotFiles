@@ -1,0 +1,15 @@
+---
+  - hosts: cloudbook
+    become: yes
+    tasks:
+      - name: apt upgrade
+        apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+
+      - name: Remove useless packages from the cache
+        apt:
+           autoclean: yes
+
+      - name: base packages
+        apt:
+          name: nginx
+          state: present
