@@ -1,0 +1,30 @@
+---
+  - hosts: cloudbook
+    connection: local
+    become: yes
+    tasks:
+      - name: apt upgrade
+        apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+
+      - name: Remove useless packages from the cache
+        apt:
+           autoclean: yes
+
+      - name: essential packages
+        apt:
+          pkg:
+          - pass
+
+      - name: base packages
+        apt:
+          name: nginx
+          state: present
+
+  - hosts: mediabook
+    become: yes
+    tasks:
+      - name: pacman upgrade
+        pacman:
+          update_cache: yes
+          upgrade: yes
+
