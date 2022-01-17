@@ -1,0 +1,47 @@
+conky.config = {
+	alignment = 'top_right',
+	background = true,
+	color2 = '8B8673',
+	cpu_avg_samples = 2,
+	default_color = 'ffffff',
+	double_buffer = true,
+	font = 'DejaVu Sans Condensed:size=9',
+	draw_shades = false,
+	gap_x = 24,
+	gap_y = 48,
+	minimum_width = 225,
+	no_buffers = true,
+	own_window = true,
+	own_window_class = "Conky",
+	own_window_type = 'desktop',
+	own_window_transparent = true,
+	update_interval = 30.0,
+	use_xft = true,
+}
+conky.text = [[
+${alignc}S H O R T C U T    K E Y S
+${hr}
+[Super] + [PrtSc]${alignr}Screenshot
+[Alt] + [PrtSc]${alignr}Delayed Screenshot
+[Ctrl] + Space${alignr}Catfish
+${hr}
+[Fn] + Menu${alignr}Openbox Menu
+[Alt] + Space${alignr}Window Menu
+[Alt] + F1${alignr}JG Menu
+[Super] + h${alignr}Show Desktop
+[Super] + f${alignr}Fullscreen
+[Super] + n${alignr}Recall Notification
+[Super] + s${alignr}Window Switcher
+${hr}
+[Super] + r${alignr}Rofi Launcher
+[Super] + [Enter]${alignr}Terminal
+[Ctrl] + [Super] + f${alignr}File Manager
+[Ctrl] + [Super] + m${alignr}Mail Reader
+[Ctrl] + [Super] + w${alignr}Web Browser
+[Ctrl] + [Super] + v${alignr}Audio Control
+[Ctrl] + [Super] + r${alignr}ScreenRecorder
+[Ctrl] + [Super] + [Esc]${alignr}Xkill
+[Ctrl] + [Alt] + L${alignr}Lock
+[Ctrl] + [Alt] + [Backspace]${alignr}Reconfigure
+[Ctrl] + [Alt] + [Del]${alignr}Logout
+]];

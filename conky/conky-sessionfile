@@ -1,0 +1,2 @@
+conky -c ~/.config/conky/laguna_sysinfo.conkyrc & sleep 0.5
+conky -c ~/.config/conky/laguna_openbox_shortcuts.conkyrc & sleep 0.5
