@@ -1,0 +1,73 @@
+#set -g default-terminal "screen-256color"
+
+# amount of time for which status line messages are displayed ( 0 to wait for keypress )
+set -g display-time 0
+setw -g automatic-rename off
+
+# split panes using | and -
+bind | split-window -h
+bind - split-window -v
+unbind '"'
+unbind %
+
+# reload config file (change file location to your the tmux.corf you want to use)
+bind r source-file ~/.tmux.conf \; display 'Reloaded tmux config'
+
+# use shift + arrow key to move between windows in a session
+bind -n S-Left previous-window
+bind -n S-Right next-window
+
+# switch panes using Alt-arrow without prefix
+bind -n M-Left select-pane -L
+bind -n M-Right select-pane -R
+bind -n M-Up select-pane -U
+bind -n M-Down select-pane -D
+
+# send modifier to nested tmux session
+unbind C-r
+bind -n C-r send-prefix
+
+# styles
+set -g status-bg "colour061"
+set -g status-fg "black"
+set -g pane-border-style "fg=colour061"
+set -g pane-active-border-style "fg=brightwhite"
+
+# window status
+set -g status-left-length 35
+set -g status-right-length 125
+set -g status-left '#[bg=colour055]#[fg=white] [#h] #{?window_zoomed_flag,#[bold]Z ,}#[fg=colour055]#[bg=colour061]#{prefix_highlight}#[fg=black] '
+set -g window-status-current-format "#[bg=$colour061]#[fg=brightwhite]#[bold]#I:#W*"
+set -g window-status-format "#I:#W#{?window_last_flag,-,}"
+set -g window-status-separator " ╱ "
+set -g status-right '#[fg=white]#{window_width}x#{window_height}#{?client_utf8, U8,} #[fg=colour067]#[fg=white]#[bg=colour067] cpu #{cpu_percentage} mem #(plug.memory) #{ram_percentage} #[fg=colour073]#[bg=colour067]#[fg=default]#[bg=colour073] up #(plug.uptime) #[fg=colour079]#[bg=colour073]#[fg=default]#[bg=colour079] #(plug.ipwan) #[fg=colour085]#[bg=colour079]#[fg=default]#[bg=colour085] %Y/%m/%d %H:%M '
+
+# clock
+setw -g clock-mode-colour colour061
+
+# plugins
+# set -g @net_speed_format "u %6s d %6s"
+
+# custom colors (darker to lighter)
+#
+# shade1 = colour055
+# shade2 = colour061
+# shade3 = colour067
+# shade4 = colour073 
+# shade5 = colour079 
+# shade6 = colour085 
+
+# special characters   🔍  
+# font		MESLO LGM Nerd Font
+# divs		    ╱ ╲ ┃
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+
+set -g @plugin 'tmux-plugins/tmux-cpu'
+#set -g @plugin 'tmux-plugins/tmux-net-speed'
+set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'
