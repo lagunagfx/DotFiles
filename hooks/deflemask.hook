@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type = Package
+Target = deflemask
+
+[Action]
+Description = Modify deflemask.desktop's category to Audio (instead of Game)
+When = PostTransaction
+Exec = /usr/sbin/sed -i 's/Categories\=Game\;/Categories\=Audio\;/g' /usr/share/applications/deflemask.desktop 

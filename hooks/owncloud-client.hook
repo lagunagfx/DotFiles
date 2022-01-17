@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type = Package
+Target = owncloud-client
+
+[Action]
+Description = Fix owncloud.desktop's category assignation
+When = PostTransaction
+Exec = /usr/sbin/sed -i 's/Categories\=Utility\;X-SuSE-SyncUtility\;/Categories\=Network\;FileTransfer\;/g' /usr/share/applications/owncloud.desktop 

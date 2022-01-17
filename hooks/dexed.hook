@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type = Package
+Target = dexed
+
+[Action]
+Description = Fix dexed.desktop's name capitalization
+When = PostTransaction
+Exec = /usr/sbin/sed -i 's/^Name\=dexed/Name\=Dexed/g' /usr/share/applications/dexed.desktop 

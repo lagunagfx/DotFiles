@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type = Package
+Target = hplip
+
+[Action]
+Description = Add a proper descriptive name, icon and category to hp-uiscan.desktop
+When = PostTransaction
+Exec = /etc/pacman.d/hooks/hplip.action

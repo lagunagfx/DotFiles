@@ -1,0 +1,4 @@
+#!/bin/sh
+/usr/sbin/sed -i 's/^Name=hp-uiscan/Name=HP\ Linux\ imaging\ and\ printing\ system/g' /usr/share/applications/hp-uiscan.desktop
+/usr/sbin/sed -i 's/^Icon=.*/Icon=\/usr\/share\/hplip\/data\/images\/128x128\/hp\_logo.png/g' /usr/share/applications/hp-uiscan.desktop
+echo 'Categories=Application;Utility;' | tee -a /usr/share/applications/hp-uiscan.desktop > /dev/null

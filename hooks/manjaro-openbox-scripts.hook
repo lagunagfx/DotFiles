@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type = Package
+Target = manjaro-openbox-scripts
+
+[Action]
+Description = Edit /usr/sbin/lockscreen to fix ImageMagick's convert behaviour
+When = PostTransaction
+Exec = /usr/sbin/sed -i 's/"-o"\ "-m"\ //' /usr/sbin/lockscreen 

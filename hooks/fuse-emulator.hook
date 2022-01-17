@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type = Package
+Target = fuse-emulator
+
+[Action]
+Description = Set fuse-emulator.desktop's primary category to Game
+When = PostTransaction
+Exec = /usr/sbin/sed -i 's/Categories\=/Categories\=Game\;/g' /usr/share/applications/fuse-emulator.desktop 
