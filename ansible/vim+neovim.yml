@@ -1,33 +1,33 @@
 ---
-  - hosts: badulaque
+  - hosts: badulaque,mediabook
     tasks:
-#      - name: linking GNU-PASS manager folder to the GIT Password repo
-#        file:
-#           path: /home/jorge/.password-store
-#           src: /home/jorge/Password
-#           state: link
 
-       # NeoVim first install
-
-       - name: Setting up NeoVim config folder
+       - name: install both Vim and NeoVim
+         become: yes
+         community.general.pacman:
+           name:
+             - vim
+             - neovim
+           state: present
+           
+       - name: create .vim folder
          ansible.builtin.file:
            path: /home/jorge/.vim
            state: directory
            mode: '0755'
 
-# git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-       - name: Clone VimVundle repository from GitHub
+       - name: clone VimVundle repository from GitHub
          ansible.builtin.git:
            repo: https://github.com/VundleVim/Vundle.vim.git
            dest: /home/jorge/.vim/bundle/Vundle.vim
 
-       - name: NeoVim config will be shared with classic Vim
+       - name: link NeoVim's init.vim to Vim's vimrc
          ansible.builtin.file:
            src: /home/jorge/.vimrc
            dest: /home/jorge/.vim/init.vim
            state: link
        
-       - name: Linking ./config/nvim with classic .vim
+       - name: link NeoVim's ./config/nvim to Vim's .vim folder
          ansible.builtin.file:
            src: /home/jorge/.vim
            dest: /home/jorge/.config/nvim
@@ -37,3 +37,9 @@
          shell: vim +PluginInstall +qall --headless
 
 # End of Playbook
+
+#      - name: linking GNU-PASS manager folder to the GIT Password repo
+#        file:
+#           path: /home/jorge/.password-store
+#           src: /home/jorge/Password
+#           state: link
