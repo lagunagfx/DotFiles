@@ -468,6 +468,11 @@
         <command>rofr.sh -r</command>
       </action>
     </keybind>
+    <keybind key="C-W-r">
+      <action name="Execute">
+        <command>simplescreenrecorder</command>
+      </action>
+    </keybind>
   </keyboard>
   <!-- end of LagunaLabs keyboard customizations -->
   <mouse>
