@@ -1,0 +1,18 @@
+Matcha-Dark-sea
+
+border.width: 1
+window.active.border.color: #2d3036
+window.inactive.border.color: #2d3036
+menu.border.width: 0
+menu.border.color: #2d3036
+osd.border.width: 1
+osd.border.color: #2d3036
+border.color: #1ED1B1
+
+Adapta-openbox-Maia
+
+border.width: 1
+menu.border.color: #62808E
+osd.border.color: #222D32
+window.active.border.color: #16A085
+window.inactive.border.color: #E0E2E3
