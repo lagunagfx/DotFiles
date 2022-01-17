@@ -1,0 +1,39 @@
+---
+  - hosts: badulaque
+    tasks:
+#      - name: linking GNU-PASS manager folder to the GIT Password repo
+#        file:
+#           path: /home/jorge/.password-store
+#           src: /home/jorge/Password
+#           state: link
+
+       # NeoVim first install
+
+       - name: Setting up NeoVim config folder
+         ansible.builtin.file:
+           path: /home/jorge/.vim
+           state: directory
+           mode: '0755'
+
+# git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+       - name: Clone VimVundle repository from GitHub
+         ansible.builtin.git:
+           repo: https://github.com/VundleVim/Vundle.vim.git
+           dest: /home/jorge/.vim/bundle/Vundle.vim
+
+       - name: NeoVim config will be shared with classic Vim
+         ansible.builtin.file:
+           src: /home/jorge/.vimrc
+           dest: /home/jorge/.vim/init.vim
+           state: link
+       
+       - name: Linking ./config/nvim with classic .vim
+         ansible.builtin.file:
+           src: /home/jorge/.vim
+           dest: /home/jorge/.config/nvim
+           state: link
+
+       - name: install Vundle plugin
+         shell: vim +PluginInstall +qall --headless
+
+# End of Playbook

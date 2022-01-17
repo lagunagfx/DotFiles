@@ -1,6 +1,14 @@
 [core]
 localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python3
+cloudbook ansible_connection=local ansible_python_interpreter=/usr/bin/python3
 
-[servers]
+[server]
+#localhost
 cloudbook
 mediabook
+
+[desktop]
+badulaque
+
+[laptop]
+aracuan

@@ -1,0 +1,41 @@
+---
+
+  - hosts: all
+    tasks:
+      - name: generate SSH ECDSA keys
+        openssh_keypair:          
+          path: "~/.ssh/id_ecdsa"
+          type: ecdsa
+          size: 521
+          state: present
+          force: no
+
+  - hosts: cloudbook
+    tasks:
+      - name: Clone a repo with separate git directory
+        ansible.builtin.git:
+          repo: git@cloudbook:Private.git
+          dest: Private
+
+# Essential Packages (Arch distro, command line)
+#
+# - vim
+# - pass
+# - pacaur
+# - neofetch
+# - nmap (Utility for network discovery and security auditing)
+# - hexedit (hexadecimal/ASCII editor)
+
+  - hosts: desktop laptop
+    become: yes
+    tasks:
+      - name: Check for essential packages
+        pacman:
+          name:
+            - pass 
+            - vim
+            - pacaur
+            - neofetch
+            - nmap
+            - hexedit
+          state: present

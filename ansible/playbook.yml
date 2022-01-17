@@ -20,7 +20,33 @@
           name: nginx
           state: present
 
-  - hosts: mediabook
+      - name: create private GIT repositories
+        file:
+          path: "{{ item }}"
+          state: directory
+        with_items:
+          - /home/git/Private.git
+          - /home/git/Password.git
+
+      - name: init --bare GIT repositories
+        command:
+          cmd: git -C /home/git/Password.git init --bare
+
+      - name: clone private GIT repositories
+        become_user: jorge
+        git:
+           repo: git@cloudbook:Password.git
+           dest: /home/jorge/.password-store
+           clone: yes
+           update: yes
+
+#      - name: linking GNU-PASS manager folder to the GIT Password repo
+#        file:
+#          path: /home/jorge/.password-store
+#          src: /home/jorge/Password
+#          state: link
+
+  - hosts: mediabook,badulaque
     become: yes
     tasks:
       - name: pacman upgrade
@@ -28,3 +54,18 @@
           update_cache: yes
           upgrade: yes
 
+#      - name: check if a reboot is required
+#        ansible.builtin.command: needs-restarting -r
+#        register: reg_reboot_required
+#        ignore_errors: yes
+#        failed_when: false
+#        changed_when: reg_reboot_required.rc != 0
+#        notify:
+#          - Reboot server
+
+#    handlers:
+#      - name : Reboot server
+#        ansible.builtin.reboot:
+#          msg: "Reboot initiated by Ansible after OS update"
+#          reboot_timeout: 180
+#          test_command: uptime
