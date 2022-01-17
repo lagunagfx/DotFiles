@@ -1,0 +1,1 @@
+/usr/bin/jackd -dalsa -dhw:U192k -r44100 -p256 -n3
