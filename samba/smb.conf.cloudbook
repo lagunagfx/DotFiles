@@ -1,0 +1,77 @@
+[global]
+   workgroup = LAGUNA
+   dns proxy = no
+   log file = /var/log/samba/log.%m
+   max log size = 1000
+   syslog = 0
+   panic action = /usr/share/samba/panic-action %d
+   server role = standalone server
+   passdb backend = tdbsam
+   obey pam restrictions = yes
+   unix password sync = yes
+   passwd program = /usr/bin/passwd %u
+   passwd chat = *Enter\snew\s*\spassword:* %n\n *Retype\snew\s*\spassword:* %n\n *password\supdated\ssuccessfully* .
+   pam password change = yes
+   map to guest = bad user
+   usershare allow guests = yes
+
+	ntlm auth = yes
+	socket options = TCP_NODELAY SO_RCVBUF=524288 SO_SNDBUF=524288 IPTOS_LOWDELAY 
+	allow insecure wide links = yes
+
+#[homes]
+#   comment = Home Directories
+#   browseable = yes
+#   read only = yes
+#   create mask = 0700
+#   directory mask = 0700
+#   valid users = %S
+
+#	LAGUNALABS default parameters
+	
+	veto files = /Network Trash Folder/Temporary Items/lost+found/
+	create mask = 0644
+	directory mask = 0700
+	browseable = Yes
+	valid users = jorge
+	read only = No
+
+[Laguna]
+	path = /mnt/disk1/cloud/jorge/Seafile/0.laguna/
+
+[Music]
+	comment = "LAGUNA music collection"
+	path=/home/jorge/Seafile/6.media/1.musica/
+	valid users = jorge jacqueline
+
+[Video]
+	comment = "SAMBA Media Server"
+	path = /mnt/disk2
+	valid users = jorge jacqueline
+
+[Software]
+	comment = "LAGUNA software storage"
+	path = /mnt/disk1/software
+
+[Gaming]
+	comment = "Console ISO files"
+	path = /home/jorge/Juegos
+
+[Playstation]
+	comment = "Laguna PS2 colection server for Playstation 2"
+	path = "/home/jorge/Seafile/7.emulacion/console/6th/Sony Playstation 2/support/OPLSMB"
+	available = yes
+	locking = no
+
+[Private]
+	comment = "authorised personnel only"
+	path = /mnt/disk3/private/xXx
+
+#[printers]
+#   comment = All Printers
+#   browseable = no
+#   path = /var/spool/samba
+#   printable = yes
+#   guest ok = no
+#   read only = yes
+#   create mask = 0700
