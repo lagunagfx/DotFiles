@@ -1,0 +1,21 @@
+---
+# description: create and initialize repos in my owm private Git server
+
+  - name: create private GIT repositories on the GIT user account
+    file:
+       path: "{{ item }}"
+       state: directory
+    with_items:
+      - /home/git/Password.git
+      - /home/git/Private.git
+      - /home/git/Wiki.git
+
+  - name: initialize GIT repositories
+    command:
+      cmd: git -C /home/git/"{{ item }}" init --bare
+    with_items:
+      - /home/git/Password.git
+      - /home/git/Private.git
+      - /home/git/Wiki.git
+
+# end of task list

@@ -1,0 +1,6 @@
+---
+  # file: main.yml
+
+  - import_playbook: server_web.yml
+#  - import_playbook: server_nas.yml
+#  - import_playbook: desktop.yml

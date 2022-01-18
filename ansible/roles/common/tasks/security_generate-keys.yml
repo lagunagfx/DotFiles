@@ -1,0 +1,13 @@
+---
+  # description: generate both public and private keys for SSH connection authentification
+
+  - name: generate SSH ECDSA keys
+    openssh_keypair:          
+      path: "~/.ssh/id_ecdsa"
+      type: ecdsa
+      size: 521
+      state: present
+      force: no
+
+# end of task
+
