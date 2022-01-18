@@ -1,4 +1,6 @@
 ---
+# file: server_web.yml 
+
   - hosts: cloudbook
     connection: local
     become: yes
@@ -14,12 +16,8 @@
       - name: essential packages
         apt:
           pkg:
-          - pass
-
-      - name: base packages
-        apt:
-          name: nginx
-          state: present
+            - pass
+		  status: pressent
 
       - name: create private GIT repositories
         file:
@@ -33,7 +31,7 @@
         command:
           cmd: git -C /home/git/Password.git init --bare
 
-      - name: clone private GIT repositories
+      - name: clone Pass' password-store folder
         become_user: jorge
         git:
            repo: git@cloudbook:Password.git
@@ -41,9 +39,11 @@
            clone: yes
            update: yes
 
+      - name: clone Private repo from the local Git server
+        ansible.builtin.git:
+          repo: git@cloudbook:Private.git
+          dest: /home/jorge/Private
 
-  - hosts: all
-    tasks:
       - name: generate SSH ECDSA keys
         openssh_keypair:          
           path: "~/.ssh/id_ecdsa"
@@ -52,39 +52,10 @@
           state: present
           force: no
 
-  - hosts: cloudbook
-    tasks:
-      - name: Clone a repo with separate git directory
-        ansible.builtin.git:
-          repo: git@cloudbook:Private.git
-          dest: Private
-
-# Essential Packages (Arch distro, command line)
-#
-# - vim
-# - pass
-# - pacaur
-# - neofetch
-# - nmap (Utility for network discovery and security auditing)
-# - hexedit (hexadecimal/ASCII editor)
-
-  - hosts: desktop laptop
-    become: yes
-    tasks:
-      - name: Check for essential packages
-        pacman:
-          name:
-            - pass 
-            - vim
-            - pacaur
-            - neofetch
-            - nmap
-            - hexedit
+      - name: be sure NGINX webserver is installed
+        apt:
+          name: nginx
           state: present
-  - hosts: mediabook,badulaque
-    become: yes
-    tasks:
-      - name: pacman upgrade
-        pacman:
-          update_cache: yes
-          upgrade: yes
+
+# end of playbook
+
