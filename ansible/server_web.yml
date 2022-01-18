@@ -12,11 +12,7 @@
       - ansible.builtin.import_tasks: roles/common/tasks/package_cli_essential.yml
       - ansible.builtin.import_tasks: roles/server/tasks/git-private_create.yml
 #     - ansible.builtin.import_tasks: roles/common/tasks/git-private_clone.yml
-
-      - name: be sure NGINX webserver is installed
-        apt:
-          name: nginx
-          state: present
+      - ansible.builtin.import_tasks: roles/server/tasks/webserver.yml
 
 # end of playbook
 
