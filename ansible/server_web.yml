@@ -1,48 +1,16 @@
 ---
-# file: server_web.yml 
+# file: server_web.yml
+# description: custom changes to deploy a Web Server instance 
 
   - hosts: cloudbook
     connection: local
     become: yes
     tasks:
 
-      - name: apt upgrade
-        apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
-
-      - name: Remove useless packages from the cache
-        apt:
-           autoclean: yes
-
-      - name: essential packages
-        apt:
-          pkg:
-            - pass
-		  status: pressent
-
-      - name: create private GIT repositories
-        file:
-          path: "{{ item }}"
-          state: directory
-        with_items:
-          - /home/git/Private.git
-          - /home/git/Password.git
-
-      - name: init --bare GIT repositories
-        command:
-          cmd: git -C /home/git/Password.git init --bare
-
-      - name: clone Pass' password-store folder
-        become_user: jorge
-        git:
-           repo: git@cloudbook:Password.git
-           dest: /home/jorge/.password-store
-           clone: yes
-           update: yes
-
-      - name: clone Private repo from the local Git server
-        ansible.builtin.git:
-          repo: git@cloudbook:Private.git
-          dest: /home/jorge/Private
+      - ansible.builtin.import_tasks: roles/server/tasks/update-debian.yml
+      - ansible.builtin.import_tasks: roles/common/tasks/package_cli_essential.yml
+      - ansible.builtin.import_tasks: roles/server/tasks/git-private_create.yml
+#     - ansible.builtin.import_tasks: roles/common/tasks/git-private_clone.yml
 
       - name: generate SSH ECDSA keys
         openssh_keypair:          

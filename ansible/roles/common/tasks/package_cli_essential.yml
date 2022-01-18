@@ -1,0 +1,21 @@
+---
+  # description: list of essential packages for command line use 
+  #
+  # - vim
+  # - pass
+  # - neofetch
+  # - nmap (Utility for network discovery and security auditing)
+  # - hexedit (hexadecimal/ASCII editor)
+
+  - name: Check for essential packages
+    ansible.builtin.package:
+      name:
+         - pass 
+         - neofetch
+         - nmap
+         - hexedit
+      state: present
+
+  - ansible.builtin.import_tasks: package_cli_vim.yml
+
+# End of tasks list
