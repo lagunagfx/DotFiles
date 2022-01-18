@@ -1,0 +1,9 @@
+---
+  # description: install, configure, enable and run the webserver
+
+  name: be sure the webserver is installed
+  apt:
+    name: nginx
+    state: present
+
+# end of tasks list

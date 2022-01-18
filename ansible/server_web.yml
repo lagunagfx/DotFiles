@@ -8,17 +8,10 @@
     tasks:
 
       - ansible.builtin.import_tasks: roles/server/tasks/update-debian.yml
+      - ansible.builtin.import_tasks: roles/common/tasks/security_generate-keys.yml
       - ansible.builtin.import_tasks: roles/common/tasks/package_cli_essential.yml
       - ansible.builtin.import_tasks: roles/server/tasks/git-private_create.yml
 #     - ansible.builtin.import_tasks: roles/common/tasks/git-private_clone.yml
-
-      - name: generate SSH ECDSA keys
-        openssh_keypair:          
-          path: "~/.ssh/id_ecdsa"
-          type: ecdsa
-          size: 521
-          state: present
-          force: no
 
       - name: be sure NGINX webserver is installed
         apt:
