@@ -1,0 +1,7 @@
+[user]
+	name = Jorge Barrientos AKA LagunaGFX
+	email = lagunagfx@lagunalabs.eu
+#[credential]
+#	helper = !pass git/lagunagfx@gitlab
+[init]
+	defaultBranch = master
