@@ -1,0 +1,21 @@
+---
+# description: create and initialize repos in my owm private Git server
+
+  - name: check if folder "Documentos" exists
+    stat:
+      path: /home/jorge/Documentos
+    register: documents
+
+  - name: folder "Documentos" not present. Create it
+    file:
+       path: /home/jorge/Documentos
+       state: directory
+    when: documents.stat.exists == false
+
+  - name: clone public GIT repos "DotFiles"
+    ansible.builtin.git:
+      repo: https://github.com/lagunagfx/DotFiles
+      dest: /home/jorge/Documentos/DotFiles
+    when: documents.stat.exists == true
+
+# end of task list

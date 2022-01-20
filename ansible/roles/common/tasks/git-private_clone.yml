@@ -3,16 +3,16 @@
 
   - name: clone Pass' password-store folder
     become_user: jorge
-    git:
-	  repo: git@cloudbook:Password.git
-	  dest: /home/jorge/.password-store
+    ansible.builtin.git:
+      repo: git@cloudbook:Password.git
+      dest: /home/jorge/.password-store
       clone: yes
       update: yes
 
   - name: clone Private repo from the local Git server
     ansible.builtin.git:
-    repo: git@cloudbook:Private.git
-    dest: /home/jorge/Private
+      repo: git@cloudbook:Private.git
+      dest: /home/jorge/Private
 
 # end of task list
 

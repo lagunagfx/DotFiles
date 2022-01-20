@@ -1,13 +1,16 @@
 ---
 # task list for Debian-based systems
 
-  - name: apt upgrade
+  - name: update package cache and upgrade
+    become: yes
     apt:
+      upgrade: dist
       update_cache: yes
       force_apt_get: yes
       cache_valid_time: 3600
 
   - name: remove useless packages from the apt cache
+    become: yes
     apt:
       autoclean: yes
 
