@@ -46,10 +46,10 @@ filetype plugin indent on    " required
 " * VimWiki setup with Markdown syntax
 if system('uname -s') == "Linux\n"
     " Linux
-    let g:vimwiki_list = [{ 'path':'~/Documentos/VimWiki', 'syntax': 'markdown', 'ext': '.md'}]
+    let g:vimwiki_list = [{ 'path':'~/Documentos/Wiki', 'syntax': 'markdown', 'ext': '.md'}]
 else
     " OSX/macOS
-    let g:vimwiki_list = [{ 'path':'~/Documents/VimWiki', 'syntax': 'markdown', 'ext': '.md'}]
+    let g:vimwiki_list = [{ 'path':'~/Documents/Wiki', 'syntax': 'markdown', 'ext': '.md'}]
 endif
 "
 " * Makes vimwiki markdown links as [text](text.md) instead of [text](text)
