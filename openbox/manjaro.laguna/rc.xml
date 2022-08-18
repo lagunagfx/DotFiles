@@ -458,7 +458,7 @@
         <command>xkill</command>
       </action>
     </keybind>
-    <keybind key="A-F1">
+    <keybind key="W-m">
       <action name="Execute">
         <command>jgmenu_run</command>
       </action>

@@ -1,0 +1,5 @@
+neovim has the following notes:                                                                                                      │
+    If you want to share your existing Vim configuration with Neovim, you can add these symlinks:                                      │
+        ln -s ~/.vim ~/.config/nvim                                                                                                    │
+        ln -s ~/.vimrc ~/.config/nvim/init.vim                                                                                         │
+    For possible incompatible changes and differences to Vim check ':help nvim-intro' in nvim.

@@ -1,0 +1,21 @@
+dbus has the following notes:
+
+	Startup items (named 'dbus-system, dbus-session') have been generated that will aid in starting dbus with launchd. They are
+    disabled by default. Execute the following command to start them, and to cause them to launch at startup:
+
+        sudo port load dbus
+
+lirc has the following notes:
+
+Before starting the lircd background process, two configuration steps need to be completed.  First, edit
+    /opt/local/etc/lirc/lirc_options.conf to specify the driver and device being used.  Second, add at least one remote configuration
+    file to /opt/local/etc/lirc/lircd.conf.d so lirc can interpret the infrared pulses that your remote sends.  The script irdb-get can
+    help find existing remote configuration files or the program irrecord can help create a configuration file for a particular remote.
+
+    Any clients of lirc must be able to read and write the pipe at /opt/local/var/run/lircd
+
+    A startup item has been generated that will aid in starting lirc with launchd. It is disabled by default. Execute the following
+    command to start it, and to cause it to launch at startup:
+
+        sudo port load lirc
+

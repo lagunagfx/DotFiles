@@ -27,7 +27,7 @@ ${hr}
 ${hr}
 [Fn] + Menu${alignr}Openbox Menu
 [Alt] + Space${alignr}Window Menu
-[Alt] + F1${alignr}JG Menu
+[Super] + m${alignr}JG Menu
 [Super] + h${alignr}Show Desktop
 [Super] + f${alignr}Fullscreen
 [Super] + n${alignr}Recall Notification
@@ -43,5 +43,7 @@ ${hr}
 [Ctrl] + [Super] + [Esc]${alignr}Xkill
 [Ctrl] + [Alt] + L${alignr}Lock
 [Ctrl] + [Alt] + [Backspace]${alignr}Reconfigure
+${hr}
 [Ctrl] + [Alt] + [Del]${alignr}Logout
+[Super] + [Shift] + [Esc]${alignr}Exit OpenBox
 ]];
