@@ -7,11 +7,24 @@
         - neovim
       state: present
            
+  - name: check if .vimrc is a regular file or link to its repo counterpart
+    ansible.builtin.file:
+      src: /home/jorge/Documentos/DotFiles/vim/vimrc.user
+      dest: /home/jorge/.vimrc
+      state: link
+      force: yes
+
+  - name: check if ~/.vim folder exits
+    ansible.builtin.stat:
+      path: /home/jorge/.vim
+    register: folder_vim
+
   - name: create .vim folder
     ansible.builtin.file:
       path: /home/jorge/.vim
       state: directory
       mode: '0755'
+    when: folder_vim.stat.exists == false
 
   - name: clone VimVundle repository from GitHub
     ansible.builtin.git:
@@ -24,13 +37,13 @@
       dest: /home/jorge/.vim/init.vim
       state: link
        
-  - name: link NeoVim's ./config/nvim to Vim's .vim folder
+  - name: link NeoVim's .config/nvim to Vim's .vim
     ansible.builtin.file:
       src: /home/jorge/.vim
       dest: /home/jorge/.config/nvim
       state: link
 
   - name: install Vundle plugin
-    shell: vim +PluginInstall +qall --headless
+    shell: nvim +PluginInstall +qall --headless
 
 # end of tasks list
