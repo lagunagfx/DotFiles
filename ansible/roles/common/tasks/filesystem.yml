@@ -1,0 +1,48 @@
+---
+# description: create and initialize repos in my owm private Git server
+
+  - name: check if folder ".config" exists
+    stat:
+      path: /home/jorge/.config
+    register: documents
+
+  - name: if folder ".config" is not present, then create it
+    file:
+       path: /home/jorge/.config
+       state: directory
+    when: documents.stat.exists == false
+
+  - name: check if folder "Documentos" exists
+    stat:
+      path: /home/jorge/Documentos
+    register: documents
+
+  - name: if folder "Documentos" is not present, then reate it
+    file:
+       path: /home/jorge/Documentos
+       state: directory
+    when: documents.stat.exists == false
+
+  - name: check if folder "/home/jorge/Documentos/DotFiles" exists
+    ansible.builtin.stat:
+      path: /home/jorge/Documentos/DotFiles
+    register: folder_dotfiles
+
+  - name: clone public GIT repos "DotFiles"
+    ansible.builtin.git:
+      repo: https://github.com/lagunagfx/DotFiles
+      dest: /home/jorge/Documentos/DotFiles
+    when: folder_dotfiles.stat.exists == false
+
+  - name: check if folder "/home/jorge/Documentos/Scripts" exists
+    ansible.builtin.stat:
+      path: /home/jorge/Documentos/Scripts
+    register: folder_scripts
+
+  - name: clone public GIT repos "Scripts"
+    ansible.builtin.git:
+      repo: https://github.com/lagunagfx/Scripts
+      dest: /home/jorge/Documentos/Scripts
+    when: folder_dotfiles.stat.exists == false
+
+# end of task list

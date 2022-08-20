@@ -1,0 +1,39 @@
+---
+  # description: install, configure, enable and run the webserver
+
+  - name: check if the Transmission Daemon is installed
+    become: yes
+    apt:
+      name: transmission-daemon
+      state: present
+
+  - name: stop the Transmission Daemon before modifying preferences
+    become: yes
+    ansible.builtin.systemd:
+        name: transmission-daemon
+        state: stopped
+
+  - name: copy Transmission's configuration file to "etc/transmission/settings.json"
+    become: yes
+    ansible.builtin.copy:
+        src: /home/jorge/Documentos/Private/etc/transmission-settings.json
+        dest: /etc/transmission-daemon/settings.json
+        owner: debian-transmission
+        group: debian-transmission
+        backup: yes
+ 
+  - name: check if Transmission's download folder is present and accesible
+    become: yes
+    ansible.builtin.file:
+      path: /mnt/disk3/downloads/transmission
+      state: directory
+      owner: debian-transmission
+      group: debian-transmission
+
+  - name: start the Transmission Daemon again
+    become: yes
+    ansible.builtin.systemd:
+        name: transmission-daemon
+        state: started
+
+# end of tasks list

@@ -12,7 +12,9 @@
   - name: clone Private repo from the local Git server
     ansible.builtin.git:
       repo: git@cloudbook:Private.git
-      dest: /home/jorge/Private
+      dest: /home/jorge/Documentos/Private
+      clone: yes
+      update: yes
 
 # end of task list
 

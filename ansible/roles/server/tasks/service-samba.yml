@@ -1,0 +1,38 @@
+---
+  # description: install, configure and enable the samba server
+
+  - name: check if the Samba protocol is installed
+    become: yes
+    apt:
+      name: samba
+      state: present
+
+  - name: copy Samba's configuration file to "etc/samba/smb.conf"
+    become: yes
+    ansible.builtin.copy:
+        src: /home/jorge/Documentos/Private/etc/samba-smb.conf
+        dest: /etc/samba/smb.conf
+        backup: yes
+
+  - name: check if user "jorge" is present on the SAM database
+    become: yes
+    ansible.builtin.shell:
+      cmd: pdbedit -L | grep jorge
+    register: samba_users_jorge
+
+  - name: add user "jorge" to the list of Samba's users
+    become: yes
+    ansible.builtin.shell:
+        cmd: ( echo '{{ samba_password }}' ; echo '{{ samba_password }}' ) | smbpasswd -a -s jorge
+    when: samba_users_jorge.stdout != ""
+
+  - name: restart the Samba service
+    become: yes
+    ansible.builtin.systemd:
+        name: '{{ item }}'
+        state: restarted
+    loop:
+      - smbd
+      - nmbd
+
+# end of tasks list

@@ -1,0 +1,43 @@
+---
+# description: create the folder structure needed to plug the USB external drives
+
+  - name: create mount points for the external drives
+    become: yes
+    file:
+       path: /mnt/{{ item }}
+       state: directory
+       owner: jorge
+       group: jorge
+    loop:
+       - disk1
+       - disk2
+       - disk3
+
+  # lookup is performed on the LOCAL machine (the one launching ansible)
+
+  - name: append list of drives to "/etc/fstab"
+    become: yes
+    ansible.builtin.blockinfile:
+        path: /etc/fstab
+        block: "{{ lookup('ansible.builtin.file', '/home/jorge/Documentos/Private/etc/fstab.mediabook') }}"
+        backup: yes
+
+  - name: mount external USB drives
+    become: yes
+    ansible.builtin.shell:
+      cmd: mount -a
+
+  - name: create NAS filesystem symlinks
+    ansible.builtin.file:
+      src: '{{ item.src }}'
+      dest: '{{ item.dest }}' 
+      state: link
+    loop:
+        - { src: /mnt/disk3/downloads/transmission, dest: ~/Descargas }       
+        - { src: /mnt/disk1/gaming, dest: ~/Juegos }       
+        - { src: /mnt/disk1/cloud/jorge/Seafile, dest: ~/Seafile }       
+        - { src: /mnt/disk1/software, dest: ~/Software }       
+        - { src: /mnt/disk2, dest: ~/Video }
+        - { src: /mnt/disk3/private/xXx , dest: ~/xXx }
+
+# end of task list

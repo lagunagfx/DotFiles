@@ -1,21 +1,23 @@
 ---
   # description: list of essential packages for command line use 
   #
-  # - vim
   # - pass
+  # - acl
+  # - rsync
   # - neofetch
   # - nmap (Utility for network discovery and security auditing)
   # - hexedit (hexadecimal/ASCII editor)
 
-  - name: Check for essential packages
+  - name: Check for packages PASS, ACL and RSYNC
+    become: yes
     ansible.builtin.package:
       name:
-         - pass 
-         - neofetch
-         - nmap
-         - hexedit
+         - pass
+         - acl
+         - rsync
       state: present
 
-  - ansible.builtin.import_tasks: package_cli_vim.yml
+  - ansible.builtin.import_tasks: setup-cli-vim.yml
+  - ansible.builtin.import_tasks: setup-cli-tmux.yml
 
 # End of tasks list

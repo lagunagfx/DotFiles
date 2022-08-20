@@ -1,0 +1,22 @@
+---
+  - name: install TMUX Terminal MUltipleXer
+    become: yes
+    ansible.builtin.package:
+      name:
+        - tmux
+      state: present
+           
+  - name: check if .tmux is a regular file or link to its repo counterpart
+    ansible.builtin.file:
+      src: /home/jorge/Documentos/DotFiles/tmux/tmux.conf.headless
+      dest: /home/jorge/.tmux.conf
+      state: link
+      force: yes
+
+  - name: append tmux starting sequence to .bashrc
+    ansible.builtin.blockinfile:
+      path: /home/jorge/.bashrc
+      block: "{{ lookup('ansible.builtin.file', '/home/jorge/Documentos/Private/bash/bashrc.patch-tmux') }}"
+      backup: yes
+
+# end of tasks list
