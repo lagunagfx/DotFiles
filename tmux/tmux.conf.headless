@@ -1,3 +1,4 @@
+# set -g default-terminal "screen-256color"
 # amount of time for which status line messages are displayed ( 0 to wait for keypress )
 set -g display-time 0
 setw -g automatic-rename off
@@ -26,41 +27,40 @@ bind -n M-Down select-pane -D
 unbind C-r
 bind -n C-r send-prefix
 
-# custom colors
-shade1="colour197"
-shade2="colour203"
-shade3="colour209"
-shade4="colour215"
-shade5="colour221"
-shade6="colour227"
-
-div1="#[bg=$shade1]#[fg=white] " 
-div2=" #[bg=$shade2]#[fg=$shade1]░#[bg=$shade2]#[fg=default] " 
-div3=" #[bg=$shade2]#[fg=$shade3]░#[bg=$shade3]#[fg=default] " 
-div4=" #[bg=$shade3]#[fg=$shade4]#[bg=$shade4]#[fg=default] " 
-div5=" #[bg=$shade4]#[fg=$shade5]#[bg=$shade5]#[fg=default] " 
-div6=" #[bg=$shade5]#[fg=$shade6]#[bg=$shade6]#[fg=default] " 
-
-# styles
-set -g status-bg "$shade2"
-set -g status-fg "black"
-
-set -g pane-border-style "fg=$shade2"
-set -g pane-active-border-style "fg=brightwhite"
+# clock
+setw -g clock-mode-colour $palette2
 
 # window status
-bin="/home/jorge/.local/bin"
+set -g status-bg "$palette2"
+set -g status-fg "black"
+set -g pane-border-style "fg=$palette2"
+set -g pane-active-border-style "fg=brightwhite"
 
 set -g status-left-length 35
 set -g status-right-length 125
 set -g status-left "$div1[#S] #{?window_zoomed_flag,Z,}$div2"
-set -g window-status-current-format "#[bg=$shade2]#[fg=brightwhite]#[bold]#I:#W*"
+set -g window-status-current-format "#[bg=$palette2]#[fg=brightwhite]#[bold]#I:#W*"
 set -g window-status-format "#I:#W#{?window_last_flag,-,}"
-set -g window-status-separator " ╱ "
-set -g status-right "$div3 mem #($bin/plug.memory)$div4 up #($bin/plug.uptime) #{window_width}x#{window_height}$div5#(hostname -s) #($bin/plug.ipwan)$div6%Y/%m/%d %H:%M "
+set -g window-status-separator " | "
+set -g status-right "#[fg=white] #{window_width}x#{window_height} $div3 cpu #{cpu_percentage} #{cpu_temp} mem #{ram_percentage} $div4 div4 $div5 #(hostname -s) $div6 %Y/%m/%d %H:%M "
 
-# clock
-setw -g clock-mode-colour $shade2
+# colours
+palette1="colour197"
+palette2="colour203"
+palette3="colour209"
+palette4="colour215"
+palette5="colour221"
+palette6="colour227"
 
-# font		MESLO LGM Nerd Font
-# divs		    ╱ ╲ ┃ 	 
+# plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-cpu'
+set -g @plugin 'tassaron/tmux-df'
+set -g @df_cmd_private1 "/home"
+# set -g @plugin 'tmux-plugins/tmux-net-speed'
+# set -g @net_speed_format "u %6s d %6s"
+# set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'
