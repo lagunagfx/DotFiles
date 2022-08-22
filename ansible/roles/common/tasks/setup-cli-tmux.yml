@@ -20,9 +20,9 @@
       clone: yes
       update: yes
 
-  - name: install all tpm-managed plugins
+  - name: install all tpm-managed plugins (when tmux is running)
     ansible.builtin.shell:
-        cmd: ~/.tmux/plugins/tpm/bin/install_plugins
+        cmd: tmux source ~/.tmux.conf && ~/.tmux/plugins/tpm/bin/install_plugins
 
   - name: append tmux starting sequence to .bashrc
     ansible.builtin.blockinfile:
