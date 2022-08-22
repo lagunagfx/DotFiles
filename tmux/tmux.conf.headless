@@ -38,11 +38,11 @@ set -g pane-active-border-style "fg=brightwhite"
 
 set -g status-left-length 35
 set -g status-right-length 125
-set -g status-left "$div1[#S] #{?window_zoomed_flag,#[bold]Z ,}$div2"
+set -g status-left "$div1[#S] #{?window_zoomed_flag,#[bold]Z ,}$div2 "
 set -g window-status-current-format "#[bg=$palette2]#[fg=brightwhite]#[bold]#I:#W*"
 set -g window-status-format "#I:#W#{?window_last_flag,-,}"
 set -g window-status-separator " | "
-set -g status-right "#[fg=white] #{window_width}x#{window_height} $div3 cpu #{cpu_percentage} #{cpu_temp} mem #{ram_percentage} $div4 div4 $div5 #(hostname -s) $div6 %Y/%m/%d %H:%M "
+set -g status-right "#[fg=white] #{window_width}x#{window_height} #{?client_utf8, utf8,} $div3 cpu #{cpu_percentage} #{cpu_temp} mem #{ram_percentage} $div4 root #{df_percent} home #{df_percent_private1} $div5 #( uptime --prety ) $div6 %Y/%m/%d %H:%M "
 
 # style division
 div1="#[bg=$palette1]#[fg=white] "
