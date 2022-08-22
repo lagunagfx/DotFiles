@@ -13,6 +13,17 @@
       state: link
       force: yes
 
+  - name: clone the Tmux Plugin Manager from GitHub
+    ansible.builtin.git:
+      repo: https://github.com/tmux-plugins/tpm
+      dest: ~/.tmux/plugins/tpm 
+      clone: yes
+      update: yes
+
+  - name: install all tpm-managed plugins
+    ansible.builtin.shell:
+        cmd: ~/.tmux/plugins/tpm/bin/install_plugins
+
   - name: append tmux starting sequence to .bashrc
     ansible.builtin.blockinfile:
       path: /home/jorge/.bashrc
