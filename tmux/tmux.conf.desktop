@@ -28,7 +28,7 @@ unbind C-r
 bind -n C-r send-prefix
 
 # clock
-setw -g clock-mode-colour colour061
+setw -g clock-mode-colour $palette2
 
 # window status
 set -g status-bg "$palette2"
