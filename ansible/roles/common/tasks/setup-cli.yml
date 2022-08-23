@@ -8,17 +8,17 @@
   # - nmap (Utility for network discovery and security auditing)
   # - hexedit (hexadecimal/ASCII editor)
 
-  - name: Check for packages PASS, ACL, RSYNC, NEOFETCH, HEXEDIT
+  - name: Check for packages ACL, RSYNC, NEOFETCH, HEXEDIT
     become: yes
     ansible.builtin.package:
       name:
-         - pass
          - acl
          - rsync
          - neofetch
          - hexedit
       state: present
 
+  - ansible.builtin.import_tasks: setup-cli-pass.yml
   - ansible.builtin.import_tasks: setup-cli-vim.yml
   - ansible.builtin.import_tasks: setup-cli-git.yml
   - ansible.builtin.import_tasks: setup-cli-tmux.yml
