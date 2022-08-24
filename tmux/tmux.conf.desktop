@@ -30,6 +30,23 @@ bind -n C-r send-prefix
 # clock
 setw -g clock-mode-colour $palette2
 
+
+# colours
+palette1="colour055"
+palette2="colour061"
+palette3="colour067"
+palette4="colour073"
+palette5="colour079"
+palette6="colour085"
+
+# style division
+div1="#[bg=$palette1]#[fg=white] "
+div2="#[bg=$palette2]#[fg=default]"
+div3="#[bg=$palette3]#[fg=default]"
+div4="#[bg=$palette4]#[fg=default]"
+div5="#[bg=$palette5]#[fg=default]"
+div6="#[bg=$palette6]#[fg=default]"
+
 # window status
 set -g status-bg "$palette2"
 set -g status-fg "black"
@@ -43,22 +60,6 @@ set -g window-status-current-format "#[bg=$palette2]#[fg=brightwhite]#[bold]#I:#
 set -g window-status-format "#I:#W#{?window_last_flag,-,}"
 set -g window-status-separator " | "
 set -g status-right "#[fg=white] #{window_width}x#{window_height}#{?client_utf8, utf8,} $div3 cpu #{cpu_percentage} #{cpu_temp} mem #{ram_percentage} $div4 root #{df_percent} home #{df_percent_private1} up $div5 #(plug.ipwan) $div6 %Y/%m/%d %H:%M "
-
-# style division
-div1="#[bg=$palette1]#[fg=white] "
-div2="#[bg=$palette2]#[fg=default]"
-div3="#[bg=$palette3]#[fg=default]"
-div4="#[bg=$palette4]#[fg=default]"
-div5="#[bg=$palette5]#[fg=default]"
-div6="#[bg=$palette6]#[fg=default]"
-
-# colours
-palette1="colour055"
-palette2="colour061"
-palette3="colour067"
-palette4="colour073"
-palette5="colour079"
-palette6="colour085"
 
 # plugins
 set -g @plugin 'tmux-plugins/tpm'
