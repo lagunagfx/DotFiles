@@ -7,11 +7,14 @@
     tasks:
 
       - ansible.builtin.import_tasks: roles/server/tasks/update-debian.yml
-      - ansible.builtin.import_tasks: roles/common/tasks/files-and-folders.yml
-      - ansible.builtin.import_tasks: roles/common/tasks/security_generate-keys.yml
-      - ansible.builtin.import_tasks: roles/common/tasks/package_cli_essential.yml
+      - ansible.builtin.import_tasks: roles/common/tasks/filesystem.yml
+      - ansible.builtin.import_tasks: roles/common/tasks/ssh-generate-keys.yml
+      - ansible.builtin.import_tasks: roles/common/tasks/setup-cli.yml
       - ansible.builtin.import_tasks: roles/server/tasks/git-private_create.yml
       - ansible.builtin.import_tasks: roles/common/tasks/git-private_clone.yml
-      - ansible.builtin.import_tasks: roles/server/tasks/webserver.yml
+
+      # server specific tasks
+
+      - ansible.builtin.import_tasks: roles/server/tasks/service-nginx.yml
 
 # end of playbook
