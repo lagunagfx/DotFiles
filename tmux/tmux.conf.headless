@@ -27,10 +27,7 @@ bind -n M-Down select-pane -D
 unbind C-r
 bind -n C-r send-prefix
 
-# clock
-setw -g clock-mode-colour $palette2
-
-# window status
+ window status
 set -g status-bg "$palette2"
 set -g status-fg "black"
 set -g pane-border-style "fg=$palette2"
@@ -44,7 +41,10 @@ set -g window-status-format "#I:#W#{?window_last_flag,-,}"
 set -g window-status-separator " | "
 set -g status-right "#[fg=white] #{window_width}x#{window_height}#{?client_utf8, utf8,} $div3 cpu #{cpu_percentage} #{cpu_temp} mem #{ram_percentage} $div4 root #{df_percent} home #{df_percent_private1} $div5 uptime $div6 %Y/%m/%d %H:%M "
 
-# style division
+# clock
+setw -g clock-mode-colour $palette2
+
+## style division
 div1="#[bg=$palette1]#[fg=white] "
 div2="#[bg=$palette2]#[fg=default]"
 div3="#[bg=$palette3]#[fg=default]"
