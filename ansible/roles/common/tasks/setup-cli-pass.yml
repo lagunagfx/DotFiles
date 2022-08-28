@@ -1,33 +1,20 @@
 ---
-  - name: install TMUX Terminal MUltipleXer
+  - name: install GNU's PASS password manager
     become: yes
     ansible.builtin.package:
       name:
-        - tmux
+        - pass
       state: present
-           
-  - name: check if .tmux is a regular file or link to its repo counterpart
-    ansible.builtin.file:
-      src: /home/jorge/Documentos/DotFiles/tmux/tmux.conf.headless
-      dest: /home/jorge/.tmux.conf
-      state: link
-      force: yes
 
-  - name: clone the Tmux Plugin Manager from GitHub
+  - name: clone .password-store from my private repo      
     ansible.builtin.git:
-      repo: https://github.com/tmux-plugins/tpm
-      dest: ~/.tmux/plugins/tpm 
+      repo: [git@www.lagunalabs.eu:1186]:Password.git
+      dest: ~/.password-store 
       clone: yes
       update: yes
 
-  - name: install all tpm-managed plugins
+  - name: trust my own imported keys
     ansible.builtin.shell:
-        cmd: ~/.tmux/plugins/tpm/bin/install_plugins
-
-  - name: append tmux starting sequence to .bashrc
-    ansible.builtin.blockinfile:
-      path: /home/jorge/.bashrc
-      block: "{{ lookup('ansible.builtin.file', '/home/jorge/Documentos/Private/bash/bashrc.patch-tmux') }}"
-      backup: yes
+      cmd: gpg --edit-keys ""
 
 # end of tasks list
