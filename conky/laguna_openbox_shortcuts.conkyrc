@@ -23,7 +23,7 @@ ${alignc}S H O R T C U T    K E Y S
 ${hr}
 [Super] + [PrtSc]${alignr}Screenshot
 [Alt] + [PrtSc]${alignr}Delayed Screenshot
-[Ctrl] + Space${alignr}Catfish
+[Ctrl] + [Alt] + Space${alignr}Catfish
 ${hr}
 [Fn] + Menu${alignr}Openbox Menu
 [Alt] + Space${alignr}Window Menu

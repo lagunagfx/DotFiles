@@ -429,11 +429,11 @@
         </action>
       </keybind>
     -->
-    <keybind key="C-space">
+	  <keybind key="C-A-space">
       <action name="Execute">
         <command>catfish --thumbnails</command>
       </action>
-    </keybind>
+  	</keybind>
     <keybind key="C-A-l">
       <action name="Execute">
         <command>lockscreen</command>
