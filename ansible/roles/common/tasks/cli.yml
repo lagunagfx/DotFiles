@@ -8,21 +8,24 @@
   # - nmap (Utility for network discovery and security auditing)
   # - hexedit (hexadecimal/ASCII editor)
 
-  - name: Check for packages ACL, RSYNC, NEOFETCH, HEXEDIT
+  - name: install packages ACL, CURL, HEXEDIT, HTOP, NEOFETCH, NMAP, RSYNC, UNRAR-FREE, UNZIP and ZIP
     become: yes
     ansible.builtin.package:
       name:
          - acl
-         - rsync
-         - htop
-         - unrar
-         - neofetch
+         - curl
          - hexedit
+         - htop
+         - neofetch
+         - nmap
+         - rsync
+         - unrar-free
+         - unzip
+         - zip
       state: present
 
-  - ansible.builtin.import_tasks: setup-cli-pass.yml
-  - ansible.builtin.import_tasks: setup-cli-vim.yml
-  - ansible.builtin.import_tasks: setup-cli-git.yml
-  - ansible.builtin.import_tasks: setup-cli-tmux.yml
+  - ansible.builtin.import_tasks: cli-pass.yml
+  - ansible.builtin.import_tasks: cli-vim.yml
+  - ansible.builtin.import_tasks: cli-tmux.yml
 
 # End of tasks list

@@ -20,9 +20,23 @@
       clone: yes
       update: yes
 
+  - name: is TMUX already running?
+    ansible.builtin.shell:
+      cmd: pgrep tmux
+    register: tmux_status
+    ignore_errors: yes
+    failed_when: "tmux_status.rc == 2"
+    changed_when: false
+
+  - name: install all tpm-managed plugins (when tmux is stopped)
+    ansible.builtin.shell:
+      cmd: ~/.tmux/plugins/tpm/bin/install_plugins
+    when: "tmux_status.rc == 1" 
+
   - name: install all tpm-managed plugins (when tmux is running)
     ansible.builtin.shell:
-        cmd: tmux source ~/.tmux.conf && ~/.tmux/plugins/tpm/bin/install_plugins
+      cmd: tmux source ~/.tmux.conf && ~/.tmux/plugins/tpm/bin/install_plugins
+    when: "tmux_status.rc == 0" 
 
   - name: append tmux starting sequence to .bashrc
     ansible.builtin.blockinfile:

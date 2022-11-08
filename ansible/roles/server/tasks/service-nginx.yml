@@ -1,9 +1,75 @@
 ---
   # description: install, configure, enable and run the webserver
 
-  - name: be sure the webserver is installed
-    apt:
+  - name: be sure the NGINX webserver is installed
+    become: yes
+    ansible.builtin.package:
       name: nginx
+      state: present
+
+  - name: Is there a LagunaLabs site configuration file present for the NGINX server?
+    ansible.builtin.stat:
+      path: /etc/nginx/sites-available/lagunalabs
+    register: nginx_lagunalabs_config
+
+  - name: install most recent LagunaLabs's NGINX configuration file (if absent)
+    become: yes
+    ansible.builtin.copy:
+      src: ~/Documentos/Private/nginx/nginx_sites-available_lagunalabs
+      dest: /etc/nginx/sites-available/lagunalabs
+      backup: yes
+    when: nginx_lagunalabs_config.stat.exists == false
+
+  - name: make LagunaLabs configuration available to the webserver
+    become: yes
+    ansible.builtin.file:
+        src: /etc/nginx/sites-available/lagunalabs
+        dest: /etc/nginx/sites-enabled/lagunalabs
+        state: link
+        force: yes
+
+  - name: create LagunaLabs SSL certificate folder (if needed)
+    become: yes
+    ansible.builtin.file:
+      path: /etc/ssl/laguna
+      state: directory
+
+  - name: copy LagunaLabs's SSL certificates
+    become: yes
+    ansible.builtin.copy:
+      src: '{{ item }}'
+      dest: /etc/ssl/laguna
+    loop:
+      - ~/Documentos/Private/ssl/LagunaLabs/lagunalabs_eu_4096bit.key
+      - ~/Documentos/Private/ssl/LagunaLabs/www_lagunalabs_eu_ssl-bundle_valid_20230311.crt  
+
+  - name: install all PHP dependencies for NEXCLOUD
+    become: yes
+    ansible.builtin.package:
+      name:
+        # base requirements (NEXTCLOUD)
+        - php-fpm
+        - php-curl
+        - php-gd
+        - php-json
+        - php-xml
+        - php-mbstring
+        - php-zip
+        # database connection
+        - php-mysql
+        # recommended (NEXTCLOUD)
+        - php-bz2
+        - php-intl
+        # required for certain apps (NEXTCLOUD)
+        - php-ldap
+        - php-imap
+        - php-gmp
+        # enhanced server performance (NEXTCLOUD)
+        - php-apcu
+        - php-memcached
+        - php-redis
+        # preview generation (NEXTCLOUD)
+        - php-imagick
       state: present
 
 # end of tasks list

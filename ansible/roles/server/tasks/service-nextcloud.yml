@@ -1,0 +1,41 @@
+---
+  # description: install and configure the NEXTCLOUD service
+
+  - name: is there a NEXTCLOUD folder already present ?
+    ansible.builtin.stat:
+      path: "{{ web_content }}/nexcloud/*"
+    register: nexcloud_folder
+
+  - name: if NOT, then download latest NEXTCLOUD package
+    become: yes
+    ansible.builtin.get_url:
+      url: https://download.nextcloud.com/server/releases/latest.zip
+      dest: "{{ web_content }}"
+    when: nexcloud_folder.isdir is false
+    register: nextcloud_download
+
+  - name: unpack latest NEXTCLOUD .tar package
+    become: yes
+    ansible.builtin.unarchive:
+      src: "{{ web_content }}/latest.zip"
+      dest: "{{ web_content }}"
+      remote_src: yes
+      creates: "{{ web_content }}/nextcloud"
+
+  - name: set proper permissions for NEXTCLOUD folder
+    become: yes
+    ansible.builtin.file:
+      path: "{{ web_content }}/nextcloud"
+      state: directory
+      owner: www-data
+      group: www-data
+      recurse: yes
+
+  - name: create MariaDB's user-nextcloud
+    become: yes
+    community.mysql.mysql_user:
+      name: user-nextcloud
+      password: "{{ mariadb_pwd_user-nextcloud }}"
+      state: present
+
+# end of tasks list

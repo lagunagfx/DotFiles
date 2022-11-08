@@ -1,0 +1,56 @@
+---
+  # description: install, configure, enable and run the database
+
+  # It is necessary to secure the initial install, according to
+  # https://dev.mysql.com/doc/refman/5.5/en/default-privileges.html
+
+#  - name: debug ansible_hostname
+#    debug:
+#       msg: "Jorge DEBUG : {{ ansible_hostname }}"
+
+  - name: install the MariaDB/MySQL server
+    become: yes
+    ansible.builtin.package:
+      name:
+        - mariadb-server
+        - mariadb-client
+        - python3-pymysql
+      state: present
+
+  # This step is needed for idempotency, as described in
+  # http://ansible.cc/docs/modules.html#mysql-user
+
+  - name: update MariaDB's root password for all root accounts 
+    become: yes
+    community.mysql.mysql_user:
+      # MySQL allows admin access when root but only when the client is using a socket connection
+      login_unix_socket: "/run/mysqld/mysqld.sock"
+      check_implicit_admin: yes
+      name: root
+      password: "{{ mariadb_pwd_root }}"
+      host: "{{ item }}"
+    with_items:
+      - "{{ ansible_hostname }}"
+      - 127.0.0.1
+      - ::1
+      - localhost
+
+  - name: create the my.cnf file with root password credentials
+    become: yes
+    ansible.builtin.template:
+      src: templates/root/my.cnf
+      dest: /root/.my.cnf
+      owner: root
+      mode: 0600
+
+  - name: ensure anonymous users are not in the database
+    become: yes
+    community.mysql.mysql_user:
+      name: ''
+      state: absent
+      host: "{{ item }}"
+    with_items:
+      - localhost
+      - "{{ ansible_hostname }}"
+
+# end of tasks lis"t

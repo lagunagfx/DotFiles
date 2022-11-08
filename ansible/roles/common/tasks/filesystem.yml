@@ -1,6 +1,13 @@
 ---
 # description: create and initialize repos in my owm private Git server
 
+  - name: check for package GIT
+    become: yes
+    ansible.builtin.package:
+      name:
+        - git
+      state: present
+
   - name: check if folder ".config" exists
     stat:
       path: /home/jorge/.config
@@ -34,6 +41,13 @@
       dest: /home/jorge/Documentos/DotFiles
     when: folder_dotfiles.stat.exists == false
 
+  - name: check if .gitconfig is a regular file or its repo counterpart
+    ansible.builtin.file:
+      src: ~/Documentos/DotFiles/git/gitconfig.linux-server
+      dest: ~/.gitconfig
+      state: link
+      force: yes
+
   - name: check if folder "/home/jorge/Documentos/Scripts" exists
     ansible.builtin.stat:
       path: /home/jorge/Documentos/Scripts
@@ -44,5 +58,18 @@
       repo: https://github.com/lagunagfx/Scripts
       dest: /home/jorge/Documentos/Scripts
     when: folder_dotfiles.stat.exists == false
+  
+  - name: check if folder "/home/jorge/Documentos/Private" exists
+    ansible.builtin.stat:
+      path: /home/jorge/Documentos/Private
+    register: folder_private
+
+  - name: clone private GIT repos "Private"
+    ansible.builtin.git:
+      repo: "git@cloudbook:Private.git"
+      dest: /home/jorge/Documentos/Private
+      clone: yes
+      update: yes
+    when: folder_private.stat.exists == false
 
 # end of task list

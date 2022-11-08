@@ -2,19 +2,19 @@
 # file: server_web.yml
 # description: custom changes to deploy a Web Server instance 
 
-  - hosts: mediabook
+  - hosts: cloudbook
+    connection: local
     tasks:
 
       - ansible.builtin.import_tasks: roles/server/tasks/update-debian.yml
       - ansible.builtin.import_tasks: roles/common/tasks/filesystem.yml
       - ansible.builtin.import_tasks: roles/common/tasks/ssh-generate-keys.yml
-      - ansible.builtin.import_tasks: roles/common/tasks/setup-cli.yml
+      - ansible.builtin.import_tasks: roles/common/tasks/cli.yml
+      - ansible.builtin.import_tasks: roles/server/tasks/git-private_create.yml
       - ansible.builtin.import_tasks: roles/common/tasks/git-private_clone.yml
-     
+
       # server specific tasks
 
-      - ansible.builtin.import_tasks: roles/server/tasks/filesystem-nas.yml
-      - ansible.builtin.import_tasks: roles/server/tasks/service-samba.yml
-      - ansible.builtin.import_tasks: roles/server/tasks/service-transmission.yml
+      - ansible.builtin.import_tasks: roles/server/tasks/service-nginx.yml
 
 # end of playbook

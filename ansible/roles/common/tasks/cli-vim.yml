@@ -14,6 +14,12 @@
       state: link
       force: yes
 
+  - name: copy a basic .vimrc configfile for ROOT user
+    become: yes
+    ansible.builtin.copy:
+      src: ~/Documentos/DotFiles/vim/vimrc.noplugins
+      dest: /root/.vimrc      
+
   - name: check if ~/.vim folder exits
     ansible.builtin.stat:
       path: /home/jorge/.vim
@@ -44,6 +50,10 @@
       state: link
 
   - name: install Vundle plugin
-    shell: nvim +PluginInstall +qall --headless
+    ansible.builtin.shell:
+      cmd: nvim +PluginInstall +qall --headless
+    register: vimvundle
+    # avoid Ansible registering every call to Vundle's PluginInstall as "change" 
+    changed_when: vimvundle.stdout | length > 0
 
 # end of tasks list
