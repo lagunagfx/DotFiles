@@ -4,14 +4,14 @@
   - name: is there a NEXTCLOUD folder already present ?
     ansible.builtin.stat:
       path: "{{ web_content }}/nexcloud/*"
-    register: nexcloud_folder
+    register: nextcloud_folder
 
   - name: if NOT, then download latest NEXTCLOUD package
     become: yes
     ansible.builtin.get_url:
       url: https://download.nextcloud.com/server/releases/latest.zip
       dest: "{{ web_content }}"
-    when: nexcloud_folder.isdir is false
+    when: nextcloud_folder.stat.exists is false
     register: nextcloud_download
 
   - name: unpack latest NEXTCLOUD .tar package
@@ -31,11 +31,135 @@
       group: www-data
       recurse: yes
 
-  - name: create MariaDB's user-nextcloud
+  - name: create MariaDB's nextclouddb database
+    become: yes
+    community.mysql.mysql_db:
+      name: nextclouddb
+      state: present
+
+  - name: create MariaDB's usernextcloud
     become: yes
     community.mysql.mysql_user:
-      name: user-nextcloud
-      password: "{{ mariadb_pwd_user-nextcloud }}"
+      name: usernextcloud
+      password: "{{ mariadb_pwd_usernextcloud }}"
+      priv: "nextclouddb.*:ALL"
       state: present
+
+  - name: run NEXCLOUD's occ setup script
+    become: yes
+    become_user: www-data
+    ansible.builtin.shell:
+      cmd: "php occ maintenance:install --database mysql --database-name nextclouddb --database-user usernextcloud --database-pass {{ mariadb_pwd_usernextcloud }} --admin-user admin --admin-pass {{ nextcloud_pwd_admin }} --admin-email {{ lagunalabs_admin_email }}"
+      chdir: "{{ web_content }}/nextcloud"
+      creates: "{{ web_content }}/nextcloud/data"
+    register: nextcloud_install
+
+  - name: print NEXTCLOUD install result
+    debug:
+      msg:
+        - "{{ nextcloud_install.stdout }}"
+        - "For further info contact the administrator at {{ lagunalabs_admin_email }}"
+    when: nextcloud_install.changed
+
+  - name: make sure the imagemagick package is installed
+    become: yes
+    ansible.builtin.package:
+      name: imagemagick
+      state: present
+
+  - name: add a default phone region to NEXTCLOUD's config.php
+    become: yes
+    become_user: www-data
+    ansible.builtin.blockinfile:
+      path: "{{ web_content }}/nextcloud/config/config.php"
+      insertafter: 'instanceid'
+      block: |
+        'default_phone_region' => '<ES>',
+
+# - name: add APCu and REDIS support to NEXCLOUD's config.php
+#   become: yes
+#   become_user: www-data
+#   ansible.builtin.blockinfile:
+#     path: "{{ web_content}}/nextcloud/config/config.php"
+#     insertafter: "'version'"
+#     block: |
+#       'memcache.local' => '\OC\Memcache\APCu',
+#       'memcache.distributed' => '\OC\Memcache\Redis',
+#       'redis' => [
+#          'host' => '/run/redis/redis-server.sock',
+#          'port' => 0,
+#       ],
+#     backup: yes
+
+  - name: enable 'APCu' support for PHP in '/etc/php/7.4/cli/php.ini'
+    become: yes
+    ansible.builtin.blockinfile:
+      path: /etc/php/7.4/cli/php.ini
+      insertafter: EOF
+      block: |
+        apc.enable_cli=1
+    register: php_add_apcu_support
+
+  - name: restart PHP service
+    become: yes
+    ansible.builtin.service:
+      name: "php7.4-fpm.service"
+      state: restarted
+    when: php_add_apcu_support.changed
+
+    # APCu 'cron' method disabled in favour of the 'systemd' method
+
+# - name: edit user www-data's cronjob, to support background jobs
+#   become: yes
+#   ansible.builtin.cron:
+#     user: www-data
+#     name: "Nextcloud background jobs support"
+#     minute: "*/5"
+#     job: php -f /var/www/nextcloud/cron.php
+#     state: absent
+
+  - name: create file 'nextcloudcron.service' in '/etc/systemd/system/'
+    become: yes
+    ansible.builtin.blockinfile:
+      path: /etc/systemd/system/nextcloudcron.service
+      create: yes
+      block: |
+        [Unit]
+        Description=Nextcloud cron.php job
+
+        [Service]
+        User=www-data
+        ExecStart=/usr/bin/php -f /var/www/nextcloud/cron.php
+        KillMode=process         
+
+  - name: create file 'nextcloudcron.timer' in '/etc/systemd/system/'
+    become: yes
+    ansible.builtin.blockinfile:
+      path: /etc/systemd/system/nextcloudcron.timer
+      create: yes
+      block: |
+        [Unit]
+        Description=Run Nextcloud cron.php every 5 minutes
+        
+        [Timer]
+        OnBootSec=5min
+        OnUnitActiveSec=5min
+        Unit=nextcloudcron.service
+        
+        [Install]
+        WantedBy=timers.target
+
+  - name: start and enable the 'nextcloudcron.timer' service
+    become: yes
+    ansible.builtin.service:
+      name: nextcloudcron.timer
+      enabled: yes
+      state: started
+
+  - name: restart the NGINX server, just in casa
+    become: yes
+    ansible.builtin.service:
+      name: nginx
+      state: restarted
 
 # end of tasks list

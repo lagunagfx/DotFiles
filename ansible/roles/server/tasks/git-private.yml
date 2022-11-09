@@ -1,0 +1,55 @@
+---
+# description: create and initialize repos in my owm private Git server
+
+  - name: create the user 'git' in the local directory
+    become: yes
+    ansible.builtin.user:
+      name: git
+      password: "{{ useraccount_git_pwd }}"
+      shell: /usr/bin/git-shell
+      uid: 1010
+
+# There's still no 'clone --mirror' option in ansible.builtin.git
+# Did it manually for my main "CloudBOOK to CloudBOX" migration
+#
+# - name: create private GIT repositories on the GIT user account
+#   become: yes
+#   become_user: git
+#   ansible.builtin.git:
+#     repo: "{{ git path }}"
+#     dest: "{{ item }}"
+#     clone: yes
+#   with_items: git_repos
+#   vars:
+#     git_repos:
+#       - { repo: "cloudbook:Password.git", location: "/home/git/Password.git" }
+#       - { repo: "cloudbook:Private.git", location: "/home/git/Private.git" }
+#       - { repo: "cloudbook:Wiki.git" , location: "/home/git/Wiki.git" }
+#       - { repo: "cloudbook:Professional.git", location: "/home/git/Professional.git" }
+
+  - name: create private GIT repositories on the GIT user account
+    become: yes
+    become_user: git
+    ansible.builtin.file:
+       path: "{{ item }}"
+       state: directory
+    with_items:
+      - /home/git/Password.git
+      - /home/git/Private.git
+      - /home/git/Wiki.git
+      - /home/git/Professional.git
+    register: git_create_empty_folders
+
+  - name: initialize GIT repositories
+    become: yes
+    become_user: git
+    command:
+      cmd: git -C "{{ item }}" init --bare
+    with_items:
+      - /home/git/Password.git
+      - /home/git/Private.git
+      - /home/git/Wiki.git
+      - /home/git/Professional.git
+    when: git_create_empty_folders.changed
+
+# end of task list

@@ -39,6 +39,7 @@
     ansible.builtin.copy:
       src: '{{ item }}'
       dest: /etc/ssl/laguna
+      force: no
     loop:
       - ~/Documentos/Private/ssl/LagunaLabs/lagunalabs_eu_4096bit.key
       - ~/Documentos/Private/ssl/LagunaLabs/www_lagunalabs_eu_ssl-bundle_valid_20230311.crt  
@@ -67,9 +68,60 @@
         # enhanced server performance (NEXTCLOUD)
         - php-apcu
         - php-memcached
+        # memory caching backend
         - php-redis
+        - redis-server
         # preview generation (NEXTCLOUD)
         - php-imagick
+        # security improvementes (NEXTCLOUD)
+        - php-gmp
+        - php-bcmath
       state: present
+
+  # Tuning up things on php-fpm, according to the NEXTCLOUD documentation
+
+  - name: tuning up php-fpm ENV variables
+    become: yes
+    ansible.builtin.replace:
+      path: /etc/php/7.4/fpm/pool.d/www.conf
+      regexp: '^;(env)'
+      replace: '\1'
+      backup: yes
+
+  - name: increase "memory_limit" in php.ini
+    become: yes
+    ansible.builtin.lineinfile:
+      path: /etc/php/7.4/fpm/php.ini
+      regexp: ^(memory_limit)
+      line: memory_limit = 2048M
+      backup: yes
+
+  - name: increase "post_max_size" in php.ini
+    become: yes
+    ansible.builtin.lineinfile:
+      path: /etc/php/7.4/fpm/php.ini
+      regexp: ^(post_max_size)
+      line: post_max_size = 256M
+      backup: yes
+
+  - name: increase "upload_max_filesize" in php.ini
+    become: yes
+    ansible.builtin.lineinfile:
+      path: /etc/php/7.4/fpm/php.ini
+      regexp: ^(upload_max_filesize)
+      line: upload_max_filesize = 256M
+      backup: yes
+
+  - name: restarting the NGINX server
+    become: yes
+    ansible.builtin.service:
+      name: nginx
+      state: restarted
+
+  - name: restarting php-fpm service
+    become: yes
+    ansible.builtin.service:
+      name: php7.4-fpm
+      state: restarted
 
 # end of tasks list

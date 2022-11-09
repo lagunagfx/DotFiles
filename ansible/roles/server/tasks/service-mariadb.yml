@@ -24,6 +24,7 @@
     become: yes
     community.mysql.mysql_user:
       # MySQL allows admin access when root but only when the client is using a socket connection
+      # https://stackoverflow.com/questions/71206104/ansible-mysql-check-implicit-admin-without-root-user-password
       login_unix_socket: "/run/mysqld/mysqld.sock"
       check_implicit_admin: yes
       name: root
