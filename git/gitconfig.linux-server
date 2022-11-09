@@ -5,3 +5,5 @@
 	helper = !pass git/lagunagfx@github
 [init]
 	defaultBranch = master
+[pull]
+	rebase = false
