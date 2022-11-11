@@ -2,30 +2,38 @@
   # description: install and configure the NEXTCLOUD service
 
   - name: is there a NEXTCLOUD folder already present ?
+    become: yes
+    become_user: www-data
     ansible.builtin.stat:
-      path: "{{ web_content }}/nexcloud/*"
+      path: "{{ www_root }}/nextcloud/"
     register: nextcloud_folder
+
+  - name: debug the previuos command
+    ansible.builtin.debug:
+      msg: 
+       - "{{ www_root }}/nextcloud"
+       - "{{ nextcloud_folder }}"
 
   - name: if NOT, then download latest NEXTCLOUD package
     become: yes
     ansible.builtin.get_url:
       url: https://download.nextcloud.com/server/releases/latest.zip
-      dest: "{{ web_content }}"
-    when: nextcloud_folder.stat.exists is false
+      dest: "{{ www_root }}"
+    when: not nextcloud_folder.stat.exists
     register: nextcloud_download
 
   - name: unpack latest NEXTCLOUD .tar package
     become: yes
     ansible.builtin.unarchive:
-      src: "{{ web_content }}/latest.zip"
-      dest: "{{ web_content }}"
+      src: "{{ www_root }}/latest.zip"
+      dest: "{{ www_root }}"
       remote_src: yes
-      creates: "{{ web_content }}/nextcloud"
+      creates: "{{ www_root }}/nextcloud"
 
   - name: set proper permissions for NEXTCLOUD folder
     become: yes
     ansible.builtin.file:
-      path: "{{ web_content }}/nextcloud"
+      path: "{{ www_root }}/nextcloud"
       state: directory
       owner: www-data
       group: www-data
@@ -45,21 +53,23 @@
       priv: "nextclouddb.*:ALL"
       state: present
 
-  - name: run NEXCLOUD's occ setup script
-    become: yes
-    become_user: www-data
-    ansible.builtin.shell:
-      cmd: "php occ maintenance:install --database mysql --database-name nextclouddb --database-user usernextcloud --database-pass {{ mariadb_pwd_usernextcloud }} --admin-user admin --admin-pass {{ nextcloud_pwd_admin }} --admin-email {{ lagunalabs_admin_email }}"
-      chdir: "{{ web_content }}/nextcloud"
-      creates: "{{ web_content }}/nextcloud/data"
-    register: nextcloud_install
+   # ToDo! : improve conditionals regarding when to run the initial script
 
-  - name: print NEXTCLOUD install result
-    debug:
-      msg:
-        - "{{ nextcloud_install.stdout }}"
-        - "For further info contact the administrator at {{ lagunalabs_admin_email }}"
-    when: nextcloud_install.changed
+   # - name: run NEXCLOUD's occ setup script
+   #   become: yes
+   #   become_user: www-data
+   #   ansible.builtin.shell:
+   #     cmd: "php occ maintenance:install --database mysql --database-name nextclouddb --database-user usernextcloud --database-pass {{ mariadb_pwd_usernextcloud }} --admin-user admin --admin-pass {{ nextcloud_pwd_admin }} --admin-email {{ lagunalabs_admin_email }}"
+   #     chdir: "{{ www_root }}/nextcloud"
+   #     creates: "{{ www_root }}/nextcloud/data"
+   #   register: nextcloud_install
+
+   # - name: print NEXTCLOUD install result
+   #   debug:
+   #     msg:
+   #       - "{{ nextcloud_install.stdout }}"
+   #       - "For further info contact the administrator at {{ lagunalabs_admin_email }}"
+   #   when: nextcloud_install.changed
 
   - name: make sure the imagemagick package is installed
     become: yes
@@ -67,11 +77,21 @@
       name: imagemagick
       state: present
 
+# ToDo! Make it work with all the quotes ''      
+
+#  - name: place 'nexcloud-data' folder outside of '/var/www'
+#    become: yes
+#    become_user: www-data
+#    ansible.builtin.replace:
+#      path: "{{ www_root }}/nextcloud/config/config.php"
+#      regexp: '^.*(datadirectory)'
+#      block: 'datadirectory
+
   - name: add a default phone region to NEXTCLOUD's config.php
     become: yes
     become_user: www-data
     ansible.builtin.blockinfile:
-      path: "{{ web_content }}/nextcloud/config/config.php"
+      path: "{{ www_root }}/nextcloud/config/config.php"
       insertafter: 'instanceid'
       block: |
         'default_phone_region' => '<ES>',
@@ -80,7 +100,7 @@
 #   become: yes
 #   become_user: www-data
 #   ansible.builtin.blockinfile:
-#     path: "{{ web_content}}/nextcloud/config/config.php"
+#     path: "{{ www_root}}/nextcloud/config/config.php"
 #     insertafter: "'version'"
 #     block: |
 #       'memcache.local' => '\OC\Memcache\APCu',
@@ -161,5 +181,11 @@
     ansible.builtin.service:
       name: nginx
       state: restarted
+
+  - name: delete the remaining nextcloud install package
+    become: yes
+    ansible.builtin.file:
+      path: "{{ www_root }}/latest.zip"
+      state: absent
 
 # end of tasks list

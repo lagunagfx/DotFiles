@@ -5,24 +5,29 @@
   - hosts: cloudbox
 
     vars:
-      web_content: /var/www
+
+      # global variables applicable to this scope
+
+      ipv6_enabled: true
+      www_root: /var/www
 
     tasks:
 
-#     - ansible.builtin.import_tasks: roles/common/tasks/ipv6-disable.yml
-#     - ansible.builtin.import_tasks: roles/common/tasks/filesystem.yml
-#     - ansible.builtin.import_tasks: roles/common/tasks/ssh-generate-keys.yml
-#     - ansible.builtin.import_tasks: roles/common/tasks/cli.yml
-      - ansible.builtin.import_tasks: roles/server/tasks/git-private.yml
-#     - ansible.builtin.import_tasks: roles/common/tasks/python.yml
+#      - ansible.builtin.import_tasks: roles/common/tasks/ipv6.yml
+#      - ansible.builtin.import_tasks: roles/common/tasks/filesystem.yml
+#      - ansible.builtin.import_tasks: roles/common/tasks/ssh-generate-keys.yml
+#      - ansible.builtin.import_tasks: roles/common/tasks/cli.yml
+#      - ansible.builtin.import_tasks: roles/server/tasks/git-private.yml
+#      - ansible.builtin.import_tasks: roles/common/tasks/python.yml
      
       # server specific tasks
 
+#     - ansible.builtin.import_tasks: roles/server/tasks/ansible.yml
 #     - ansible.builtin.import_tasks: roles/server/tasks/filesystem-server.yml
 #     - ansible.builtin.import_tasks: roles/server/tasks/service-nginx.yml
 #     - ansible.builtin.import_tasks: roles/server/tasks/service-mariadb.yml
-#     - ansible.builtin.import_tasks: roles/server/tasks/service-nextcloud.yml
-#     - ansible.builtin.import_tasks: roles/server/tasks/service-samba.yml
+      - ansible.builtin.import_tasks: roles/server/tasks/service-nextcloud.yml
 #     - ansible.builtin.import_tasks: roles/server/tasks/service-transmission.yml
+      - ansible.builtin.import_tasks: roles/server/tasks/service-samba.yml
 
 # end of playbook

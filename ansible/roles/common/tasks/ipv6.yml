@@ -1,0 +1,41 @@
+# description: completely disable ipv6 support in Debian
+#              ipv6 protocol could be completely enabled back removing the changes and rebooting
+---
+
+  - name: add '*.disable_ipv6' lines to '/etc/sysctl.conf' if needed
+    become: yes
+    ansible.builtin.blockinfile:
+      path: /etc/sysctl.conf
+      block: |
+        net.ipv6.conf.all.disable_ipv6 = 1
+        net.ipv6.conf.default.disable_ipv6 = 1
+        net.ipv6.conf.lo.disable_ipv6 = 1
+        net.ipv6.conf.tun0.disable_ipv6 = 1
+      state: absent
+    when: not ipv6_enabled
+    register: disable_ipv6_block_added
+
+  - name: remove '*.disable_ipv6' from '/etc/sysctl.conf' if needed
+    become: yes
+    ansible.builtin.blockinfile:
+      path: /etc/sysctl.conf
+      insertafter: EOF
+      block: |
+        net.ipv6.conf.all.disable_ipv6 = 1
+        net.ipv6.conf.default.disable_ipv6 = 1
+        net.ipv6.conf.lo.disable_ipv6 = 1
+        net.ipv6.conf.tun0.disable_ipv6 = 1
+    when: not ipv6_enabled
+    register: disable_ipv6_block_removed
+
+  # - name: debug previous 2 commands
+  #   ansible.builtin.debug:
+  #     msg:
+  #       - "{{ disable_ipv6_block_added }}"
+  #       - "{{ disable_ipv6_block_removed }}"
+
+  - name: reboot the system if '/etc/sysctl' was modified in order to apply changes
+    ansible.builtin.reboot:
+    when: disable_ipv6_block_added.changed or disable_ipv6_block_removed.changed
+
+# end of task list

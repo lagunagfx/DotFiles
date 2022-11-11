@@ -25,7 +25,7 @@
   - name: check if Transmission's download folder is present and accesible
     become: yes
     ansible.builtin.file:
-      path: /mnt/disk3/downloads/transmission
+      path: /mnt/data0/transmission-downloads
       state: directory
       owner: debian-transmission
       group: debian-transmission

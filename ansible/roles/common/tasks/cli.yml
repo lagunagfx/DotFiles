@@ -9,7 +9,7 @@
   # - hexedit (hexadecimal/ASCII editor)
   # - imagemagick (necessary for Nextcloud support)
 
-  - name: install packages ACL, CURL, HDPARM, HEXEDIT, IMAGEMAGICK, HTOP, NEOFETCH, NMAP, RSYNC, UNRAR-FREE, UNZIP and ZIP
+  - name: install packages ACL, CURL, HDPARM, HEXEDIT, IMAGEMAGICK, HTOP, NEOFETCH, NMAP, PARTED, RSYNC, UNRAR-FREE, UNZIP and ZIP
     become: yes
     ansible.builtin.package:
       name:
@@ -21,6 +21,7 @@
          - imagemagick
          - neofetch
          - nmap
+         - parted
          - rsync
          - unrar-free
          - unzip

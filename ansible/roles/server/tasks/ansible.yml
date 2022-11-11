@@ -1,0 +1,10 @@
+---
+  # description: list of essential packages for command line use 
+
+  - name: install the 'ansible' package 
+    become: yes
+    ansible.builtin.package:
+      name: ansible
+      state: present
+
+# End of tasks list
