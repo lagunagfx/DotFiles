@@ -1,0 +1,30 @@
+---
+# file: gui.yml
+# description: desktop and laptop customization
+
+  - hosts: thinkpadt460
+    vars:
+
+      # global variables applicable to this scope
+
+      ipv6_enabled: true
+
+    tasks:
+
+#     - ansible.builtin.import_tasks: roles/common/tasks/ipv6.yml
+#     - ansible.builtin.import_tasks: roles/common/tasks/filesystem.yml
+#     - ansible.builtin.import_tasks: roles/common/tasks/ssh-generate-keys.yml
+#     - ansible.builtin.import_tasks: roles/common/tasks/cli.yml
+#     - ansible.builtin.import_tasks: roles/server/tasks/git-private.yml
+#     - ansible.builtin.import_tasks: roles/common/tasks/python.yml
+     
+      # gui specific tasks
+
+      - name: debug variables
+        ansible.builtin.debug:
+          msg:
+            - "{{ ansible_hostname }}"
+
+      - ansible.builtin.import_tasks: roles/gui/tasks/intel-graphics.yml
+
+# end of playbook

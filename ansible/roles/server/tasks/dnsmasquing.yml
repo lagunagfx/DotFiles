@@ -1,0 +1,17 @@
+---
+  # description: enable dns masquing in order to translate global 'www.lagunalabs.eu' into 'cloudbox' requests 
+
+  - name: make sure '/etc/hosts' is configured properly
+    become: yes
+    ansible.builtin.replace:
+      path: /etc/hosts
+      regexp: ^.*(192.168.1.100).*(cloudbook)
+      replace: 192.168.1.100   cloudbook       www.lagunalabs.eu
+
+  - name: install the 'dnsmasq' package 
+    become: yes
+    ansible.builtin.package:
+      name: dnsmasq
+      state: present
+
+# End of tasks list

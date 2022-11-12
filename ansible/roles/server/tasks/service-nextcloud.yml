@@ -8,11 +8,11 @@
       path: "{{ www_root }}/nextcloud/"
     register: nextcloud_folder
 
-  - name: debug the previuos command
-    ansible.builtin.debug:
-      msg: 
-       - "{{ www_root }}/nextcloud"
-       - "{{ nextcloud_folder }}"
+  # - name: debug the previuos command
+  #   ansible.builtin.debug:
+  #     msg: 
+  #      - "{{ www_root }}/nextcloud"
+  #      - "{{ nextcloud_folder }}"
 
   - name: if NOT, then download latest NEXTCLOUD package
     become: yes

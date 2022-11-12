@@ -1,6 +1,6 @@
 [core]
 localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python3
-cloudbook ansible_connection=local ansible_python_interpreter=/usr/bin/python3
+cloudbox ansible_connection=local ansible_python_interpreter=/usr/bin/python3
 
 [server]
 cloudbox
@@ -12,3 +12,4 @@ badulaque
 
 [laptop]
 aracuan
+thinkpadt460

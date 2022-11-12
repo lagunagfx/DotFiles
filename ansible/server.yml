@@ -22,12 +22,15 @@
      
       # server specific tasks
 
+      # ToDo! : Replace the 'force: no' condition when copying samba and transmission configs
+
+      - ansible.builtin.import_tasks: roles/server/tasks/dnsmasquing.yml
 #     - ansible.builtin.import_tasks: roles/server/tasks/ansible.yml
 #     - ansible.builtin.import_tasks: roles/server/tasks/filesystem-server.yml
 #     - ansible.builtin.import_tasks: roles/server/tasks/service-nginx.yml
 #     - ansible.builtin.import_tasks: roles/server/tasks/service-mariadb.yml
-      - ansible.builtin.import_tasks: roles/server/tasks/service-nextcloud.yml
+#     - ansible.builtin.import_tasks: roles/server/tasks/service-nextcloud.yml
 #     - ansible.builtin.import_tasks: roles/server/tasks/service-transmission.yml
-      - ansible.builtin.import_tasks: roles/server/tasks/service-samba.yml
+#     - ansible.builtin.import_tasks: roles/server/tasks/service-samba.yml
 
 # end of playbook

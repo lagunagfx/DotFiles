@@ -1,6 +1,7 @@
 ---
   # file: main.yml
 
-#- import_playbook: server-web.yml
-  - import_playbook: server-nas.yml
-#  - import_playbook: gui.yml
+  - import_playbook: server.yml
+  - import_playbook: gui.yml
+
+# end of playbook

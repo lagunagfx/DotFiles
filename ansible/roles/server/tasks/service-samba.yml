@@ -12,19 +12,21 @@
     ansible.builtin.copy:
         src: /home/jorge/Documentos/Private/etc/samba-smb.conf
         dest: /etc/samba/smb.conf
+        force: no
         backup: yes
 
   - name: check if user "jorge" is present on the SAM database
     become: yes
     ansible.builtin.shell:
       cmd: pdbedit -L | grep jorge
+    ignore_errors: yes
     register: samba_users_jorge
 
   - name: add user "jorge" to the list of Samba's users
     become: yes
     ansible.builtin.shell:
-        cmd: ( echo '{{ samba_password }}' ; echo '{{ samba_password }}' ) | smbpasswd -a -s jorge
-    when: samba_users_jorge.stdout != ""
+        cmd: ( echo '{{ samba_useraccount_pwd_jorge }}' ; echo '{{ samba_useraccount_pwd_jorge }}' ) | smbpasswd -a -s jorge
+    when: not samba_users_jorge.stdout
 
   - name: restart the Samba service
     become: yes

@@ -20,6 +20,8 @@
         dest: /etc/transmission-daemon/settings.json
         owner: debian-transmission
         group: debian-transmission
+        # won't replace the file if its different from the source (useful for tuning up configs)
+        force: no
         backup: yes
  
   - name: check if Transmission's download folder is present and accesible
