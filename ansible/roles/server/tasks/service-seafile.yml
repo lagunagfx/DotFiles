@@ -1,31 +1,69 @@
 ---
   # description: install, configure and enable the samba server
 
-  - name: install Seafile's signing key
-    become: yes
-    ansible.builtin.shell:
-      cmd: wget https://linux-clients.seafile.com/seafile.asc -O /usr/share/keyrings/seafile-keyring.asc
+# - name: install Seafile's signing key
+#   become: yes
+#   ansible.builtin.shell:
+#     cmd: wget https://linux-clients.seafile.com/seafile.asc -O /usr/share/keyrings/seafile-keyring.asc
 
-  # ToDo! : Make the script decide between lines for Debian 10 and Debian 11
+# # ToDo! : Make the script decide between lines for Debian 10 and Debian 11
 
-  - name: add repo to the sources list
-    become: yes
-    ansible.builtin.shell:
-      cmd: bash -c "echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/buster/ stable main' > /etc/apt/sources.list.d/seafile.list"
+# - name: add repo to the sources list
+#   become: yes
+#   ansible.builtin.shell:
+#     cmd: bash -c "echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/buster/ stable main' > /etc/apt/sources.list.d/seafile.list"
 
-  - name: check if the seaf-cli package is installed
+# - name: check if the seaf-cli package is installed
+#   become: yes
+#   apt:
+#     name: seaf-cli
+#     state: present
+
+# - name: install SEAFILE dependencies (for Debian 10)
+#   become: yes
+#   ansible.builtin.package:
+#     name:
+#       - default-libmysqlclient-dev
+#       - libmemcached-dev
+
+  - name: install SEAFILE dependencies
     become: yes
-    apt:
-      name: seaf-cli
+    ansible.builtin.package:
+      name:
+        - python3-mysqldb
+        - python3-ldap
+        - python3-pylibmc
+        - python3-django-captcha
+        - python3-jinja2
+        - python3-sqlalchemy
+
+  - name: create seafile '/opt/seafile'
+    become: yes
+    ansible.builtin.file:
+      path: /opt/seafile
+      state: directory
+
+  - name: create user 'seafile'
+    become: yes
+    ansible.builtin.user:
+      name: seafile
+      password: "{{ useraccount_seafile_pwd }}"
+      create_home: yes
+
+  - name: create 'ccnetdb','seahubdb' and 'seafiledb' MySQL/MariaDB databases
+    become: yes
+    community.mysql.mysql_db:
+      name:
+        - seafile_ccnetdb
+        - seafile_seahubdb
+        - seafile_seafiledb
       state: present
 
-  - name: restart the Samba service
+  - name: create the MySQL/MariaDB user 'userseafile'
     become: yes
-    ansible.builtin.systemd:
-        name: '{{ item }}'
-        state: restarted
-    loop:
-      - smbd
-      - nmbd
+    community.mysql.mysql_user:
+      name: userseafile
+      password: "{{ mariadb_userseafile_pwd }}"
+      priv: seafile_ccnetdb.*:ALL/seafile_seahubdb.*:ALL/seafile_seafiledb.*:ALL 
 
 # end of tasks list

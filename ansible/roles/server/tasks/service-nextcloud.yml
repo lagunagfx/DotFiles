@@ -49,7 +49,7 @@
     become: yes
     community.mysql.mysql_user:
       name: usernextcloud
-      password: "{{ mariadb_pwd_usernextcloud }}"
+      password: "{{ mariadb_usernextcloud_pwd }}"
       priv: "nextclouddb.*:ALL"
       state: present
 
@@ -59,7 +59,7 @@
    #   become: yes
    #   become_user: www-data
    #   ansible.builtin.shell:
-   #     cmd: "php occ maintenance:install --database mysql --database-name nextclouddb --database-user usernextcloud --database-pass {{ mariadb_pwd_usernextcloud }} --admin-user admin --admin-pass {{ nextcloud_pwd_admin }} --admin-email {{ lagunalabs_admin_email }}"
+   #     cmd: "php occ maintenance:install --database mysql --database-name nextclouddb --database-user usernextcloud --database-pass {{ mariadb_usernextcloud_pwd }} --admin-user {{ nextcloud_admin_username }} --admin-pass {{ nextcloud_admin_pwd }} --admin-email {{ lagunalabs_admin_email }}"
    #     chdir: "{{ www_root }}/nextcloud"
    #     creates: "{{ www_root }}/nextcloud/data"
    #   register: nextcloud_install

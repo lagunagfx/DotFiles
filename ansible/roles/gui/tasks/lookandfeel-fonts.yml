@@ -1,0 +1,10 @@
+---
+# description: install all needed fonts for a homogeneous look
+
+  - name: install Google's signature family of fonts
+    become: yes
+    ansible.builtin.package:
+      - name: ttf-roboto
+        state: present
+
+# end of task
