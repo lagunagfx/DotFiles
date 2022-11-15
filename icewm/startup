@@ -1,0 +1,12 @@
+#!/bin/bash
+
+[ -x ~/.icewm/restart ] && source ~/.icewm/restart
+
+#gnome-terminal --geometry 80x25+217+235 &
+#xscreensaver &
+
+sleep 0.5 ; tint2 &
+sleep 0.5 ; volumeicon &
+sleep 0.5 ; nm-applet &
+sleep 0.5 ; blueman-applet &
+sleep 0.5 ; seafile-applet &

@@ -1,0 +1,20 @@
+---
+  # description: specific tools for Arch based distros 
+  #
+  # - paru (requires rust)
+
+  - name: [ARCH-based only] Check for packages Rust (dependency for Paru)
+    become: yes
+    ansible.builtin.package:
+      name:
+         - rust
+      state: present
+
+  - name: [ARCH-based only] Clone PARU's repo from Arch's AUR repo
+    ansible.builtin.git:
+      repo: https://aur.archlinux.org/paru.git
+      dest: /home/jorge/Documentos/Git
+      clone: yes
+      update: yes
+
+# End of tasks list
