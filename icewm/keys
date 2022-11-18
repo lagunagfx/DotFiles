@@ -9,7 +9,7 @@
 # XF86. Valid modifiers are Alt, Ctrl, Shift, Meta, Super and Hyper.
 #
 key "Super+Return"          alacritty
-key "Super+e"				rofi -show drun -show-icons
+key "Super+r"				rofi -show drun -show-icons
 # lock screen
 key "Ctrl+Alt+l"			rof -l
 # LagunaGFX common apps

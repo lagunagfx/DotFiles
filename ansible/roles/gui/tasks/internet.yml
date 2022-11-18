@@ -1,0 +1,14 @@
+---
+  # description: 
+
+  - name: install Mozilla's Firefox and Thunderbird
+    become: yes
+    ansible.builtin.package:
+      name:
+         - firefox-developer-edition
+         - firefox-developer-edition-i18n-es-es
+         - thunderbird
+         - thunderbird-i18n-es-es
+    state: present
+
+# End of tasks list
