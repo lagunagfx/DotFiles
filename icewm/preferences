@@ -1482,7 +1482,7 @@ WorkspaceNames="1", "2", "3", "4", "5", "6", "7", "8", "9", "0"
 # DesktopBackgroundColor=""
 
 #  Desktop background image(s)
-DesktopBackgroundImage="~/Seafile/gui/wallpaper/1920x1080/1920x1080_Reddit_SweepersNearNeptune_original.png"
+DesktopBackgroundImage="~/Seafile/gui/wallpaper/1920x1080_FullHD/1920x1080_Reddit_SweepersNearNeptune_original.png"
 
 #  Paint the background image over all multihead monitors combined.
 # DesktopBackgroundMultihead=0 # 0/1

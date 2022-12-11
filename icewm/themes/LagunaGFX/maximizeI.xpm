@@ -2,7 +2,7 @@
 static char * maximizeA_xpm[] = {
 "24 48 2 1",
 " 	c #282828",
-".	c #f0f0f0",
+".	c #c0c0c0",
 "                        ",
 "                        ",
 "                        ",

@@ -1,8 +1,8 @@
 /* XPM */
-static char * minimizeO_xpm[] = {
+static char * minimizeI_xpm[] = {
 "24 48 2 1",
-" 	c #686868",
-".	c #141414",
+" 	c #282828",
+".	c #c0c0c0",
 "                        ",
 "                        ",
 "                        ",
