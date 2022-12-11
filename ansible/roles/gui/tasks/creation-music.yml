@@ -1,0 +1,26 @@
+---
+# description: install music composition tools
+
+  - name: enable JACK support
+    become: yes
+    ansible.builtin.package:
+      name:
+        - realtime-privileges
+        - a2jmidid
+        - qjackctl
+        - jack_capture
+
+  - name: add user to the 'realtime' group
+    become: yes
+    ansible.builtin.user:
+      name: jorge
+      append: true
+      groups: realtime
+
+  - name: install Ansible DAW
+    become: yes
+    ansible.builtin.package:
+      name:
+        - ardour
+
+# end of task

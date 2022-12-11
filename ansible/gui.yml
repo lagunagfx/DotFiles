@@ -1,5 +1,4 @@
 ---
-# file: gui.yml
 # description: desktop and laptop customization
 
   - hosts: thinkpadt460
@@ -25,6 +24,10 @@
           msg:
             - "{{ ansible_hostname }}"
 
-      - ansible.builtin.import_tasks: roles/gui/tasks/intel-graphics.yml
+      - ansible.builtin.import_tasks: roles/gui/tasks/internet.yml
+#     - ansible.builtin.import_tasks: roles/gui/tasks/intel-graphics.yml
+      - ansible.builtin.import_tasks: roles/gui/tasks/filesync.yml
+      - ansible.builtin.import_tasks: roles/gui/tasks/media-video.yml
+      - ansible.builtin.import_tasks: roles/gui/tasks/creation-music.yml
 
 # end of playbook
