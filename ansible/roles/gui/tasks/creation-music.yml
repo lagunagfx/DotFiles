@@ -9,6 +9,7 @@
         - a2jmidid
         - qjackctl
         - jack_capture
+      state: present
 
   - name: add user to the 'realtime' group
     become: yes
@@ -22,5 +23,24 @@
     ansible.builtin.package:
       name:
         - ardour
+      state: present
+
+  - name: install virtual instruments 'Cardinal','Dexed', 'Geonkick', 'SurgeXT' and 'Helm'.
+    become: yes
+    ansible.builtin.package:
+      name:
+        - cardinal
+        - dexed
+        - geonkick
+        - helm-synth
+        - surge-xt
+      state: present
+
+  - name: install FX plugins 'dragonfly-reverb'
+    become: yes
+    ansible.builtin.package:
+      name:
+        - dragonfly-reverb
+      state: present
 
 # end of task
