@@ -11,5 +11,6 @@ sleep 0.5 ; conky -d -c ~/.config/conky/laguna_sysinfo_icewm.conkyrc
 sleep 0.5 ; conky -d -c ~/.config/conky/laguna_shortcuts_icewm.conkyrc
 sleep 0.5 ; volumeicon &
 sleep 0.5 ; nm-applet &
+sleep 0.5 ; xfce4-power-manager &
 sleep 0.5 ; blueman-applet &
 sleep 0.5 ; seafile-applet &

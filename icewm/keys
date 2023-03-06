@@ -15,6 +15,7 @@ key "Ctrl+Alt+l"			rof -l
 # LagunaGFX common apps
 key "Ctrl+Super+w"			firefox-developer-edition
 key "Ctrl+Super+f"			pcmanfm
+key "Ctrl+Super+m"			thunderbird
 
 key "Alt+Ctrl+b"            xdg-open about:blank
 key "Alt+Ctrl+s"            xdg-open https://www.google.com
