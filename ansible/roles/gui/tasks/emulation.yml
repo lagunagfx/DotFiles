@@ -1,0 +1,11 @@
+---
+# description: emulation/virtualization software
+
+  - name: install Microsoft Windows emulation through WINE
+    ansible.builtin.import_tasks: roles/gui/tasks/emulation-wine.yml
+
+  - name: install Libretro global support through RETROARCH
+    ansible.builtin.import_tasks: roles/gui/tasks/emulation-retroarch.yml
+    when: ansible_facts['hostname'] in groups['laptop']
+
+# end of tasks

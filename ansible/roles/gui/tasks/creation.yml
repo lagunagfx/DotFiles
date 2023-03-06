@@ -1,0 +1,26 @@
+---
+# description:
+
+  - name: install Grafx2, a Deluxe Paint clone
+    become: yes
+    ansible.builtin.package:
+      name:
+        - grafx2
+      state: present
+
+  - name: install Inkscape, Blender and Kicad
+    become: yes
+    ansible.builtin.package:
+      name:
+        - blender
+        - inkscape
+        - kicad
+        - kicad-library
+        - kicad-library-3d
+      state: present
+    when: inventory_hostname not in groups['netbook']
+
+  - name: install music creation tools...
+    ansible.builtin.import_tasks: roles/gui/tasks/creation-music.yml
+
+# end of tasks
