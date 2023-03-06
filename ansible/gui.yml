@@ -1,33 +1,17 @@
 ---
 # description: desktop and laptop customization
 
-  - hosts: thinkpadt460
-    vars:
+  - ansible.builtin.import_tasks: roles/gui/tasks/internet.yml
+  - ansible.builtin.import_tasks: roles/gui/tasks/intel-graphics.yml
+  - ansible.builtin.import_tasks: roles/gui/tasks/filesync.yml
+  - ansible.builtin.import_tasks: roles/gui/tasks/media-video.yml
 
-      # global variables applicable to this scope
+  - name: debug GROUPS
+    debug:
+      var: groups['graphical']
 
-      ipv6_enabled: true
-
-    tasks:
-
-#     - ansible.builtin.import_tasks: roles/common/tasks/ipv6.yml
-#     - ansible.builtin.import_tasks: roles/common/tasks/filesystem.yml
-#     - ansible.builtin.import_tasks: roles/common/tasks/ssh-generate-keys.yml
-#     - ansible.builtin.import_tasks: roles/common/tasks/cli.yml
-#     - ansible.builtin.import_tasks: roles/server/tasks/git-private.yml
-#     - ansible.builtin.import_tasks: roles/common/tasks/python.yml
-     
-      # gui specific tasks
-
-      - name: debug variables
-        ansible.builtin.debug:
-          msg:
-            - "{{ ansible_hostname }}"
-
-      - ansible.builtin.import_tasks: roles/gui/tasks/internet.yml
-#     - ansible.builtin.import_tasks: roles/gui/tasks/intel-graphics.yml
-      - ansible.builtin.import_tasks: roles/gui/tasks/filesync.yml
-      - ansible.builtin.import_tasks: roles/gui/tasks/media-video.yml
-      - ansible.builtin.import_tasks: roles/gui/tasks/creation-music.yml
+  - ansible.builtin.import_tasks: roles/gui/tasks/creation.yml
+    when: ansible_facts['hostname'] in groups['graphical']
+  - ansible.builtin.import_tasks: roles/gui/tasks/emulation.yml
 
 # end of playbook

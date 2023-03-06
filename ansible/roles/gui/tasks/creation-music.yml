@@ -18,11 +18,53 @@
       append: true
       groups: realtime
 
-  - name: install Ansible DAW
+  - name: install the Ardour DAW
     become: yes
     ansible.builtin.package:
       name:
         - ardour
+      state: present
+
+  - name: install the Reaper DAW
+    become: yes
+    ansible.builtin.package:
+      name:
+        - reaper
+        - reapack
+        - sws
+      state: present
+
+  - name: install Yet Another VST Bridge for MS Windows audio plugins
+    become: yes
+    ansible.builtin.package:
+      name:
+        - yabridge
+        - yabridgectl
+      state: present
+
+  - name: install FastTracker, ProTracker and ImpulseTracker clones
+    become: yes
+    ansible.builtin.package:
+      name:
+        - pt2-clone
+        - ft2-clone
+        - schismtracker
+      state: present
+
+  - name: install MilkyTracker and GoatTracker
+    become: yes
+    ansible.builtin.package:
+      name:
+        - milkytracker
+        - goattracker
+      state: present
+
+  - name: install Klystrack Plus and Furnace trackers in alpha/beta stage
+    become: yes
+    ansible.builtin.package:
+      name:
+        - klystrack-plus
+        - furnace
       state: present
 
   - name: install virtual instruments 'Cardinal','Dexed', 'Geonkick', 'SurgeXT' and 'Helm'.

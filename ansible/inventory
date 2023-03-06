@@ -1,16 +1,30 @@
 [core]
-localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python3
+# localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python3
 cloudbox ansible_connection=local ansible_python_interpreter=/usr/bin/python3
-thinkpadt460 ansible_connection=local ansible_python_interpreter=/usr/bin/python3
 
 [server]
 cloudbox
-cloudbook
-mediabook
+# cloudbook
+# mediabook
+
+[macintosh]
+peluso
+fosito
 
 [desktop]
 badulaque
+venerable
 
 [laptop]
 aracuan
+thinkpadx270
 thinkpadt460
+
+[netbook]
+soundbook1
+soundbook2
+
+[graphical:children]
+desktop
+laptop
+netbook
