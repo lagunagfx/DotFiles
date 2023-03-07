@@ -34,10 +34,10 @@
 
 # temporarily disabled since Github has blocked VundleVim repo without notice
 
-# - name: clone VimVundle repository from GitHub
-#   ansible.builtin.git:
-#     repo: https://github.com/VundleVim/Vundle.vim.git
-#     dest: /home/jorge/.vim/bundle/Vundle.vim
+  - name: clone VimVundle repository from GitHub
+    ansible.builtin.git:
+      repo: https://github.com/VundleVim/Vundle.vim.git
+      dest: /home/jorge/.vim/bundle/Vundle.vim
 
   - name: link NeoVim's init.vim to Vim's vimrc
     ansible.builtin.file:
