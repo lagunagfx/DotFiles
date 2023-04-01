@@ -9,6 +9,7 @@
         - a2jmidid
         - qjackctl
         - jack_capture
+        - pulseaudio-jack
       state: present
 
   - name: add user to the 'realtime' group
