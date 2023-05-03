@@ -32,10 +32,12 @@
       mode: '0755'
     when: folder_vim.stat.exists == false
 
-  - name: clone VimVundle repository from GitHub
-    ansible.builtin.git:
-      repo: https://github.com/VundleVim/Vundle.vim.git
-      dest: /home/jorge/.vim/bundle/Vundle.vim
+# temporarily disabled since Github has blocked VundleVim repo without notice
+
+# - name: clone VimVundle repository from GitHub
+#   ansible.builtin.git:
+#     repo: https://github.com/VundleVim/Vundle.vim.git
+#     dest: /home/jorge/.vim/bundle/Vundle.vim
 
   - name: link NeoVim's init.vim to Vim's vimrc
     ansible.builtin.file:

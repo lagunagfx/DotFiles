@@ -6,6 +6,7 @@
 
 #  Use a 32-bit visual for alpha blending.
 # Alpha=0 # 0/1
+Alpha=1
 
 #  Enable event logging for debugging.
 # LogEvents=0 # 0/1
@@ -281,15 +282,9 @@
 # KeySysWorkspace1="Alt+Ctrl+1"
 KeySysWorkspace1="Super+1"
 
-#  Goes to workspace 10.
-# KeySysWorkspace10="Alt+Ctrl+0"
-KeySysWorkspace10="Super+0"
-
-#  Takes the active window to workspace 10.
-# KeySysWorkspace10TakeWin="Alt+Ctrl+Shift+0"
-
 #  Takes the active window to workspace 1.
 # KeySysWorkspace1TakeWin="Alt+Ctrl+Shift+1"
+KeySysWorkspace1TakeWin="Super+Shift+1"
 
 #  Goes to workspace 2.
 # KeySysWorkspace2="Alt+Ctrl+2"
@@ -297,6 +292,7 @@ KeySysWorkspace2="Super+2"
 
 #  Takes the active window to workspace 2.
 # KeySysWorkspace2TakeWin="Alt+Ctrl+Shift+2"
+KeySysWorkspace2TakeWin="Super+Shift+2"
 
 #  Goes to workspace 3.
 # KeySysWorkspace3="Alt+Ctrl+3"
@@ -304,6 +300,7 @@ KeySysWorkspace3="Super+3"
 
 #  Takes the active window to workspace 3.
 # KeySysWorkspace3TakeWin="Alt+Ctrl+Shift+3"
+KeySysWorkspace3TakeWin="Super+Shift+3"
 
 #  Goes to workspace 4.
 # KeySysWorkspace4="Alt+Ctrl+4"
@@ -311,6 +308,7 @@ KeySysWorkspace4="Super+4"
 
 #  Takes the active window to workspace 4.
 # KeySysWorkspace4TakeWin="Alt+Ctrl+Shift+4"
+KeySysWorkspace4TakeWin="Super+Shift+4"
 
 #  Goes to workspace 5.
 # KeySysWorkspace5="Alt+Ctrl+5"
@@ -318,6 +316,7 @@ KeySysWorkspace5="Super+5"
 
 #  Takes the active window to workspace 5.
 # KeySysWorkspace5TakeWin="Alt+Ctrl+Shift+5"
+KeySysWorkspace5TakeWin="Super+Shift+5"
 
 #  Goes to workspace 6.
 # KeySysWorkspace6="Alt+Ctrl+6"
@@ -325,6 +324,7 @@ KeySysWorkspace6="Super+6"
 
 #  Takes the active window to workspace 6.
 # KeySysWorkspace6TakeWin="Alt+Ctrl+Shift+6"
+KeySysWorkspace6TakeWin="Super+Shift+6"
 
 #  Goes to workspace 7.
 # KeySysWorkspace7="Alt+Ctrl+7"
@@ -332,6 +332,7 @@ KeySysWorkspace7="Super+7"
 
 #  Takes the active window to workspace 7.
 # KeySysWorkspace7TakeWin="Alt+Ctrl+Shift+7"
+KeySysWorkspace7TakeWin="Super+Shift+7"
 
 #  Goes to workspace 8.
 # KeySysWorkspace8="Alt+Ctrl+8"
@@ -339,6 +340,7 @@ KeySysWorkspace8="Super+8"
 
 #  Takes the active window to workspace 8.
 # KeySysWorkspace8TakeWin="Alt+Ctrl+Shift+8"
+KeySysWorkspace8TakeWin="Super+Shift+8"
 
 #  Goes to workspace 9.
 # KeySysWorkspace9="Alt+Ctrl+9"
@@ -346,6 +348,15 @@ KeySysWorkspace9="Super+9"
 
 #  Takes the active window to workspace 9.
 # KeySysWorkspace9TakeWin="Alt+Ctrl+Shift+9"
+KeySysWorkspace9TakeWin="Super+Shift+9"
+
+#  Goes to workspace 10.
+# KeySysWorkspace10="Alt+Ctrl+0"
+KeySysWorkspace10="Super+0"
+
+#  Takes the active window to workspace 10.
+# KeySysWorkspace10TakeWin="Alt+Ctrl+Shift+0"
+KeySysWorkspace10TakeWin="Super+Shift+0"
 
 #  Goes to the previous workspace.
 # KeySysWorkspaceLast="Alt+Ctrl+Down"
@@ -419,6 +430,7 @@ KeyWinFullscreen="Super+f"
 
 #  Maximizes the active window with borders.
 # KeyWinMaximize="Alt+F10"
+KeyWinMaximize="Super+Up"
 
 #  Maximizes the active window horizontally.
 # KeyWinMaximizeHoriz=""
@@ -459,8 +471,17 @@ KeyWinFullscreen="Super+f"
 #  Smart place the active window.
 # KeyWinSmartPlace="Ctrl+Alt+Shift+KP_Begin"
 
+#  Let the active window occupy the left half of the screen.
+KeyWinTileLeft="Super+Shift+Left"
+
+#  Let the active window occupy the right half of the screen.
+KeyWinTileRight="Super+Shift+Right"
+
+#  Let the active window occupy the top half of the screen.
+KeyWinTileTop="Super+Shift+Up"
+
 #  Let the active window occupy the bottom half of the screen.
-# KeyWinTileBottom=""
+KeyWinTileBottom="Super+Shift+Bottom"
 
 #  Let the active window occupy the bottom left quarter of the screen.
 # KeyWinTileBottomLeft=""
@@ -470,15 +491,6 @@ KeyWinFullscreen="Super+f"
 
 #  Let the active window occupy the center quarter of the screen.
 # KeyWinTileCenter=""
-
-#  Let the active window occupy the left half of the screen.
-# KeyWinTileLeft=""
-
-#  Let the active window occupy the right half of the screen.
-# KeyWinTileRight=""
-
-#  Let the active window occupy the top half of the screen.
-# KeyWinTileTop=""
 
 #  Let the active window occupy the top left quarter of the screen.
 # KeyWinTileTopLeft=""
@@ -1488,5 +1500,5 @@ DesktopBackgroundImage="~/Seafile/gui/wallpaper/1920x1080/1920x1080_Reddit_Sweep
 # ShuffleBackgroundImages=0 # 0/1
 
 #  Support for semitransparent terminals like Eterm or gnome-terminal.
-# SupportSemitransparency=1 # 0/1
+SupportSemitransparency=1 # 0/1
 

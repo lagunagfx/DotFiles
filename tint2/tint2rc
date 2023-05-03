@@ -5,7 +5,7 @@
 # Gradients
 #-------------------------------------
 # Backgrounds
-# Background 1: Panel
+# Background ID 0: Panel
 rounded = 0
 border_width = 1
 border_sides = TBLR
@@ -98,14 +98,14 @@ border_color_pressed = #999999 100
 
 #-------------------------------------
 # Panel
-panel_items = TS
-panel_size = 100% 24
+panel_items = P:LTSBC
+panel_size = 100% 30
 panel_margin = 0 0
 panel_padding = 2 1 2
 panel_background_id = 1
 wm_menu = 1
 panel_dock = 0
-panel_position = bottom center horizontal
+panel_position = top center horizontal
 panel_layer = normal
 panel_monitor = all
 panel_shrink = 0
@@ -138,7 +138,7 @@ taskbar_always_show_all_desktop_tasks = 1
 taskbar_name_padding = 6 3
 taskbar_name_background_id = 6
 taskbar_name_active_background_id = 7
-taskbar_name_font = sans bold 9
+taskbar_name_font = sans bold 10
 taskbar_name_font_color = #ffffff 100
 taskbar_name_active_font_color = #ffffff 100
 taskbar_distribute_size = 1
@@ -152,8 +152,8 @@ task_icon = 1
 task_centered = 1
 urgent_nb_of_blink = 100000
 task_maximum_size = 140 35
-task_padding = 4 3 4
-task_font = sans 8
+task_padding = 4 0 6
+task_font = sans 10
 task_tooltip = 1
 task_thumbnail = 0
 task_thumbnail_size = 210
@@ -171,17 +171,17 @@ mouse_scroll_down = next_task
 
 #-------------------------------------
 # System tray (notification area)
-systray_padding = 2 0 1
+systray_padding = 4 0 0
 systray_background_id = 0
 systray_sort = ascending
-systray_icon_size = 20
+systray_icon_size = 26
 systray_icon_asb = 100 0 0
 systray_monitor = 1
 systray_name_filter = 
 
 #-------------------------------------
 # Launcher
-launcher_padding = 0 0 2
+launcher_padding = 4 0 4
 launcher_background_id = 0
 launcher_icon_background_id = 0
 launcher_icon_size = 22
@@ -189,23 +189,21 @@ launcher_icon_asb = 100 0 0
 launcher_icon_theme_override = 0
 startup_notifications = 1
 launcher_tooltip = 1
-launcher_item_app = tint2conf.desktop
-launcher_item_app = firefox.desktop
-launcher_item_app = iceweasel.desktop
-launcher_item_app = chromium-browser.desktop
-launcher_item_app = google-chrome.desktop
-launcher_item_app = x-terminal-emulator.desktop
+launcher_item_app = firefoxdeveloperedition.desktop
+launcher_item_app = thunderbird.desktop
+launcher_item_app = pcmanfm.desktop
+launcher_item_app = Alacritty.desktop
 
 #-------------------------------------
 # Clock
 time1_format = %H:%M
-time2_format = %A %d %B
-time1_font = sans bold 8
-time1_timezone = 
+# time2_format = %A %d %B
+time1_font = sans bold 12
+time1_timezone = Europe/Madrid 
 time2_timezone = 
-time2_font = sans 7
+time2_font = 
 clock_font_color = #ffffff 100
-clock_padding = 1 0
+clock_padding = 6 2
 clock_background_id = 0
 clock_tooltip = 
 clock_tooltip_timezone = 
@@ -221,12 +219,12 @@ battery_tooltip = 1
 battery_low_status = 10
 battery_low_cmd = notify-send "battery low"
 battery_full_cmd = 
-bat1_font = sans 8
-bat2_font = sans 6
+bat1_font = sans 12
+# bat2_font = sans 8
 battery_font_color = #ffffff 100
-bat1_format = 
-bat2_format = 
-battery_padding = 1 0
+bat1_format = %p
+bat2_format =
+battery_padding = 6 2
 battery_background_id = 0
 battery_hide = 101
 battery_lclick_command = 
@@ -245,3 +243,17 @@ tooltip_padding = 2 2
 tooltip_background_id = 5
 tooltip_font_color = #222222 100
 tooltip_font = sans 9
+
+#-------------------------------------
+# Pushbutton (leftmost AppMenu using jgmenu)
+button=new
+button_icon=/usr/share/icons/manjaro/maia/24x24.png
+button_max_icon_size=22
+button_lclick_command=jgmenu_run
+
+#-------------------------------------
+# Separator (AppMenu -> Launchers)
+separator = new
+separator_background_id = 0
+separator_style = empty
+separator_padding = 0 0

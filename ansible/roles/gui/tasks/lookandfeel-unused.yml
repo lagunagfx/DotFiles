@@ -1,0 +1,12 @@
+---
+  # description: 
+
+  - name: Check for Jetbrains Mono font
+    become: yes
+    ansible.builtin.package:
+      name:
+         - ttf-jetbrains-mono
+         - rofi
+    state: present
+
+# End of tasks list

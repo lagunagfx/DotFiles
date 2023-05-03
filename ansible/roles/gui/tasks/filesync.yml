@@ -1,0 +1,10 @@
+---
+# description: file synchronization clients
+
+  - name: install Nextcloud client
+    become: yes
+    ansible.builtin.package: 
+      name: nextcloud-client
+      state: present
+
+# end of task

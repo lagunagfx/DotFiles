@@ -1,19 +1,20 @@
 ---
   # description: list of essential packages for command line use 
-  #
-  # - pass
-  # - acl
-  # - rsync
-  # - neofetch
-  # - nmap (Utility for network discovery and security auditing)
-  # - hexedit (hexadecimal/ASCII editor)
-  # - imagemagick (necessary for Nextcloud support)
 
-  - name: install packages ACL, CURL, HDPARM, HEXEDIT, IMAGEMAGICK, HTOP, NEOFETCH, NMAP, PARTED, RSYNC, UNRAR-FREE, UNZIP and ZIP
+  - name: install base development tools on Arch-based systems
     become: yes
     ansible.builtin.package:
       name:
-         - acl
+        - base-devel
+        - rust
+      state: present
+    when: ansible_facts['distribution'] == "Archlinux"
+
+  - name: install CURL, HDPARM, HEXEDIT, IMAGEMAGICK, HTOP, NEOFETCH, NMAP, PARTED, RSYNC, UNZIP and ZIP
+    become: yes
+    ansible.builtin.package:
+      name:
+         # -acl
          - curl
          - hdparm
          - hexedit
@@ -23,13 +24,51 @@
          - nmap
          - parted
          - rsync
-         - unrar-free
          - unzip
          - zip
       state: present
 
-  - ansible.builtin.import_tasks: cli-pass.yml
-  - ansible.builtin.import_tasks: cli-vim.yml
-  - ansible.builtin.import_tasks: cli-tmux.yml
+  - name: install unrar package on Arch-based systems
+    become: yes
+    ansible.builtin.package:
+      name: unrar
+      state: present
+    when: ansible_facts['distribution'] == "Archlinux"
+
+  - name: install unrar-free and pkzip-full package on Debian-based systems
+    become: yes
+    ansible.builtin.package:
+      name: 
+        - unrar-free
+        - p7zip-full
+      state: present
+    when: ansible_facts['distribution'] == "Debian"
+
+  - name: install bchunk, cdrdao and cue-tools
+    become: yes
+    ansible.builtin.package:
+      name:
+        - bchunk
+        - cdrdao
+        - cuetools
+      state: present
+
+  - name: install ecm-tools for (ERROR CODE MODELER disc image handling
+    become: yes
+    ansible.builtin.package:
+      name:
+        - ecm-tools
+      state: present
+
+  # paru -Ss applyppf ape
+
+  - ansible.builtin.import_tasks: roles/common/tasks/cli-pass.yml
+  - ansible.builtin.import_tasks: roles/common/tasks/cli-vim.yml
+  - ansible.builtin.import_tasks: roles/common/tasks/cli-tmux.yml
+  - ansible.builtin.import_tasks: roles/common/tasks/cli-pandoc.yml
+
+  - name: install an AUR package manager for the command line  
+    ansible.builtin.import_tasks: roles/common/tasks/cli-paru.yml
+    when: inventory_hostname not in groups['server']
 
 # End of tasks list

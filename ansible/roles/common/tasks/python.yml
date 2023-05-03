@@ -9,5 +9,6 @@
         - python3-setuptools
         - python3-pip
       state: present
+    when: ansible_facts['distribution'] == "Debian"
 
 # End of tasks list

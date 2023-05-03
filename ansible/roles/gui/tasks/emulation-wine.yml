@@ -1,0 +1,10 @@
+---
+# description: install wine and its most needed accesories
+
+  - name: "install 'wine-staging' branch of the WINE is Not an Emulator project"
+    become: yes
+    ansible.builtin.package:
+      name: wine-staging
+      state: present
+
+# end of tas---

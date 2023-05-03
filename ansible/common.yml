@@ -1,0 +1,35 @@
+---
+# file: common.yml
+# description: custom changes to deploy a Web Server instance 
+
+  - hosts: thinkpadx270
+
+    vars:
+
+      # global variables applicable to this scope
+      ipv6_enabled: true
+
+    tasks:
+
+       - name: print Ansible facts
+         debug:
+           msg: 
+             - " hostname: {{ ansible_facts['hostname'] }}"
+             - "   distro: {{ ansible_facts['distribution'] }}"
+             - "inventory: {{ inventory_hostname }}"
+
+       - name: print Ansible groups
+         debug:
+           var: groups
+
+#      - ansible.builtin.import_tasks: roles/common/tasks/ipv6.yml
+       - ansible.builtin.import_tasks: roles/common/tasks/ssh-generate-keys.yml
+       - ansible.builtin.import_tasks: roles/common/tasks/filesystem.yml
+       - ansible.builtin.import_tasks: roles/common/tasks/cli.yml
+#      - ansible.builtin.import_tasks: roles/server/tasks/git-private.yml
+       - ansible.builtin.import_tasks: roles/common/tasks/python.yml
+
+       - ansible.builtin.import_tasks: gui.yml
+         when: ansible_facts['hostname'] in groups['laptop']
+
+# end of playbook

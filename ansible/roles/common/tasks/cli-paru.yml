@@ -1,0 +1,17 @@
+--- 
+# description: install AUR package manager for Arch based systems
+
+  - name: if folder "/home/jorge/Documentos/Git" is not present, then create it
+    file:
+       path: /home/jorge/Documentos/Git
+       state: directory
+
+  - name: clone Arch Linux repository "paru"
+    ansible.builtin.git:
+      repo: "https://aur.archlinux.org/paru.git"
+      dest: /home/jorge/Documentos/Git/paru
+      clone: yes
+      update: yes
+    when: inventory_hostname not in groups['server']
+
+# end of tasks

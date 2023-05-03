@@ -1,0 +1,16 @@
+---
+# description: native gaming on linux
+
+  - name: install Steam client
+    become: yes
+    ansible.builtin.package:
+      name:
+        - steam-native-runtime
+        - linux-steam-integration
+      state: present
+    when: ansible_hostname no in groups['netbook']
+
+  # AUR Package: doukutsu (Cave Story)
+  # AUR Package: gweled (Bejeweled clone)
+
+# end of tasks

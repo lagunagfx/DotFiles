@@ -1,0 +1,10 @@
+---
+# description: media support for video playback, recording and editing
+
+  - name: install 'mpd' mediaplayer
+    become: yes
+    ansible.builtin.package:
+      name: mpd
+      state: present
+
+# end of task
