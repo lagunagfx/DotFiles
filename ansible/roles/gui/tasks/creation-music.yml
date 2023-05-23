@@ -6,9 +6,19 @@
     ansible.builtin.package:
       name:
         - realtime-privileges
+        - jack-example-tools
         - a2jmidid
         - qjackctl
+        - pulseaudio-jack
+      state: present
+
+  - name: install various essential JACK tools
+    become: yes
+    ansible.builtin.package:
+      name:
         - jack_capture
+        - meterbridge
+        - non-mixer
       state: present
 
   - name: add user to the 'realtime' group
@@ -17,6 +27,15 @@
       name: jorge
       append: true
       groups: realtime
+
+  - name: install the Chuck programming language
+    become: yes
+    ansible.builtin.package:
+      name:
+        - chuck
+      state: present
+
+  # Chuck's mini-audicle IDE won't install form the AUR
 
   - name: install the Ardour DAW
     become: yes
