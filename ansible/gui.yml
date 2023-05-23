@@ -4,6 +4,7 @@
   - ansible.builtin.import_tasks: roles/gui/tasks/internet.yml
   - ansible.builtin.import_tasks: roles/gui/tasks/intel-graphics.yml
   - ansible.builtin.import_tasks: roles/gui/tasks/filesync.yml
+  - ansible.builtin.import_tasks: roles/gui/tasks/hexchat.yml
   - ansible.builtin.import_tasks: roles/gui/tasks/media-video.yml
 
   - name: debug GROUPS
