@@ -1,0 +1,27 @@
+---
+# description: manual install of jellyfin service
+
+  - name: install 'extrepo' package
+    become: yes
+    ansible.builtin.package:
+      name: extrepo
+      state: present
+
+  - name: add the 'jellyfin' repo via extrepo
+    become: yes
+    ansible.builtin.command:
+      cmd: extrepo enable jellyfin
+    register: enable_repo_jellyfin
+
+  - name: update 'apt' package manager cache
+    become: yes
+    ansible.builtin.apt:
+      update_cache: yes
+
+  - name: install the 'jellyfin' package
+    become: yes
+    ansible.builtin.package:
+      name: jellyfin
+      state: absent
+
+# end of task

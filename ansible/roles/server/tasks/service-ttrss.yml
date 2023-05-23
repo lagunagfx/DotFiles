@@ -1,0 +1,43 @@
+---
+  # description: install, configure and enable the samba server
+
+# - name: install Seafile's signing key
+#   become: yes
+#   ansible.builtin.shell:
+#     cmd: wget https://linux-clients.seafile.com/seafile.asc -O /usr/share/keyrings/seafile-keyring.asc
+
+# # ToDo! : Make the script decide between lines for Debian 10 and Debian 11
+
+# - name: add repo to the sources list
+#   become: yes
+#   ansible.builtin.shell:
+#     cmd: bash -c "echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/buster/ stable main' > /etc/apt/sources.list.d/seafile.list"
+
+# - name: check if the seaf-cli package is installed
+#   become: yes
+#   apt:
+#     name: seaf-cli
+#     state: present
+
+# - name: install SEAFILE dependencies (for Debian 10)
+#   become: yes
+#   ansible.builtin.package:
+#     name:
+#       - default-libmysqlclient-dev
+#       - libmemcached-dev
+
+  - name: create 'ttrssdb' MySQL/MariaDB databases
+    become: yes
+    community.mysql.mysql_db:
+      name:
+        - ttrssdb
+      state: present
+
+  - name: create the MySQL/MariaDB user 'user_ttrss'
+    become: yes
+    community.mysql.mysql_user:
+      name: user_ttrss
+      password: "{{ mariadb_userttrss_pwd }}"
+      priv: ttrssdb.*:ALL
+
+# end of tasks list

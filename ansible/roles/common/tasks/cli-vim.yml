@@ -20,6 +20,14 @@
       src: ~/Documentos/DotFiles/vim/vimrc.noplugins
       dest: /root/.vimrc      
 
+  - name: link ROOT's VIM '/root/.vimrc' to NeoVim's '/root/.vim/init.vim'
+    become: yes
+    ansible.builtin.file:
+      src: /root/.vimrc
+      dest: /root/.vim/init.vim
+      state: link
+      force: yes
+
   - name: check if ~/.vim folder exits
     ansible.builtin.stat:
       path: /home/jorge/.vim

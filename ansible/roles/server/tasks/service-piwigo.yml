@@ -1,0 +1,56 @@
+---
+  # description: install and configure the NEXTCLOUD service
+
+  - name: is there a PIGIWO folder already present ?
+    become: yes
+    become_user: www-data
+    ansible.builtin.stat:
+      path: "{{ www_root }}/piwigo/"
+    register: piwigo_folder
+
+  - name: if NOT, then download latest PIWIGO package
+    become: yes
+    ansible.builtin.get_url:
+      url: https://piwigo.org/download/dlcounter.php?code=latest
+      dest: "{{ www_root }}/latest_piwigo.zip"
+    when: not piwigo_folder.stat.exists
+    register: piwigo_download
+
+  - name: unpack latest PIWIGO .zip package
+    become: yes
+    ansible.builtin.unarchive:
+      src: "{{ www_root }}/latest_piwigo.zip"
+      dest: "{{ www_root }}"
+      remote_src: yes
+      creates: "{{ www_root }}/piwigo"
+
+  - name: set proper permissions for NEXTCLOUD folder
+    become: yes
+    ansible.builtin.file:
+      path: "{{ www_root }}/piwigo"
+      state: directory
+      owner: www-data
+      group: www-data
+      recurse: yes
+
+  - name: create MariaDB's piwigodb database
+    become: yes
+    community.mysql.mysql_db:
+      name: piwigodb
+      state: present
+
+  - name: create MariaDB's 'user_piwigo'
+    become: yes
+    community.mysql.mysql_user:
+      name: user_piwigo
+      password: "{{ mariadb_userpiwigo_pwd }}"
+      priv: "piwigodb.*:ALL"
+      state: present
+
+  - name: delete the remaining PIWIGO install package
+    become: yes
+    ansible.builtin.file:
+      path: "{{ www_root }}/latest_piwigo.zip"
+      state: absent
+
+# end of tasks list

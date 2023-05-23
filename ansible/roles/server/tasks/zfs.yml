@@ -1,0 +1,45 @@
+# description: enable ZFS filesystem support on Debian systems
+---
+  
+  - name: install 'software-properties-common' package in order to obtain 'apt-add-repository'
+    become: yes
+    ansible.builtin.package:
+      name: software-properties-common
+      state: present
+
+  - name: enable Debian's 'contrib' repos
+    become: yes
+    ansible.builtin.command:
+      cmd: add-apt-repository -y contrib
+    register: enable_contrib
+    changed_when: '"component is already enabled for all sources." not in enable_contrib.stdout'
+
+  - name: update 'apt' cache
+    become: yes
+    ansible.builtin.apt:
+      update_cache: yes
+
+  - name: get the kernel version
+    ansible.builtin.command:
+      cmd: uname -r
+    register: kernel
+
+  - name: install 'linux-headers-{{ kernel.stdout }}', 'spl' and 'kmod' packages
+    become: yes
+    ansible.builtin.package:
+      name:
+        - "linux-headers-{{ kernel.stdout }}"
+        - spl
+        - kmod
+      state: present
+
+  - name: add the ZFS filesystem support
+    become: yes
+    ansible.builtin.package:
+      name:
+        - zfsutils-linux
+        - zfs-dkms
+        - zfs-zed
+      state: present
+
+# end of task

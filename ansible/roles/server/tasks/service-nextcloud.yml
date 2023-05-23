@@ -48,7 +48,7 @@
   - name: create MariaDB's usernextcloud
     become: yes
     community.mysql.mysql_user:
-      name: usernextcloud
+      name: user_nextcloud
       password: "{{ mariadb_usernextcloud_pwd }}"
       priv: "nextclouddb.*:ALL"
       state: present
