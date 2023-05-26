@@ -1,0 +1,9 @@
+# FS-UAE configuration saved by FS-UAE Launcher
+# Last saved: 2017-11-06 12:50:14
+
+[fs-uae]
+bsdsocket_library = 1
+chip_memory = 1024
+floppy_drive_count = 2
+floppy_drive_speed = 0
+joystick_port_1_autofire = 1

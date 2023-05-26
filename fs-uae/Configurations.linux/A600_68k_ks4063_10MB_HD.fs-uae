@@ -1,0 +1,15 @@
+# FS-UAE configuration saved by FS-UAE Launcher
+# Last saved: 2023-05-25 13:12:27
+
+[fs-uae]
+amiga_model = A600
+chip_memory = 2048
+fast_memory = 8192
+floppy_drive_0_sounds = off
+floppy_drive_volume_empty = 25
+hard_drive_0 = /home/jorge/Documentos/FS-UAE/Hard Drives/LagunaGFX_A600_68k_wb31_RealWorld/System
+hard_drive_1 = /home/jorge/Documentos/FS-UAE/Hard Drives/LagunaGFX_A600_68k_wb31_RealWorld/Work
+hard_drive_2 = Shared_WHDLoad
+joystick_port_1 = none
+kickstart_file = 1993 Kickstart 3.1 rev 40.63 - Commodore A500 A600 A2000 [h ShapeShifter].rom
+writable_floppy_images = 1

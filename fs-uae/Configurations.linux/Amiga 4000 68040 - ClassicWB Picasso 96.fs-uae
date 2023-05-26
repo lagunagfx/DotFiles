@@ -1,0 +1,10 @@
+# FS-UAE configuration saved by FS-UAE Launcher
+# Last saved: 2016-05-07 17:59:50
+
+[fs-uae]
+amiga_model = A4000/040
+bsdsocket_library = 1
+chip_memory = 2048
+fast_memory = 8192
+slow_memory = 1536
+uaegfx_card = 1

@@ -1,0 +1,7 @@
+# FS-UAE configuration saved by FS-UAE Launcher
+# Last saved: 2017-11-06 13:05:09
+
+[fs-uae]
+chip_memory = 2048
+fast_memory = 8192
+kickstart_file = $HOME/.fs-uae/Kickstarts/Amiga/3.1/40.063/1993 Kickstart 3.1 rev 40.063 - Commodore A500 A600 A2000 [Check].rom

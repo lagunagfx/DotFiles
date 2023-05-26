@@ -1,0 +1,11 @@
+# FS-UAE configuration saved by FS-UAE Launcher
+# Last saved: 2017-11-06 13:12:54
+
+[fs-uae]
+amiga_model = A1200
+bsdsocket_library = 1
+chip_memory = 2048
+fast_memory = 8192
+hard_drive_0 = $HOME/.fs-uae/Hard Drives/images/0.system/ClassicWB_System_ADVSP.hdf
+hard_drive_1 = $HOME/.fs-uae/Hard Drives/folders/1.work/AGA/Software
+slow_memory = 0

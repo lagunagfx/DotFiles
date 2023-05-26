@@ -1,0 +1,13 @@
+# FS-UAE configuration saved by FS-UAE Launcher
+# Last saved: 2016-12-09 11:29:36
+
+[fs-uae]
+amiga_model = A1200/020
+bsdsocket_library = 1
+chip_memory = 2048
+fast_memory = 8192
+hard_drive_0 = /Volumes/Laguna HDD/Seafile/5.software/emu/computer/Amiga/support/FS-UAE/Hard Drives/ClassicWB/ClassicWB_System_P96.hdf
+hard_drive_1 = /Volumes/Laguna HDD/Seafile/5.software/emu/computer/Amiga/support/FS-UAE/Hard Drives/ClassicWB/Software
+hard_drive_2 = /Volumes/Laguna HDD/Seafile/5.software/emu/computer/Amiga/apps
+uaegfx_card = 1
+zorro_iii_memory = 65536

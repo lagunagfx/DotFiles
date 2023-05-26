@@ -1,0 +1,14 @@
+# FS-UAE configuration saved by FS-UAE Launcher
+# Last saved: 2016-12-08 17:37:25
+
+[fs-uae]
+amiga_model = A600
+chip_memory = 2048
+fast_memory = 8192
+floppy_drive_0_sounds = off
+hard_drive_0 = /Volumes/Laguna HDD/Seafile/5.software/emu/computer/Amiga/support/FS-UAE/Hard Drives/A600HD_WB31_Basics.hdf
+hard_drive_1 = /Volumes/Laguna HDD/Seafile/5.software/emu/computer/Amiga/support/FS-UAE/Hard Drives/Laguna_A600HD_RealWorld_Work.hdf
+hard_drive_2 = /Volumes/Laguna HDD/Seafile/5.software/emu/computer/Amiga/support/FS-UAE/Hard Drives/Laguna_A600HD_RealWorld_Games.hdf
+hard_drive_3 = /Volumes/Laguna HDD/Seafile/0.laguna/1.musica/1.muestras/08bits
+kickstart_file = /Volumes/Laguna HDD/Seafile/5.software/emu/computer/Amiga/support/FS-UAE/Kickstarts/1993 Kickstart 3.1 rev 40.63 - Commodore A500 A600 A2000 [h ShapeShifter].rom
+writable_floppy_images = 1
