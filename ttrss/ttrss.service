@@ -1,0 +1,14 @@
+# install this file to /etc/systemd/system/ttrss.service
+# tt-rss documentation proposed to call this "ttrss_backend"
+# though it's more straightforward like this i.m.h.o
+
+[Unit]
+Description=ttrss
+After=network.target mysql.service postgresql.service
+
+[Service]
+User=www-data
+ExecStart=/var/www/tt-rss/update_daemon2.php
+
+[Install]
+WantedBy=multi-user.target
