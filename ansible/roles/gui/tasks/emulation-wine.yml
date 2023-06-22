@@ -4,7 +4,12 @@
   - name: "install 'wine-staging' branch of the WINE is Not an Emulator project"
     become: yes
     ansible.builtin.package:
-      name: wine-staging
+      name:
+        - wine-staging
+        - winetricks
       state: present
 
-# end of tas---
+  - name: "create a Wine Cellar folder"
+    ansible.builtin.file:
+
+# end of task

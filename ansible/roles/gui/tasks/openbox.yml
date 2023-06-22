@@ -1,0 +1,19 @@
+---
+  # description:
+
+  - name:
+    become: yes
+    ansible.builtin.package:
+      name:
+        - openbox
+        - picom
+        - tint2
+        - nitrogen
+        - rofi
+        - feh
+        - conky
+        - volumeicon
+        - xorg-xbacklight
+      state: present
+
+# End of tasks

@@ -7,7 +7,7 @@
 # sleep 1; manjaro-compositor --start &
 picom &
 # nitrogen (wallpaper manager)
-sleep 1; nitrogen --restore &
+sleep 0.5; nitrogen --restore &
 # tint2 (taskbar)
 sleep 0.5; tint2 &
 # conky (onscreen info)
@@ -15,21 +15,30 @@ conky -d -c ~/.config/conky/laguna_sysinfo_icewm.conkyrc
 conky -d -c ~/.config/conky/laguna_shortcuts_icewm.conkyrc
 ### Openbox autostart
 # sleep 1; ob-autostart -d &
+
+# NOT visible elements
+
 ### PolicyKit authentication
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-### volumeicon
-sleep 1; volumeicon &
-### volumeicon
-sleep 1; nm-applet &
 ### Required for xfce settings to work
-xfsettingsd --replace &
-# Xfce power manager (uninstalled)
-sleep 1; xfce4-power-manager
-### Side shortcuts for file managers
-xdg-user-dirs-gtk-update &
-### enable numlock
+sleep 0.5; xfsettingsd --replace &
+# side shortcuts for file managers
+#xdg-user-dirs-gtk-update &
+sleep 0.5; xdg-user-dirs-update &
+# enable numlock
 sleep 0.5; numlockx &
 ### launch thunar in daemon mode
-eleep 1; thunar --daemon &
+sleep 0.5; thunar --daemon &
+
+# Applets
+
+# PulseAudio VolumeIcon applet
+sleep 0.5; volumeicon &
+### Network Manager applet
+sleep 0.5; nm-applet &
+# NextCloud GUI client
+sleep 0.5 ; nextcloud &
 # Seafile GUI client
-sleep 1; seafile-applet &
+sleep 0.5; seafile-applet &
+# clipman
+# blueman-applet
