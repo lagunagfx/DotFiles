@@ -2,6 +2,12 @@
 # See https://gitlab.com/o9000/tint2/wikis/Configure for 
 # full documentation of the configuration options.
 #-------------------------------------
+# LagunaGFX
+#-------------------------------------
+# mouse_effects = 1
+# mouse_hover_icon_asb = 100 0 25
+# mouse_pressed_icon_asb = 100 0 -25
+#-------------------------------------
 # Gradients
 #-------------------------------------
 # Backgrounds
@@ -13,7 +19,7 @@ border_content_tint_weight = 0
 background_content_tint_weight = 0
 background_color = #002b2b 68
 border_color = #bbbbbb 10
-background_color_hover = #eeeeee 0
+background_color_hover = #ff0000 100
 border_color_hover = #bbbbbb 10
 background_color_pressed = #eeeeee 0
 border_color_pressed = #bbbbbb 10
@@ -116,10 +122,10 @@ autohide_height = 2
 strut_policy = follow_size
 panel_window_name = tint2
 disable_transparency = 0
-mouse_effects = 1
 font_shadow = 0
-mouse_hover_icon_asb = 0 0 9
-mouse_pressed_icon_asb = 0 0 0
+mouse_effects = 1
+mouse_hover_icon_asb = 100 0 25
+mouse_pressed_icon_asb = 100 0 -25
 scale_relative_to_dpi = 0
 scale_relative_to_screen_height = 0
 
@@ -189,10 +195,10 @@ launcher_icon_asb = 100 0 0
 launcher_icon_theme_override = 0
 startup_notifications = 1
 launcher_tooltip = 1
-launcher_item_app = firefoxdeveloperedition.desktop
-launcher_item_app = thunderbird.desktop
-launcher_item_app = pcmanfm.desktop
 launcher_item_app = Alacritty.desktop
+launcher_item_app = firefoxdeveloperedition.desktop
+launcher_item_app = thunar.desktop
+launcher_item_app = thunderbird.desktop
 
 #-------------------------------------
 # Clock
@@ -256,4 +262,4 @@ button_lclick_command=jgmenu_run
 separator = new
 separator_background_id = 0
 separator_style = empty
-separator_padding = 0 0
+separator_padding = 4 4
