@@ -8,12 +8,14 @@
         - openbox
         - picom
         - tint2
+        - jgmenu
         - nitrogen
         - rofi
         - feh
         - conky
         - volumeicon
         - xorg-xbacklight
+        - alacritty
       state: present
 
   # for any Manjaro i3-based installations, erase all leftovers
@@ -32,8 +34,59 @@
         - artwork-i3
         - conky-i3
       state: absent
+  
+  - name: Link LagunaGFX themes
+    ansible.builtin.file:
+      src: ~/Documentos/DotFiles/themes
+      dest: ~/.themes
+      state: link
+      force: yes
 
-  # for the latest Manjaro installs, stay with LibreOffice
+  - name: Link GTK3 settings
+    ansible.builtin.file:
+      src: ~/Documentos/DotFiles/gtk/gtk-3.0/bookmarks
+      dest: ~/.config/gtk-3.0/bookmarks
+      state: link
+      force: yes
+
+  - name: Link Openbox settings
+    ansible.builtin.file:
+      src: ~/Documentos/DotFiles/openbox/lagunagfx
+      dest: ~/.config/openbox
+      state: link
+      force: yes
+  
+  - name: Link Tint2 settings
+    ansible.builtin.file:
+      src: ~/Documentos/DotFiles/tint2/
+      dest: ~/.config/tint2
+      state: link
+      force: yes
+
+  - name: Link JGMenu settings
+    ansible.builtin.file:
+      src: ~/Documentos/DotFiles/jgmenu/manjaro.lagunagfx
+      dest: ~/.config/jgmenu
+      state: link
+      force: yes
+
+  - name: Link Conky settings
+    ansible.builtin.file:
+      src: ~/Documentos/DotFiles/conky
+      dest: ~/.config/conky
+      state: link
+      force: yes
+  
+    # XFCE associated setup quirks
+
+  - name: Link XFCE default applications info
+    ansible.builtin.file:
+      src: ~/Documentos/DotFiles/xfce/lagunagfx/helpers.rc
+      dest: ~/.config/xfce/helpers.rc
+      state: link
+      force: yes
+  
+    # for the latest Manjaro installs, stay with LibreOffice
 
   - name: remove OnlyOffice suite from the system
     become: yes
