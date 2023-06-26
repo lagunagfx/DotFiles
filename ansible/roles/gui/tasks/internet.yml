@@ -1,7 +1,7 @@
 ---
 # description: Internet Browser and Mail Reader
 
-  - name: install the internet browser and mail reader
+  - name: install Firefox internet browser and Thunderbird mail reader for standard machines
     become: yes
     ansible.builtin.package:
       name:
@@ -10,5 +10,44 @@
          - thunderbird
          - thunderbird-i18n-es-es
       state: present
+    when: inventory_hostname not in groups['netbook']
 
-# End of tasks list
+  # description: Hexchat IRC client config
+
+  - name: link Hexchat global config file hexchat.conf
+    ansible.builtin.file:
+      src: ~/Documentos/DotFiles/hexchat/hexchat.conf
+      dest: ~/.config/hexchat/hexchat.conf
+      state: link
+      force: yes
+
+  - name: link Hexchat text events file pevents.conf
+    ansible.builtin.file:
+      src: ~/Documentos/DotFiles/hexchat/pevents.conf
+      dest: ~/.config/hexchat/pevents.conf
+      state: link
+      force: yes
+
+  - name: link Hexchat keyboard shortcuts file keybindings.conf
+    ansible.builtin.file:
+      src: ~/Documentos/DotFiles/hexchat/keybindings.conf
+      dest: ~/.config/hexchat/keybindings.conf
+      state: link
+      force: yes
+
+  - name: link Hexchat text substitution file replace.conf 
+    ansible.builtin.file:
+      src: ~/Documentos/DotFiles/hexchat/replace.conf
+      dest: ~/.config/hexchat/replace.conf
+      state: link
+      force: yes
+
+  # NextCloud file synchronization clients
+
+  - name: install Nextcloud client
+    become: yes
+    ansible.builtin.package: 
+      name: nextcloud-client
+      state: present
+
+# end of task

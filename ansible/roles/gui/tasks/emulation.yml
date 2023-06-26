@@ -1,11 +1,54 @@
 ---
 # description: emulation/virtualization software
 
-  - name: install Microsoft Windows emulation through WINE
-    ansible.builtin.import_tasks: roles/gui/tasks/emulation-wine.yml
+  # Microsoft Windows emulation through WINE
 
-  - name: install Libretro global support through RETROARCH
-    ansible.builtin.import_tasks: roles/gui/tasks/emulation-retroarch.yml
-    when: ansible_facts['hostname'] in groups['laptop']
+  - name: "install 'wine-staging' branch of the WINE is Not an Emulator project"
+    become: yes
+    ansible.builtin.package:
+      name:
+        - wine-staging
+        - winetricks
+      state: present
 
-# end of tasks
+  - name: "create a Wine Cellar folder"
+    ansible.builtin.file:
+      path: ~/.local/share/wineprefix
+      state: directory
+
+  # RetroArch :
+  # install Libretro global support through RETROARCH
+
+  - name: install Retroarch plus XMB and Ozone assets
+    become: yes
+    ansible.builtin.package:
+      name:
+        - retroarch
+        - retroarch-assets-xmb
+        - retroarch-assets-ozone
+      state: present
+
+  # paru -S libretro-stella
+
+  - name: install Libretro cores
+    become: yes
+    ansible.builtin.package:
+      name:
+        - libretro-beetle-pce
+        - libretro-mame2016
+      state: present
+
+  - name: install MAME tools (for chdman)
+    become: yes
+    ansible.builtin.package:
+      name:
+          - mame-tools
+      state: present
+
+#  - name: enable Retroarch's Online Updater
+#    ansible.builtin.lineinfile
+
+    # menu_show_core_updater = "true"
+    # rgui_browser_directory = "~/Documentos/ROMs"
+
+# End of tasks

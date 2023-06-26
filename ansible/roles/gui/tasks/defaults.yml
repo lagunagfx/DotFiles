@@ -1,0 +1,93 @@
+---
+# description: LagunaGFX default 'distro' of Manjaro, using OpenBpx Window Manager
+
+  - name: install the OpenBox window manager
+    become: yes
+    ansible.builtin.package:
+      name:
+        - openbox
+        - picom
+        - tint2
+        - nitrogen
+        - rofi
+        - feh
+        - conky
+        - volumeicon
+        - xorg-xbacklight
+      state: present
+
+  # for any Manjaro i3-based installations, erase all leftovers
+
+  - name: erase all traces (if any) of the i3 window manager
+    become: yes
+    ansible.builtin.package:
+      name:
+        - i3-wm
+        - i3lock
+        - i3status-manjaro
+        - i3exit
+        - i3-scrot
+        - i3-help
+        - i3-default-artwork
+        - artwork-i3
+        - conky-i3
+      state: absent
+
+  # for the latest Manjaro installs, stay with LibreOffice
+
+  - name: remove OnlyOffice suite from the system
+    become: yes
+    ansible.builtin.package:
+      name:
+         - onlyoffice-desktopeditors
+      state: absent
+
+  # Use XFCE's Thunar as file browser (PCmanFM is cool but got some interface issues)
+
+  - name: set Thunar as default file browser
+    become: yes
+    ansible.builtin.package:
+      name:
+        - thunar
+        - thunar-archive-plugin
+        - thunar-media-tags-plugin 
+        - thunar-volman
+      state: present
+
+  # System TuneUp: avoid screen tearing when using intel graphics card
+
+  - name: avoid screen tearing when using SNA acceleration on intel cards
+    become: yes
+    ansible.builtin.blockinfile:
+      path: /etc/X11/xorg.conf.d/20-intel.conf
+      create: yes
+      block: |
+        Section "Device"
+          Identifier "Intel Graphics"
+          Driver "intel"
+          Option "TearFree" "true"
+        EndSection      
+ 
+  # set Gtk3 preferences using xfce's xfconf tool
+
+  - name: set GTK3 theme to VARIABLE
+    command:
+      xfconf-query -c xsettings -p /Net/ThemeName -s Matcha-dark-sea
+
+  - name: set GTK3 icon theme to VARIABLE
+    command:
+      xfconf-query -c xsettings -p /Net/IconThemeName -s Papirus-Maia
+
+  - name: set GTK3 font to VARIABLE
+    command:
+      xfconf-query -c xsettings -p /Gtk/FontName -s "Roboto 10"
+
+  - name: set GTK3 monospace font to VARIABLE
+    command:
+      xfconf-query -c xsettings -p /Gtk/MonospaceFontName -s "DejaVu Sans Mono 10"
+
+  - name: set GTK3 cursor theme to VARIABLE
+    command:
+      xfconf-query -c xsettings -p /Gtk/CursorThemeName -s xcursor-breeze
+
+# End of tasks

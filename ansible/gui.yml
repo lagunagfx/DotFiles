@@ -1,18 +1,21 @@
 ---
 # description: desktop and laptop customization
 
-  - ansible.builtin.import_tasks: roles/gui/tasks/internet.yml
-  - ansible.builtin.import_tasks: roles/gui/tasks/intel-graphics.yml
-  - ansible.builtin.import_tasks: roles/gui/tasks/filesync.yml
-  - ansible.builtin.import_tasks: roles/gui/tasks/hexchat.yml
-  - ansible.builtin.import_tasks: roles/gui/tasks/media-video.yml
+  - hosts: graphical
 
-  - name: debug GROUPS
-    debug:
-      var: groups['graphical']
-
-  - ansible.builtin.import_tasks: roles/gui/tasks/creation.yml
-    when: ansible_facts['hostname'] in groups['graphical']
-  - ansible.builtin.import_tasks: roles/gui/tasks/emulation.yml
+    tasks:
+    
+    - name: debug GROUPS
+      debug:
+        var: groups['graphical']
+   
+    - ansible.builtin.import_tasks: roles/gui/tasks/defaults.yml
+    - ansible.builtin.import_tasks: roles/gui/tasks/filesystem.yml
+    - ansible.builtin.import_tasks: roles/gui/tasks/internet.yml
+    - ansible.builtin.import_tasks: roles/gui/tasks/media.yml
+    - ansible.builtin.import_tasks: roles/gui/tasks/creation.yml
+    - ansible.builtin.import_tasks: roles/gui/tasks/emulation.yml
+    - ansible.builtin.import_tasks: roles/gui/tasks/gaming.yml
+      when: inventory_hostname not in groups['netbook']
 
 # end of playbook
