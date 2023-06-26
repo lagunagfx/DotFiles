@@ -7,3 +7,10 @@
   # vdhcoapp-bin (Video Download Helper coapp)
 
 # end of file
+  # description: specific tools for Arch based distros 
+  #
+  # - paru (requires rust)
+  #
+  #- name: [ARCH-based only] Check for packages Rust (dependency for Paru)
+
+# End of tasks

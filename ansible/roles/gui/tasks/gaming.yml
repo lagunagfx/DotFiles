@@ -8,7 +8,7 @@
         - steam-native-runtime
         - linux-steam-integration
       state: present
-    when: ansible_hostname no in groups['netbook']
+    when: ansible_hostname not in groups['netbook']
 
   # AUR Package: doukutsu (Cave Story)
   # AUR Package: gweled (Bejeweled clone)
