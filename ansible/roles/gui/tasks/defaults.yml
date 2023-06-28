@@ -34,7 +34,16 @@
         - artwork-i3
         - conky-i3
       state: absent
-  
+
+  # Remove certain problematic packages
+  # gtk-desktop-portal-gnome slows down PDF opening
+  - name: remove some conflicting packages
+    become: yes
+    ansible.builtin.package:
+      name:
+        - xdg-desktop-portal-gnome
+      state: absent
+
   - name: Link LagunaGFX themes
     ansible.builtin.file:
       src: ~/Documentos/DotFiles/themes
