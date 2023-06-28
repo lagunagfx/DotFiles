@@ -8,11 +8,6 @@
 picom &
 # nitrogen (wallpaper manager)
 sleep 0.5; nitrogen --restore &
-# tint2 (taskbar)
-sleep 0.5; tint2 &
-# conky (onscreen info)
-conky -d -c ~/.config/conky/laguna_sysinfo_icewm.conkyrc
-conky -d -c ~/.config/conky/laguna_shortcuts_icewm.conkyrc
 ### Openbox autostart
 # sleep 1; ob-autostart -d &
 
@@ -29,6 +24,12 @@ sleep 0.5; xdg-user-dirs-update &
 sleep 0.5; numlockx &
 ### launch thunar in daemon mode
 sleep 0.5; thunar --daemon &
+
+# tint2 (taskbar)
+sleep 0.5; tint2 &
+# conky (onscreen info)
+conky -d -c ~/.config/conky/laguna_sysinfo_icewm.conkyrc
+conky -d -c ~/.config/conky/laguna_shortcuts_icewm.conkyrc
 
 # Applets
 
