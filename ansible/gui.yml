@@ -5,16 +5,20 @@
 
     tasks:
     
-    - name: debug GROUPS
-      debug:
-        var: groups['graphical']
-   
     - ansible.builtin.import_tasks: roles/gui/tasks/defaults.yml
+    
     - ansible.builtin.import_tasks: roles/gui/tasks/internet.yml
+    
     - ansible.builtin.import_tasks: roles/gui/tasks/media.yml
-    - ansible.builtin.import_tasks: roles/gui/tasks/creation.yml
+    
     - ansible.builtin.import_tasks: roles/gui/tasks/emulation.yml
+    
+    - ansible.builtin.import_tasks: roles/gui/tasks/creation.yml
+    
     - ansible.builtin.import_tasks: roles/gui/tasks/gaming.yml
       when: inventory_hostname not in groups['netbook']
+    
+    - ansible.builtin.import_tasks: roles/gui/tasks/users.yml
+      when: inventory_hostname == 'badulaque'
 
 # end of playbook

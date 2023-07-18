@@ -8,7 +8,7 @@
            
   - name: check if .tmux is a regular file or link to its repo counterpart
     ansible.builtin.file:
-      src: /home/jorge/Documentos/DotFiles/tmux/tmux.conf.headless
+      src: /home/jorge/Documentos/DotFiles/tmux/{{ tmux_config }}
       dest: /home/jorge/.tmux.conf
       state: link
       force: yes

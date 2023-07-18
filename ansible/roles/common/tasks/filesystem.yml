@@ -8,27 +8,15 @@
         - git
       state: present
 
-  - name: check if folder ".config" exists
-    stat:
-      path: /home/jorge/.config
-    register: documents
-
   - name: if folder ".config" is not present, then create it
     file:
        path: /home/jorge/.config
        state: directory
-    when: documents.stat.exists == false
-
-  - name: check if folder "Documentos" exists
-    stat:
-      path: /home/jorge/Documentos
-    register: documents
 
   - name: if folder "Documentos" is not present, then reate it
     file:
        path: /home/jorge/Documentos
        state: directory
-    when: documents.stat.exists == false
 
   - name: check if folder "/home/jorge/Documentos/DotFiles" exists
     ansible.builtin.stat:
@@ -64,12 +52,12 @@
       path: /home/jorge/Documentos/Private
     register: folder_private
 
-  - name: clone private GIT repos "Private"
-    ansible.builtin.git:
-      repo: "git@cloudbook:Private.git"
-      dest: /home/jorge/Documentos/Private
-      clone: yes
-      update: yes
-    when: folder_private.stat.exists == false
+# - name: clone private GIT repos "Private"
+#   ansible.builtin.git:
+#     repo: "git@cloudbook:Private.git"
+#     dest: /home/jorge/Documentos/Private
+#     clone: yes
+#     update: yes
+#   when: folder_private.stat.exists == false
 
 # end of task list

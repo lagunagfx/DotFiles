@@ -10,7 +10,7 @@
   - name: clone .password-store from my private repo      
     ansible.builtin.git:
       # repo: "git@cloudbook:Password.git"
-      repo: '[git@www.lagunalabs.eu:1187]:Password.git'
+      repo: '[git@{{ main_server }}]:Password.git'
       dest: ~/.password-store 
       clone: yes
       update: yes

@@ -1,9 +1,0 @@
-# description: 
----
-  - name: install Pandoc converter
-    become: yes
-    ansible.builtin.package:
-      name: pandoc
-      state: present
-
-# end of task

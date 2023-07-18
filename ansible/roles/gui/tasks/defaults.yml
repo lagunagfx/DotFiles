@@ -14,9 +14,17 @@
         - feh
         - conky
         - volumeicon
-        - xorg-xbacklight
         - alacritty
       state: present
+
+  - name: install a backlight adjustment utility (for laptops)
+    become: yes
+    ansible.builtin.package:
+      name:
+        - xorg-xbacklight
+      state: present
+    when: inventory_hostname not in groups['desktop']
+
 
   # for any Manjaro i3-based installations, erase all leftovers
 
@@ -136,27 +144,33 @@
           Driver "intel"
           Option "TearFree" "true"
         EndSection      
+  
+  - name: "install Google's signature family of fonts"
+    become: yes
+    ansible.builtin.package:
+      name: ttf-roboto
+      state: present
  
   # set Gtk3 preferences using xfce's xfconf tool
 
-  - name: set GTK3 theme to VARIABLE
-    command:
-      xfconf-query -c xsettings -p /Net/ThemeName -s Matcha-dark-sea
+# - name: set GTK3 theme to VARIABLE
+#   command:
+#     xfconf-query -c xsettings -p /Net/ThemeName -s Matcha-dark-sea
 
-  - name: set GTK3 icon theme to VARIABLE
-    command:
-      xfconf-query -c xsettings -p /Net/IconThemeName -s Papirus-Maia
+# - name: set GTK3 icon theme to VARIABLE
+#   command:
+#     xfconf-query -c xsettings -p /Net/IconThemeName -s Papirus-Dark-Maia
 
-  - name: set GTK3 font to VARIABLE
-    command:
-      xfconf-query -c xsettings -p /Gtk/FontName -s "Roboto 10"
+# - name: set GTK3 font to VARIABLE
+#   command:
+#     xfconf-query -c xsettings -p /Gtk/FontName -s "Roboto 10"
 
-  - name: set GTK3 monospace font to VARIABLE
-    command:
-      xfconf-query -c xsettings -p /Gtk/MonospaceFontName -s "DejaVu Sans Mono 10"
+# - name: set GTK3 monospace font to VARIABLE
+#   command:
+#     xfconf-query -c xsettings -p /Gtk/MonospaceFontName -s "DejaVu Sans Mono 10"
 
-  - name: set GTK3 cursor theme to VARIABLE
-    command:
-      xfconf-query -c xsettings -p /Gtk/CursorThemeName -s xcursor-breeze
+# - name: set GTK3 cursor theme to VARIABLE
+#   command:
+#     xfconf-query -c xsettings -p /Gtk/CursorThemeName -s xcursor-breeze
 
-# End of tasks
+# end of task

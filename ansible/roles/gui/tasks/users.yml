@@ -1,0 +1,10 @@
+---
+# description: add additional users to certain machines
+
+  - name: create the user account 'jacqueline'
+    become: yes
+    ansible.builtin.user:
+      name: jacqueline
+      password: "{{ useraccount_jacqueline_pwd | password_hash('sha512') }}"
+
+# End of tasks
