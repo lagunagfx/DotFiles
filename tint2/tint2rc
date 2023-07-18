@@ -13,12 +13,12 @@
 # Backgrounds
 # Background ID 0: Panel
 rounded = 0
-border_width = 1
+border_width = 0
 border_sides = TBLR
 border_content_tint_weight = 0
 background_content_tint_weight = 0
 background_color = #002b2b 68
-border_color = #bbbbbb 10
+border_color = #002626 54
 background_color_hover = #ff0000 100
 border_color_hover = #bbbbbb 10
 background_color_pressed = #eeeeee 0
