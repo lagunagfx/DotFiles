@@ -1,4 +1,5 @@
 TerminalEmulator=alacritty
-WebBrowser=firefox-developer-edition
+WebBrowser=custom-WebBrowser
 FileManager=Thunar
 MailReader=thunderbird
+
