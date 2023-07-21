@@ -47,10 +47,12 @@
       dest: /home/jorge/Documentos/Scripts
     when: folder_dotfiles.stat.exists == false
   
-  - name: check if folder "/home/jorge/Documentos/Private" exists
-    ansible.builtin.stat:
-      path: /home/jorge/Documentos/Private
-    register: folder_private
+  - name: "link ~/.local/bin with ~/Documentos/Scripts"
+    ansible.builtin.file:
+      src: ~/Documentos/Scripts
+      dest: ~/.local/bin
+      state: link
+      force: yes
 
 # - name: clone private GIT repos "Private"
 #   ansible.builtin.git:

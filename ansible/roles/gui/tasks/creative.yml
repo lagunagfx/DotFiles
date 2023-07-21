@@ -74,13 +74,13 @@
         - sws
       state: present
 
-  - name: install Yet Another VST Bridge for MS Windows audio plugins
-    become: yes
-    ansible.builtin.package:
-      name:
-        - yabridge
-        - yabridgectl
-      state: present
+#  - name: install Yet Another VST Bridge for MS Windows audio plugins
+#    become: yes
+#    ansible.builtin.package:
+#      name:
+#        - yabridge
+#        - yabridgectl
+#      state: present
 
   - name: install FastTracker, ProTracker and ImpulseTracker clones
     become: yes

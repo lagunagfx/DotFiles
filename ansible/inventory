@@ -4,8 +4,6 @@ cloudbox ansible_connection=local ansible_python_interpreter=/usr/bin/python3
 
 [server]
 cloudbox
-# cloudbook
-# mediabook
 
 [macintosh]
 peluso
@@ -25,7 +23,12 @@ thinkpadt460
 soundbook1
 soundbook2
 
+[inside]
+cloudbox
+badulaque
+
 [graphical:children]
 desktop
 laptop
 netbook
+

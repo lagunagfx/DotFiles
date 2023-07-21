@@ -5,15 +5,27 @@
 
     tasks:
     
-    - ansible.builtin.import_tasks: roles/gui/tasks/defaults.yml
+#   - ansible.builtin.import_tasks: roles/gui/tasks/defaults.yml
+
+      # remove unwanted packages and installation debris
+    - ansible.builtin.import_tasks: roles/gui/tasks/cleanup.yml
+
+      # system tweaks for better performance
+    - ansible.builtin.import_tasks: roles/gui/tasks/tuneup.yml
     
+      # tune up XFCE Desktop
+    - ansible.builtin.import_tasks: roles/gui/tasks/xfce.yml
+
+      # tune up OpenBox Window Manager
+    - ansible.builtin.import_tasks: roles/gui/tasks/openbox.yml
+
     - ansible.builtin.import_tasks: roles/gui/tasks/internet.yml
     
     - ansible.builtin.import_tasks: roles/gui/tasks/media.yml
     
     - ansible.builtin.import_tasks: roles/gui/tasks/emulation.yml
     
-    - ansible.builtin.import_tasks: roles/gui/tasks/creation.yml
+    - ansible.builtin.import_tasks: roles/gui/tasks/creative.yml
     
     - ansible.builtin.import_tasks: roles/gui/tasks/gaming.yml
       when: inventory_hostname not in groups['netbook']

@@ -1,0 +1,39 @@
+# description: clean some configuration debris and unwanted packages
+---  
+
+    # I won't be diggin' this new sponsored OnlyOffice suite
+
+  - name: remove OnlyOffice suite from the system
+    become: yes
+    ansible.builtin.package:
+      name:
+         - onlyoffice-desktopeditors
+      state: absent
+
+    # remove all leftovers from any i3-based Manjaro distro
+
+  - name: erase all traces (if any) of the i3 window manager
+    become: yes
+    ansible.builtin.package:
+      name:
+        - i3-wm
+        - i3lock
+        - i3status-manjaro
+        - i3exit
+        - i3-scrot
+        - i3-help
+        - i3-default-artwork
+        - artwork-i3
+        - conky-i3
+      state: absent
+
+    # gtk-desktop-portal-gnome slows down PDF opening in EVince and QPdf
+
+  - name: remove some conflicting packages
+    become: yes
+    ansible.builtin.package:
+      name:
+        - xdg-desktop-portal-gnome
+      state: absent
+
+# end of tasks
