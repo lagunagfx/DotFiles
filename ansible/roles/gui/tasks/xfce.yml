@@ -1,0 +1,50 @@
+# description: XFCE / GTK3 settings both for it and other GTK-based WMs
+---
+
+  - name: Link GTK3 settings
+    ansible.builtin.file:
+      src: ~/Documentos/DotFiles/gtk/gtk-3.0/bookmarks
+      dest: ~/.config/gtk-3.0/bookmarks
+      state: link
+      force: yes
+      
+  - name: Link XFCE default applications
+    ansible.builtin.file:
+      src: ~/Documentos/DotFiles/xfce4/lagunagfx/helpers.rc
+      dest: ~/.config/xfce4/helpers.rc
+      state: link
+      force: yes
+
+    # install Google's Roboto font
+
+  - name: install Google's signature family of fonts
+    become: yes
+    ansible.builtin.package:
+        name:
+          - ttf-roboto
+          - ttf-roboto-mono-nerd
+        state: present
+
+    # set Gtk3 preferences using xfce's xfconf tool
+
+  - name: set GTK3 theme to VARIABLE
+    command:
+      xfconf-query -c xsettings -p /Net/ThemeName -s Matcha-dark-sea
+
+  - name: set GTK3 icon theme to VARIABLE
+    command:
+      xfconf-query -c xsettings -p /Net/IconThemeName -s Papirus-Maia
+
+  - name: set GTK3 font to VARIABLE
+    command:
+      xfconf-query -c xsettings -p /Gtk/FontName -s "Roboto 10"
+
+  - name: set GTK3 monospace font to VARIABLE
+    command:
+      xfconf-query -c xsettings -p /Gtk/MonospaceFontName -s "DejaVu Sans Mono 10"
+
+  - name: set GTK3 cursor theme to VARIABLE
+    command:
+      xfconf-query -c xsettings -p /Gtk/CursorThemeName -s xcursor-breeze
+
+# end of tasks

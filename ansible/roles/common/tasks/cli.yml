@@ -85,7 +85,7 @@
 
   # paru -Ss applyppf ape
 
-  # - ansible.builtin.import_tasks: roles/common/tasks/cli-pass.yml
+  - ansible.builtin.import_tasks: roles/common/tasks/cli-pass.yml
   - ansible.builtin.import_tasks: roles/common/tasks/cli-vim.yml
   - ansible.builtin.import_tasks: roles/common/tasks/cli-tmux.yml
 
