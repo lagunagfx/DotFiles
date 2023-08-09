@@ -1,0 +1,31 @@
+---
+# description:
+
+  - name: enable JACK support
+    become: yes
+    ansible.builtin.package:
+      name:
+        - realtime-privileges
+        - jack-example-tools
+        - a2jmidid
+        - qjackctl
+        - pulseaudio-jack
+      state: present
+
+  - name: add user to the 'realtime' group
+    become: yes
+    ansible.builtin.user:
+      name: jorge
+      append: true
+      groups: realtime
+
+  - name: install various essential JACK tools
+    become: yes
+    ansible.builtin.package:
+      name:
+        - jack_capture
+        - meterbridge
+        - non-mixer
+      state: present
+
+# end of task

@@ -27,13 +27,25 @@
 
     # set Gtk3 preferences using xfce's xfconf tool
 
+  - name: set XFWM4 theme to Matcha-dark-sea
+    command:
+      xfconf-query -c xfwm4 -p /general/theme -s Matcha-dark-sea
+
+  - name: "set XFCE4 workspaces to 4"
+    command:
+      xfconf-query -c xfwm4 -p /general/workspace_count -t int -s 4
+
+  - name: "set XFCE4 workspace names to 1,2,3 and 4"
+    command:
+      xfconf-query -c xfwm4 -p /general/workspace_names -t string -t string -t string -t string -s "1" -s "2" -s "3" -s "4"
+
   - name: set GTK3 theme to VARIABLE
     command:
       xfconf-query -c xsettings -p /Net/ThemeName -s Matcha-dark-sea
 
   - name: set GTK3 icon theme to VARIABLE
     command:
-      xfconf-query -c xsettings -p /Net/IconThemeName -s Papirus-Maia
+      xfconf-query -c xsettings -p /Net/IconThemeName -s Papirus-Dark-Maia
 
   - name: set GTK3 font to VARIABLE
     command:
@@ -41,7 +53,7 @@
 
   - name: set GTK3 monospace font to VARIABLE
     command:
-      xfconf-query -c xsettings -p /Gtk/MonospaceFontName -s "DejaVu Sans Mono 10"
+      xfconf-query -c xsettings -p /Gtk/MonospaceFontName -s "RobotoMono Nerd Font Mono 10"
 
   - name: set GTK3 cursor theme to VARIABLE
     command:

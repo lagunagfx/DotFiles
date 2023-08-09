@@ -36,4 +36,13 @@
         - xdg-desktop-portal-gnome
       state: absent
 
+  - name: "remove unused and unwanted look and feel"
+    become: yes
+    ansible.builtin.package:
+      name:
+        - wallpapers-juhraya
+        - wallpapers-2018
+        - manjaro-wallpapers-18.0
+      state: absent
+
 # end of tasks

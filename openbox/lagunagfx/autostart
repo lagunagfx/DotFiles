@@ -6,8 +6,6 @@
 ### compositor
 # sleep 1; manjaro-compositor --start &
 picom &
-# nitrogen (wallpaper manager)
-sleep 0.5; nitrogen --restore &
 ### Openbox autostart
 # sleep 1; ob-autostart -d &
 
@@ -24,7 +22,8 @@ sleep 0.5; xdg-user-dirs-update &
 sleep 0.5; numlockx &
 ### launch thunar in daemon mode
 sleep 0.5; thunar --daemon &
-
+# nitrogen (wallpaper manager)
+sleep 0.5; nitrogen --restore &
 # tint2 (taskbar)
 sleep 0.5; tint2 &
 # conky (onscreen info)
