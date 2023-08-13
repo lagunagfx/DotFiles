@@ -1,0 +1,22 @@
+# description: add Printing server capabilities
+---
+
+  - name: create 'ttrssdb' MySQL/MariaDB databases
+    become: yes
+    ansible.builtin.package
+      name:
+        - cups
+      state: present
+
+  # Samsung Xpress M2020 series
+  #
+  # 1) manually install drivers from the Samsung/HP site
+  #    > wget https://ftp.hp.com/pub/softlib/software13/printers/SS/SL-C4010ND/uld_V1.00.39_01.17.tar.gz
+  # 2) install package libcupsimage2 (missing dependency needed for proper cups filtering)
+
+  # To generate a less secure yet more accesible server configuration:
+  #
+  # "cupsctl --remote-admin --remote-any --share-printers"
+  #
+  # I've added my regular user to the lpadmin group, but I think it's really unnecessar
+# end of tasks list

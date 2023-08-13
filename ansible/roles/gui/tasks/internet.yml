@@ -17,6 +17,7 @@
          - firefox-developer-edition-i18n-es-es
          - thunderbird
          - thunderbird-i18n-es-es
+         - speech-dispatcher
       state: present
     when: inventory_hostname not in groups['netbook']
 
