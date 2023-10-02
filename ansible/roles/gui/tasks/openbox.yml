@@ -1,0 +1,92 @@
+# description: OpenBox Window Manager essentials from scratch on Manjaro distros
+---
+
+  - name: install the OpenBox window manager
+    become: yes
+    ansible.builtin.package:
+      name:
+        - manjaro-openbox-common
+        - openbox
+        - picom
+        - tint2
+        - jgmenu
+        - nitrogen
+        - rofi
+        - feh
+        - conky
+        - volumeicon
+        - alacritty
+      state: present
+
+  - name: install a backlight adjustment utility (for laptops)
+    become: yes
+    ansible.builtin.package:
+      name:
+        - xorg-xbacklight
+      state: present
+    when: inventory_hostname not in groups['desktop']
+
+  - name: Link Openbox settings
+    ansible.builtin.file:
+      src: ~/Documentos/DotFiles/openbox/lagunagfx
+      dest: ~/.config/openbox
+      state: link
+      force: yes
+
+  - name: Link LagunaGFX themes
+    ansible.builtin.file:
+      src: ~/Documentos/DotFiles/themes
+      dest: ~/.themes
+      state: link
+      force: yes
+  
+  - name: Link Picom compositor settings
+    ansible.builtin.file:
+      src: ~/Documentos/DotFiles/picom/manjaro.defaults
+      dest: ~/.config/picom
+      state: link
+      force: yes
+
+  - name: Link Tint2 settings
+    ansible.builtin.file:
+      src: ~/Documentos/DotFiles/tint2/
+      dest: ~/.config/tint2
+      state: link
+      force: yes
+
+  - name: Link JGMenu settings
+    ansible.builtin.file:
+      src: ~/Documentos/DotFiles/jgmenu/manjaro.lagunagfx
+      dest: ~/.config/jgmenu
+      state: link
+      force: yes
+
+  - name: Link Conky settings
+    ansible.builtin.file:
+      src: ~/Documentos/DotFiles/conky
+      dest: ~/.config/conky
+      state: link
+      force: yes
+  
+    # XFCE associated setup quirks
+
+  - name: Link XFCE default applications info
+    ansible.builtin.file:
+      src: ~/Documentos/DotFiles/xfce4/lagunagfx/helpers.rc
+      dest: ~/.config/xfce4/helpers.rc
+      state: link
+      force: yes
+
+  # Use XFCE's Thunar as file browser (PCmanFM is cool but got some interface issues)
+
+  - name: set Thunar as default file browser
+    become: yes
+    ansible.builtin.package:
+      name:
+        - thunar
+        - thunar-archive-plugin
+        - thunar-media-tags-plugin 
+        - thunar-volman
+      state: present
+
+# end of task

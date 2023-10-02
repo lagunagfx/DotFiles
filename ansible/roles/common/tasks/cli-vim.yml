@@ -20,6 +20,32 @@
       src: ~/Documentos/DotFiles/vim/vimrc.noplugins
       dest: /root/.vimrc      
 
+  - name: create .vim folder
+    ansible.builtin.file:
+      path: /home/jorge/.vim
+      state: directory
+      mode: '0755'
+ 
+  - name: link NeoVim's init.vim to Vim's vimrc
+    ansible.builtin.file:
+      src: /home/jorge/.vimrc
+      dest: /home/jorge/.vim/init.vim
+      state: link
+
+  - name: link NeoVim's .config/nvim to Vim's .vim
+    ansible.builtin.file:
+      src: /home/jorge/.vim
+      dest: /home/jorge/.config/nvim
+      state: link
+
+  # Operation over ROOT's account
+
+  - name: create ROOT's NeoVim0s '/root/.vim/'
+    become: yes
+    ansible.builtin.file:
+      path: /root/.vim
+      state: directory
+
   - name: link ROOT's VIM '/root/.vimrc' to NeoVim's '/root/.vim/init.vim'
     become: yes
     ansible.builtin.file:
@@ -28,36 +54,13 @@
       state: link
       force: yes
 
-  - name: check if ~/.vim folder exits
-    ansible.builtin.stat:
-      path: /home/jorge/.vim
-    register: folder_vim
-
-  - name: create .vim folder
-    ansible.builtin.file:
-      path: /home/jorge/.vim
-      state: directory
-      mode: '0755'
-    when: folder_vim.stat.exists == false
-
-# temporarily disabled since Github has blocked VundleVim repo without notice
+  # temporarily disabled since Github has blocked VundleVim repo without notice
 
   - name: clone VimVundle repository from GitHub
     ansible.builtin.git:
       repo: https://github.com/VundleVim/Vundle.vim.git
       dest: /home/jorge/.vim/bundle/Vundle.vim
-
-  - name: link NeoVim's init.vim to Vim's vimrc
-    ansible.builtin.file:
-      src: /home/jorge/.vimrc
-      dest: /home/jorge/.vim/init.vim
-      state: link
        
-  - name: link NeoVim's .config/nvim to Vim's .vim
-    ansible.builtin.file:
-      src: /home/jorge/.vim
-      dest: /home/jorge/.config/nvim
-      state: link
 
   - name: install Vundle plugin
     ansible.builtin.shell:

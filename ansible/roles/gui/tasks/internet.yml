@@ -1,6 +1,14 @@
 ---
 # description: Internet Browser and Mail Reader
 
+  - name: remove some default installed browsers (like PaleMoon or Firefox Standard) 
+    become: yes
+    ansible.builtin.package:
+      name:
+         - firefox
+         - palemoon
+      state: absent
+
   - name: install Firefox internet browser and Thunderbird mail reader for standard machines
     become: yes
     ansible.builtin.package:
@@ -9,10 +17,16 @@
          - firefox-developer-edition-i18n-es-es
          - thunderbird
          - thunderbird-i18n-es-es
+         - speech-dispatcher
       state: present
     when: inventory_hostname not in groups['netbook']
 
   # description: Hexchat IRC client config
+
+  - name: create Hexchat config folder
+    ansible.builtin.file:
+      path: ~/.config/hexchat
+      state: directory
 
   - name: link Hexchat global config file hexchat.conf
     ansible.builtin.file:

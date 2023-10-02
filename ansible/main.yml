@@ -1,7 +1,0 @@
----
-  # file: main.yml
-
-  - import_playbook: server.yml
-  - import_playbook: gui.yml
-
-# end of playbook

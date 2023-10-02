@@ -6,11 +6,8 @@
   # 
   # vdhcoapp-bin (Video Download Helper coapp)
 
-# end of file
-  # description: specific tools for Arch based distros 
+  # Renoise install:
   #
-  # - paru (requires rust)
-  #
-  #- name: [ARCH-based only] Check for packages Rust (dependency for Paru)
+  # scp www.lagunagfx.eu:Software/linux/1.paid/daw/Renoise/3.4.2/* .
 
-# End of tasks
+# end of tasks

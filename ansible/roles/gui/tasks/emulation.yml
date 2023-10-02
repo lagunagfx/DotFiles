@@ -3,6 +3,13 @@
 
   # Microsoft Windows emulation through WINE
 
+# - name: "remove standard 'wine' branch of the WINE is Not an Emulator project, if present"
+#   become: yes
+#   ansible.builtin.package:
+#     name:
+#       - wine
+#     state: absent
+
   - name: "install 'wine-staging' branch of the WINE is Not an Emulator project"
     become: yes
     ansible.builtin.package:

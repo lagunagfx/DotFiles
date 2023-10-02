@@ -10,6 +10,27 @@
       state: present
     when: ansible_facts['distribution'] == "Archlinux"
 
+  # description: essential python modules 
+
+  - name: install basic python3 developer support on Debian
+    become: yes
+    ansible.builtin.package:
+      name:
+        - python3
+        - python3-setuptools
+        - python3-pip
+      state: present
+    when: ansible_facts['distribution'] == "Debian"
+
+  - name: "install basic python3 developer support on Arch/Manjaro"
+    become: yes
+    ansible.builtin.package:
+      name:
+        - python-setuptools
+        - python-pip
+      state: present
+    when: ansible_facts['distribution'] == "Archlinux"
+  
   - name: install CURL, HDPARM, HEXEDIT, IMAGEMAGICK, HTOP, NEOFETCH, NMAP, PARTED, RSYNC, UNZIP and ZIP
     become: yes
     ansible.builtin.package:
@@ -26,6 +47,7 @@
          - rsync
          - unzip
          - zip
+         - pandoc
       state: present
 
   - name: install unrar package on Arch-based systems
@@ -53,22 +75,22 @@
         - cuetools
       state: present
 
-  - name: install ecm-tools for (ERROR CODE MODELER disc image handling
+  - name: install ecm-tools for ERROR CODE MODELER disc image handling
     become: yes
     ansible.builtin.package:
       name:
         - ecm-tools
       state: present
+    when: ansible_facts['distribution'] == "Archlinux"
 
   # paru -Ss applyppf ape
 
   - ansible.builtin.import_tasks: roles/common/tasks/cli-pass.yml
   - ansible.builtin.import_tasks: roles/common/tasks/cli-vim.yml
   - ansible.builtin.import_tasks: roles/common/tasks/cli-tmux.yml
-  - ansible.builtin.import_tasks: roles/common/tasks/cli-pandoc.yml
 
   - name: install an AUR package manager for the command line  
     ansible.builtin.import_tasks: roles/common/tasks/cli-paru.yml
     when: inventory_hostname not in groups['server']
 
-# End of tasks list
+# End of tasks
