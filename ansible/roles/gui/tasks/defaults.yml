@@ -18,6 +18,16 @@
         - alacritty
       state: present
 
+  # optional tools for better graphic card support
+
+  - name: install optional dependencies for inxi (mesa-utils and vulkan-tools)
+    become: yes
+    ansible.buitlin.package:
+      name:
+        - mesa-utils
+        - vulkan-tools
+      state: present
+
   # for any Manjaro i3-based installations, erase all leftovers
 
   - name: erase all traces (if any) of the i3 window manager
