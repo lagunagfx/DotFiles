@@ -1,6 +1,16 @@
 # description: system tweaks
 ---
 
+    # install optional tools
+
+  - name: install optional GPU tools
+    become: yes
+    ansible.builtin.package:
+      name:
+        - mesa-utils
+        - vulkan-tools
+      state: present
+
     # avoid screen tearing when using intel graphics card
 
   - name: avoid screen tearing when using SNA acceleration on intel cards
