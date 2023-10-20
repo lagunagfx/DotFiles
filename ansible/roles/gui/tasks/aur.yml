@@ -8,6 +8,11 @@
 
   # Renoise install:
   #
-  # scp www.lagunagfx.eu:Software/linux/1.paid/daw/Renoise/3.4.2/* .
+  # > scp www.lagunagfx.eu:Software/linux/1.paid/daw/Renoise/3.4.2/* .
+
+  # dependencies for proper abcde mp3 encoder work...
+  #
+  # > pacman -S python-eyed3 glyr ¿libdiscid?
+  # > paru -S abcde-musicbrainz-meta
 
 # end of tasks
