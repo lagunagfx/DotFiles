@@ -1,6 +1,6 @@
 [user]
 	name = Jorge Barrientos AKA LagunaGFX
-	email = lagunagfx@lagunalabs.eu
+	email = lagunagfx@lagunagfx.eu
 [credential]
 	helper = !pass git/lagunagfx@github
 [init]
