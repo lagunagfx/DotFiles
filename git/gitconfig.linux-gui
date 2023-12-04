@@ -1,5 +1,5 @@
 [user]
 	name = Jorge Barrientos AKA LagunaGFX
-	email = lagunagfx@lagunalabs.eu
+	email = lagunagfx@lagunagfx.eu
 [credential]
 	helper = /usr/lib/git-core/git-credential-libsecret

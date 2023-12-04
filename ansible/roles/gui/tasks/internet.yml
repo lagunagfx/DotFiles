@@ -9,6 +9,8 @@
          - palemoon
       state: absent
 
+  # Hunspell is there to provide spell checking for both Firefox and Thunderbird
+
   - name: install Firefox internet browser and Thunderbird mail reader for standard machines
     become: yes
     ansible.builtin.package:
@@ -17,6 +19,8 @@
          - firefox-developer-edition-i18n-es-es
          - thunderbird
          - thunderbird-i18n-es-es
+         - hunspell
+         - hunspell-es_es
          - speech-dispatcher
       state: present
     when: inventory_hostname not in groups['netbook']
