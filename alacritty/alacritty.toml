@@ -1,0 +1,28 @@
+[font]
+#animation = "EaseOutExpo"
+#duration = 1
+size = 8.0
+
+[font.bold]
+family = "Roboto Mono Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "RobotoMono Nerd Font Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "RobotoMono Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+family = "RobotoMono Nerd Font Mono"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+[window]
+opacity = 0.88
+startup_mode = "Maximized"
