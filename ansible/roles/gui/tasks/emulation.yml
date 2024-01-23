@@ -52,6 +52,23 @@
           - mame-tools
       state: present
 
+  - name: install Commodore Amiga emulation
+    become: yes
+    ansible.builtin.package:
+      name:
+        - fs-uae
+        - fs-uae-launcher
+      state: present
+    when: ansible_hostname not in groups['netbook']
+
+  - name: install Atari emulation
+    become: yes
+    ansible.builtin.package:
+      name:
+        - hatari
+      state: present
+    when: ansible_hostname not in groups['netbook']
+
 #  - name: enable Retroarch's Online Updater
 #    ansible.builtin.lineinfile
 

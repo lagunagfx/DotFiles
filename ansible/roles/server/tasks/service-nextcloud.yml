@@ -111,10 +111,10 @@
 #       ],
 #     backup: yes
 
-  - name: enable 'APCu' support for PHP in '/etc/php/7.4/cli/php.ini'
+  - name: enable 'APCu' support for PHP in '/etc/php/8.2/cli/php.ini'
     become: yes
     ansible.builtin.blockinfile:
-      path: /etc/php/7.4/cli/php.ini
+      path: /etc/php/8.2/cli/php.ini
       insertafter: EOF
       block: |
         apc.enable_cli=1
@@ -123,7 +123,7 @@
   - name: restart PHP service
     become: yes
     ansible.builtin.service:
-      name: "php7.4-fpm.service"
+      name: "php8.2-fpm.service"
       state: restarted
     when: php_add_apcu_support.changed
 
@@ -169,7 +169,7 @@
         [Install]
         WantedBy=timers.target
 
-  - name: start and enable the 'nextcloudcron.timer' service
+  - name: start and enab:le the 'nextcloudcron.timer' service
     become: yes
     ansible.builtin.service:
       name: nextcloudcron.timer
