@@ -1,0 +1,10 @@
+<!DOCTYPE patchbay>
+<patchbay name="LGFX_Madrid_EstudioDos_TCElectronicKonnekt24D" version="0.6.1">
+ <items>
+  <item node-type="alsa" port-type="alsa-midi">
+   <output node="129:Renoise MIDI Output" port="0:Renoise MIDI Out Sync"/>
+   <input node="24:Konnekt24D" port="0:Konnekt24D MIDI 1"/>
+  </item>
+ </items>
+</patchbay>
+

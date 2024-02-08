@@ -1,0 +1,14 @@
+plugin_dirs = [
+    '/home/jorge/.local/share/wineprefix/win10_64bit_plugin/drive_c/Program Files/Common Files/CLAP',
+    '/home/jorge/.local/share/wineprefix/win10_64bit_plugin/drive_c/Program Files/Common Files/VST3',
+    '/home/jorge/.local/share/wineprefix/win10_64bit_plugin/drive_c/Program Files/Roland VS/JV-1080',
+    '/home/jorge/.local/share/wineprefix/win10_64bit_plugin/drive_c/Program Files/VSTPlugins',
+    '/home/jorge/.local/share/wineprefix/winxp_32bit_plugin/drive_c/Program Files/VSTPlugins',
+]
+vst2_location = 'centralized'
+no_verify = false
+blacklist = []
+
+[last_known_config]
+wine_version = 'wine-8.21 (Staging)'
+yabridge_host_hash = -3455544459850266564
