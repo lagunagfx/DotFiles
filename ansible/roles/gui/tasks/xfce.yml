@@ -3,8 +3,8 @@
 
   - name: Link GTK3 settings
     ansible.builtin.file:
-      src: ~/Documentos/DotFiles/gtk/gtk-3.0/bookmarks
-      dest: ~/.config/gtk-3.0/bookmarks
+      src: ~/Documentos/DotFiles/gtk/gtk-3.0
+      dest: ~/.config/gtk-3.0
       state: link
       force: yes
       

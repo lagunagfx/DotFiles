@@ -18,14 +18,14 @@
              - "   distro: {{ ansible_facts['distribution'] }}"
              - "inventory: {{ inventory_hostname }}"
 
-#      - ansible.builtin.import_tasks: roles/common/tasks/ssh-generate-keys.yml
+       - ansible.builtin.import_tasks: roles/common/tasks/ssh-generate-keys.yml
        - ansible.builtin.import_tasks: roles/common/tasks/filesystem.yml
        - ansible.builtin.import_tasks: roles/common/tasks/cli.yml
 #      - ansible.builtin.import_tasks: roles/server/tasks/git-private.yml
 #        when: inventory_hostname == 'cloudbox'
 
-  - name: import global Playbook for desktop and laptop graphical workstations
-    ansible.builtin.import_playbook: gui.yml
-    when: ansible_facts['hostname'] in groups['graphical']
+#       - name: import global Playbook for desktop and laptop graphical workstations
+#        ansible.builtin.import_playbook: gui.yml
+#        when: ansible_facts['hostname'] in groups['graphical']
 
 # end of playbook

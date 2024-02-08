@@ -12,37 +12,37 @@
       path: /etc/nginx/sites-available/lagunagfx
     register: nginx_lagunagfx_config
 
-#  - name: install most recent LagunaLabs's NGINX configuration file (if absent)
-#    become: yes
-#    ansible.builtin.copy:
-#      src: ~/Documentos/Private/nginx/nginx_sites-available_lagunalabs
-#      dest: /etc/nginx/sites-available/lagunagfx
-#      backup: yes
-#    when: nginx_lagunalabs_config.stat.exists == false
-#
-#  - name: make LagunaLabs configuration available to the webserver
-#    become: yes
-#    ansible.builtin.file:
-#        src: /etc/nginx/sites-available/lagunagfx
-#        dest: /etc/nginx/sites-enabled/lagunagfx
-#        state: link
-#        force: yes
-#
-#  - name: create LagunaLabs SSL certificate folder (if needed)
-#    become: yes
-#    ansible.builtin.file:
-#      path: /etc/ssl/laguna
-#      state: directory
-#
-#  - name: copy LagunaLabs's SSL certificates
-#    become: yes
-#    ansible.builtin.copy:
-#      src: '{{ item }}'
-#      dest: /etc/ssl/laguna
-#      force: no
-#    loop:
-#      - ~/Documentos/Private/ssl/LagunaLabs/lagunagfx_eu_4096bit.key
-#      - ~/Documentos/Private/ssl/LagunaLabs/www_lagunagfx_eu_ssl-bundle_valid_20230311.crt  
+  - name: install most recent LagunaLabs's NGINX configuration file (if absent)
+    become: yes
+    ansible.builtin.copy:
+      src: ~/Documentos/Private/nginx/nginx_sites-available_lagunalabs
+      dest: /etc/nginx/sites-available/lagunagfx
+      backup: yes
+    when: nginx_lagunalabs_config.stat.exists == false
+
+  - name: make LagunaLabs configuration available to the webserver
+    become: yes
+    ansible.builtin.file:
+        src: /etc/nginx/sites-available/lagunagfx
+        dest: /etc/nginx/sites-enabled/lagunagfx
+        state: link
+        force: yes
+
+  - name: create LagunaLabs SSL certificate folder (if needed)
+    become: yes
+    ansible.builtin.file:
+      path: /etc/ssl/laguna
+      state: directory
+
+  - name: copy LagunaLabs's SSL certificates
+    become: yes
+    ansible.builtin.copy:
+      src: '{{ item }}'
+      dest: /etc/ssl/laguna
+      force: no
+    loop:
+      - ~/Documentos/Private/ssl/LagunaLabs/lagunagfx_eu_4096bit.key
+      - ~/Documentos/Private/ssl/LagunaLabs/www_lagunagfx_eu_ssl-bundle_valid_20230311.crt  
 
   - name: install all PHP dependencies for NEXCLOUD
     become: yes
@@ -83,7 +83,7 @@
   - name: tuning up php-fpm ENV variables
     become: yes
     ansible.builtin.replace:
-      path: /etc/php/8.2/fpm/pool.d/www.conf
+      path: /etc/php/7.4/fpm/pool.d/www.conf
       regexp: '^;(env)'
       replace: '\1'
       backup: yes
@@ -91,7 +91,7 @@
   - name: increase "memory_limit" in php.ini
     become: yes
     ansible.builtin.lineinfile:
-      path: /etc/php/8.2/fpm/php.ini
+      path: /etc/php/7.4/fpm/php.ini
       regexp: ^(memory_limit)
       line: memory_limit = 2048M
       backup: yes
@@ -99,7 +99,7 @@
   - name: increase "post_max_size" in php.ini
     become: yes
     ansible.builtin.lineinfile:
-      path: /etc/php/8.2/fpm/php.ini
+      path: /etc/php/7.4/fpm/php.ini
       regexp: ^(post_max_size)
       line: post_max_size = 256M
       backup: yes
@@ -107,7 +107,7 @@
   - name: increase "upload_max_filesize" in php.ini
     become: yes
     ansible.builtin.lineinfile:
-      path: /etc/php/8.2/fpm/php.ini
+      path: /etc/php/7.4/fpm/php.ini
       regexp: ^(upload_max_filesize)
       line: upload_max_filesize = 256M
       backup: yes
@@ -121,7 +121,7 @@
   - name: restarting php-fpm service
     become: yes
     ansible.builtin.service:
-      name: php8.2-fpm
+      name: php7.4-fpm
       state: restarted
 
 # end of tasks list

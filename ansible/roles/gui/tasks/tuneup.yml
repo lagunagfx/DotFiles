@@ -24,6 +24,6 @@
           Driver "intel"
           Option "TearFree" "true"
         EndSection        
-    when: inventory_hostname in groups['laptop']
+    when: ( inventory_hostname in groups['laptop'] ) and ( inventory_hostname != 'badulaque' )
 
 # End of tasks

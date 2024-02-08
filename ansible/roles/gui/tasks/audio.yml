@@ -1,15 +1,28 @@
 ---
 # description:
 
-  - name: enable JACK support
+  - name: getting rid of some old Jack and Pulseaudio dependencies in favour of Pipewire
+    become: yes
+    ansible.builtin.package:
+      name:
+        - manjaro-pulse
+        - pulseaudio-zeroconf
+        - pulseaudio-jack
+        - pulseaudio-alsa
+        - pulseaudio-bluetooth
+        - pulseaudio-ctl
+        - pulseaudio
+        - a2jmidid
+        - qjackctl
+        - carla
+      state: absent
+
+  - name: enable realtime support for better audio latencies
     become: yes
     ansible.builtin.package:
       name:
         - realtime-privileges
         - jack-example-tools
-        - a2jmidid
-        - qjackctl
-        - pulseaudio-jack
       state: present
 
   - name: add user to the 'realtime' group
