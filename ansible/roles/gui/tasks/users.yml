@@ -6,5 +6,33 @@
     ansible.builtin.user:
       name: jacqueline
       password: "{{ useraccount_jacqueline_pwd | password_hash('sha512') }}"
+    when: inventory_hostname == 'badulaque'
+
+    # add the 'aurbuilder' user so paru packages could be built using Ansible
+
+  - name: Create the `aurbuilder` user
+    become: yes
+    ansible.builtin.user:
+      name: aurbuilder
+      create_home: yes
+      group: wheel
+
+  - name: Allow the `aurbuilder` user to run `sudo pacman` without a password
+    become: yes
+    ansible.builtin.lineinfile:
+      path: /etc/sudoers.d/11-install-aurbuilder
+      line: 'aurbuilder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
+      create: yes
+      mode: 0644
+      validate: 'visudo -cf %s'
+  
+  - name: set the 'aurbuilder' account as system user so it doesn't show in the login prompt
+    become: yes
+    ansible.builtin.blockinfile:
+      path: /var/lib/AccountService/users/aurbuilder
+      create: true
+      block: |
+        [User]
+        SystemAccount=true
 
 # End of tasks

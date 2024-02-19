@@ -2,9 +2,7 @@
 # description: AUR based packages for ARCH LINUX derivatives
 
   # seafile-client
-  # losslesscut-bin
   # 
-  # vdhcoapp-bin (Video Download Helper coapp)
 
   # Renoise install:
   #
@@ -14,5 +12,13 @@
   #
   # > pacman -S python-eyed3 glyr ¿libdiscid?
   # > paru -S abcde-musicbrainz-meta
+
+  - name: install SunVox tracker
+    become: yes
+    become_user: aurbuilder
+    kewlfft.aur.aur:
+      use: paru
+      name: sunvox
+      state: present
 
 # end of tasks

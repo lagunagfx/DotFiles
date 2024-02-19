@@ -40,6 +40,8 @@
     become: yes
     ansible.builtin.package:
       name:
+        - manjaro-slick-greeter-theme-glassfield
+        - manjaro-slick-greeter-theme-brown
         - wallpapers-juhraya
         - wallpapers-2018
         - manjaro-wallpapers-18.0

@@ -1,10 +1,24 @@
 ---
 # description: media support for video playback, recording and editing
 
-  - name: install 'mpd' mediaplayer
+  - name: install 'mpd' mediaplayer and aegisub subtitle editor
     become: yes
     ansible.builtin.package:
-      name: mpd
+      name:
+        - mpd
+        - aegisub
       state: present
+
+  - name: install Losslesscut and VideoDownloadHelper coapp
+    become: yes
+    become_user: aurbuilder
+    kewlfft.aur.aur:
+      use: paru
+      name:
+        - losslesscut-bin
+        # Video Download Helper coapp
+        - vdhcoapp-bin
+      state: present
+
 
 # end of task

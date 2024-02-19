@@ -1,5 +1,20 @@
 ---
-# description: create and initialize repos in my owm private Git server
+# description: tune up the filesystem placing essential files, folders and symlinks
+
+  - name: backup the original /etc/hosts
+    become: yes
+    ansible.builtin.copy:
+      remote_src: yes
+      src: /etc/hosts
+      dest: /etc/hosts.backup
+
+  - name: add LagunaGFX's homelab/farm list of hosts to /etc/hosts
+    become: yes
+    ansible.builtin.blockinfile:
+      path: /etc/hosts
+      block: "{{ lookup('file', '~/Documentos/Private/etc/hosts.lagunagfx') }}"
+      # prepend_newline: true (NOT SUPPORTED UNTIL Ansible Core 2.16)
+      state: present
 
   - name: check for package GIT
     become: yes
@@ -13,7 +28,7 @@
        path: /home/jorge/.config
        state: directory
 
-  - name: if folder "Documentos" is not present, then reate it
+  - name: if folder "Documentos" is not present, then create it
     file:
        path: /home/jorge/Documentos
        state: directory
@@ -31,7 +46,7 @@
 
   - name: check if .gitconfig is a regular file or its repo counterpart
     ansible.builtin.file:
-      src: ~/Documentos/DotFiles/git/gitconfig.linux-server
+      src: ~/Documentos/DotFiles/git/{{ git_config }}
       dest: ~/.gitconfig
       state: link
       force: yes
@@ -53,13 +68,5 @@
       dest: ~/.local/bin
       state: link
       force: yes
-
-# - name: clone private GIT repos "Private"
-#   ansible.builtin.git:
-#     repo: "git@cloudbook:Private.git"
-#     dest: /home/jorge/Documentos/Private
-#     clone: yes
-#     update: yes
-#   when: folder_private.stat.exists == false
 
 # end of task list

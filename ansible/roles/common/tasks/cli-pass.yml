@@ -5,22 +5,21 @@
       name:
         - pass
       state: present
-      
 
-  - name: clone .password-store from my private repo      
+  - name: clone password store from my private repo
     ansible.builtin.git:
-      # repo: "git@cloudbook:Password.git"
-      repo: '[git:{{ useraccount_git_pwd }}@{{ main_server }}]:Password.git'
-      dest: ~/.password-store 
+      repo: 'git@{{ main_server }}:Password.git'
+      dest: ~/.password-store
       clone: yes
-      update: yes
+      # update: yes
+      accept_hostkey: yes
 
 #  - name: trust my own imported keys
 #    ansible.builtin.shell:
 #      cmd: gpg --edit-keys ""
 
       # pass init "GPG-ID" 
-      # pass git iniy
+      # pass git init
       # pass git clone git@cloudbox:Password.git
 
 # end of tasks list

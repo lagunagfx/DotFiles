@@ -45,13 +45,13 @@
         - sws
       state: present
 
-#  - name: install Yet Another VST Bridge for MS Windows audio plugins
-#    become: yes
-#    ansible.builtin.package:
-#      name:
-#        - yabridge
-#        - yabridgectl
-#      state: present
+  - name: install Yet Another VST Bridge for MS Windows audio plugins
+    become: yes
+    ansible.builtin.package:
+      name:
+        - yabridge
+        - yabridgectl
+      state: present
 
   - name: install FastTracker, ProTracker and ImpulseTracker clones
     become: yes
@@ -90,11 +90,51 @@
       state: present
     when: inventory_hostname not in groups['netbook']
 
-  - name: install FX plugins 'dragonfly-reverb'
+  - name: make sure the Jack standalone versions of the LSP plugin suite are removed
+    become: yes
+    ansible.builtin.package:
+      name:
+        - lsp-plugins
+        - lsp-plugins-standalone
+        - lsp-plugins-ladspa
+      state: absent
+
+  - name: install FX plugins 'dragonfly-reverb', and the Calf and LSP plugins suite (NOT the Jack standalone versions)
     become: yes
     ansible.builtin.package:
       name:
         - dragonfly-reverb
+        - calf
+        - lsp-plugins-docs
+        - lsp-plugins-vst
+        - lsp-plugins-lv2
+        - lsp-plugins-clap
+      state: present
+
+  - name: install Polyphone SoundFont editor
+    become: yes
+    ansible.builtin.package:
+      name:
+        - polyphone
+      state: present
+
+  - name: remove Tutka MIDI sequencer, which doesn't seem to run at the moment (2024·01·24)
+    become: yes
+    #become_user: aurbuilder
+    #kewlfft.aur.aur:
+    #  use: paru
+    ansible.builtin.package:
+      name:
+        - tutka
+      state: absent
+
+  - name: add audio plugins Repeater from the AUR repo
+    become: yes
+    become_user: aurbuilder
+    kewlfft.aur.aur:
+      use: paru
+      name:
+        - regrader.lv2-git
       state: present
 
 # end of task

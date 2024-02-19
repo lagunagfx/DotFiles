@@ -1,6 +1,24 @@
 # description: XFCE / GTK3 settings both for it and other GTK-based WMs
 ---
 
+  - name: check if a previous GTK3 settings folder exists
+    ansible.builtin.stat:
+      path: ~/.config/gtk-3.0
+    register: gtk3_settings_folder
+      
+  - name: keep said GTK3 folder as backup
+    ansible.builtin.copy:
+      remote_src: true
+      src: ~/.config/gtk-3.0
+      dest: ~/.config/gtk-3.0.backup
+    when: gtk3_settings_folder.stat.isdir == true
+
+  - name: delete the original directory
+    ansible.builtin.file:
+      path: ~/.config/gtk-3.0
+      state: absent
+    when: gtk3_settings_folder.stat.isdir == true
+
   - name: Link GTK3 settings
     ansible.builtin.file:
       src: ~/Documentos/DotFiles/gtk/gtk-3.0
@@ -20,20 +38,35 @@
   - name: install Google's signature family of fonts
     become: yes
     ansible.builtin.package:
-        name:
-          - ttf-roboto
-          - ttf-roboto-mono-nerd
-        state: present
+      name:
+        - ttf-roboto
+        - ttf-roboto-mono-nerd
+      state: present
 
     # set Gtk3 preferences using xfce's xfconf tool
 
+  - name: remove some XFCE4 legacy packages stuck from the OpenBox edition days
+    become: yes
+    ansible.builtin.package:
+      name:
+        - xfce4-settings-gtk3
+        - xfce4-power-manager-gtk3
+        - thunar-gtk3
+        - thunar-volman-gtk3
+        - thunar-archive-plugin-gtk3
+      state: absent
+
+    # since previous installs with minimal XFCE base don't have all properties created
+    # the syntax would create the property if it wasn't defined before
+
   - name: set XFWM4 theme to Matcha-dark-sea
     command:
-      xfconf-query -c xfwm4 -p /general/theme -s Matcha-dark-sea
+      #xfconf-query -c xfwm4 -p /general/theme -s Matcha-dark-sea
+      xfconf-query -c xfwm4 -p /general/theme -t string -s Matcha-dark-sea --create
 
   - name: "set XFCE4 workspaces to 4"
     command:
-      xfconf-query -c xfwm4 -p /general/workspace_count -t int -s 4
+      xfconf-query -c xfwm4 -p /general/workspace_count -t int -s 4 
 
   - name: "set XFCE4 workspace names to 1,2,3 and 4"
     command:
