@@ -128,7 +128,7 @@
         - tutka
       state: absent
 
-  - name: audio plugins from the AUR: Repeater, the CHOWdhury Suite, 
+  - name: audio AUR audio plugins Repeater the CHOWdhury Suite 
     become: yes
     become_user: aurbuilder
     kewlfft.aur.aur:
