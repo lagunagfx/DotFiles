@@ -128,13 +128,20 @@
         - tutka
       state: absent
 
-  - name: add audio plugins Repeater from the AUR repo
+  - name: audio plugins from the AUR: Repeater, the CHOWdhury Suite, 
     become: yes
     become_user: aurbuilder
     kewlfft.aur.aur:
       use: paru
       name:
         - regrader.lv2-git
+        - chowbyop-bin
+        - chowcentaur-bin
+        - chowkick-bin
+        - chowmatrix-bin
+        - chowmultitool-bin
+        - chowphaser-bin
+        - chowtapemodel-bin  
       state: present
 
 # end of task

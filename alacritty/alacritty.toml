@@ -1,22 +1,22 @@
 [font]
 #animation = "EaseOutExpo"
 #duration = 1
-size = 8.0
+size = 9.0
 
 [font.bold]
 family = "Roboto Mono Nerd Font Mono"
 style = "Bold"
 
 [font.bold_italic]
-family = "RobotoMono Nerd Font Mono"
+family = "Roboto Mono Nerd Font Mono"
 style = "Bold Italic"
 
 [font.italic]
-family = "RobotoMono Nerd Font Mono"
+family = "Roboto Mono Nerd Font Mono"
 style = "Italic"
 
 [font.normal]
-family = "RobotoMono Nerd Font Mono"
+family = "Roboto Mono Nerd Font Mono"
 style = "Regular"
 
 [font.offset]
