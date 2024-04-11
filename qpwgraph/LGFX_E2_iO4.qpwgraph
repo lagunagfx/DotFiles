@@ -1,5 +1,5 @@
 <!DOCTYPE patchbay>
-<patchbay name="LGFX_E2_iO4" version="0.5.3">
+<patchbay name="LGFX_E2_iO4" version="0.6.2">
  <items>
   <item node-type="pipewire" port-type="pipewire-audio">
    <output node="Firefox" port="Firefox:output_FR"/>
@@ -8,6 +8,14 @@
   <item node-type="pipewire" port-type="pipewire-audio">
    <output node="Firefox" port="Firefox:output_FL"/>
    <input node="iO4 Envolvente analógico 4.0" port="iO4:playback_RL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="REAPER" port="REAPER:out1"/>
+   <input node="iO4 Envolvente analógico 4.0" port="iO4:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="REAPER" port="REAPER:out2"/>
+   <input node="iO4 Envolvente analógico 4.0" port="iO4:playback_FR"/>
   </item>
   <item node-type="pipewire" port-type="pipewire-audio">
    <output node="iO4 Envolvente analógico 4.0 [Monitor]" port="iO4:monitor_FL"/>
