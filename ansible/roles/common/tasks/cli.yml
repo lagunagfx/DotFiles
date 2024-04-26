@@ -83,6 +83,13 @@
       state: present
     when: ansible_facts['distribution'] == "Archlinux"
 
+  - name: install maxcso for ISO/CSO support for PS2/PSP disc images
+    become: yes
+    ansible.builtin.package:
+      name:
+        - maxcso
+    when: ansible.builtin.page['distribution'] == "Archlinux"
+
   # paru -Ss applyppf ape
 
   - ansible.builtin.import_tasks: roles/common/tasks/cli-pass.yml
