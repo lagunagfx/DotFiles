@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type = Package
+Target = ft2-clone
+
+[Action]
+Description = Fix ft2-clone.desktop's category assignation
+When = PostTransaction
+Exec = /usr/sbin/sed -i 's/^Categories\=Application\;/Categories\=AudioVideo\;Audio\;AudioVideoEditing\;Sequencer\;/' /usr/share/applications/ft2-clone.desktop

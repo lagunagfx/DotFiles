@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type = Package
+Target = code-oss
+
+[Action]
+Description = Set code-oss.desktop's main category as Development
+When = PostTransaction
+Exec = /etc/pacman.d/hooks/code-oss.action 

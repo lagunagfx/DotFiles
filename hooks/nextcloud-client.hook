@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type = Package
+Target = nexcloud-client
+
+[Action]
+Description = Fix nextcloud-client.desktop's spanish name and category assignation
+When = PostTransaction
+Exec = /etc/pacman.d/hooks/nextcloud-client.action

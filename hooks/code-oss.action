@@ -1,0 +1,3 @@
+#!/bin/sh
+/usr/sbin/sed -i 's/^Name\=Code\ \-\ OSS/Name\=VSCode/g' /usr/share/applications/code-oss.desktop 
+/usr/sbin/sed -i 's/^Categories\=Utility\;TextEditor\;/Categories\=/g' /usr/share/applications/code-oss.desktop 
