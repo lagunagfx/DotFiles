@@ -1,17 +1,32 @@
 Name=Accesories
 Name[es]=Accesorios
 Icon=applications-accessories
-Categories=Accessibility;Core;Utility;
+Categories=Accessibility;Utility;TerminalEmulator
+
+Name=Office
+Name[es]=Oficina
+Icon=applications-office
+Categories=Office;
+
+Name=Internet
+Name[es]=Internet
+Icon=applications-internet
+Categories=Network;
 
 Name=Development
 Name[es]=Desarrollo
 Icon=applications-development
 Categories=Development;
 
+Name=Emulators
+Name[es]=Emuladores
+Icon=retropie
+Categories=Emulator;
+
 Name=Games
 Name[es]=Juegos
 Icon=applications-games
-Categories=Game;Emulator;
+Categories=Game;
 
 Name=Graphics
 Name[es]=Graficos
@@ -23,26 +38,26 @@ Name[es]=Multimedia
 Icon=applications-multimedia
 Categories=Audio;Video;AudioVideo;
 
-Name=Internet
-Name[es]=Internet
-Icon=applications-internet
-Categories=Network;
+Name=Windows
+Name[es]=Windows
+Icon=wine
+Categories=Wine;
 
-Name=Oficina
-Name[sv]=Kontorsprogram
-Icon=applications-office
-Categories=Office;
+Name=Prototyping
+Name[es]=Prototipado
+Icon=applications-engineering
+Categories=Science;Electronics;Engineering;
 
 Name=Other
 Name[es]=Otros
 Icon=applications-other
 
-Name=System
-Name[es]=Sistema
-Icon=applications-system
-Categories=System;
-
 Name=Settings          
 Name[es]=Ajustes
 Icon=preferences-desktop
 Categories=Settings;Screensaver;
+
+Name=System
+Name[es]=Sistema
+Icon=applications-system
+Categories=System;

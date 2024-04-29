@@ -84,3 +84,5 @@ icon_theme           = Papirus-Maia
 ## --------------------------------
 
 #csv_name_format     = %n (%g)
+csv_name_format	= %n
+csv_no_duplicates = 1
