@@ -1,0 +1,38 @@
+<!DOCTYPE patchbay>
+<patchbay name="LGFX_Madrid_EstudioDos_PresonusFIREBOX" version="0.7.1">
+ <items>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Firefox Developer Edition" port="Firefox Developer Edition:output_FL"/>
+   <input node="FireBox Multicanal" port="PreSonus FIREBOX PCM:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Firefox Developer Edition" port="Firefox Developer Edition:output_LFE"/>
+   <input node="FireBox Multicanal" port="PreSonus FIREBOX PCM:playback_LFE"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Firefox Developer Edition" port="Firefox Developer Edition:output_FR"/>
+   <input node="FireBox Multicanal" port="PreSonus FIREBOX PCM:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Firefox Developer Edition" port="Firefox Developer Edition:output_RR"/>
+   <input node="FireBox Multicanal" port="PreSonus FIREBOX PCM:playback_RR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Firefox Developer Edition" port="Firefox Developer Edition:output_RL"/>
+   <input node="FireBox Multicanal" port="PreSonus FIREBOX PCM:playback_RL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Firefox Developer Edition" port="Firefox Developer Edition:output_SL"/>
+   <input node="FireBox Multicanal" port="PreSonus FIREBOX PCM:playback_SL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Firefox Developer Edition" port="Firefox Developer Edition:output_SR"/>
+   <input node="FireBox Multicanal" port="PreSonus FIREBOX PCM:playback_SR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Firefox Developer Edition" port="Firefox Developer Edition:output_FC"/>
+   <input node="FireBox Multicanal" port="PreSonus FIREBOX PCM:playback_FC"/>
+  </item>
+ </items>
+</patchbay>
+
