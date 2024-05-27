@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type = Package
+Target = dosbox
+
+[Action]
+Description = Fix dosbox.desktop's category assignation
+When = PostTransaction
+Exec = /usr/sbin/sed -i 's/^Categories\=Application\;/Categories\=Emulator\;/' /usr/share/applications/dosbox.desktop
