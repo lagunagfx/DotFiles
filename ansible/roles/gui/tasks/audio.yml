@@ -37,8 +37,7 @@
     ansible.builtin.package:
       name:
         - jack_capture
-        - meterbridge
-        - non-mixer
+        - zita-njbridge
       state: present
 
 # end of task
