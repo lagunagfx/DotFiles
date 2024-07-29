@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type = Package
+Target = scummvm
+
+[Action]
+Description = Set scummvm.desktop's primary category to Game
+When = PostTransaction
+Exec = /usr/sbin/sed -i 's/Categories\=/Categories\=Emulator\;/g' /usr/share/applications/org.scummvm.scummvm.desktop 

@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type = Package
+Target = nm-connection-editor
+
+[Action]
+Description = Fix nm-connection-editor.desktop's category assignation
+When = PostTransaction
+Exec = /usr/sbin/sed -i 's/X\-GNOME-NetworkSettings\;//' /usr/share/applications/nm-connection-editor.desktop

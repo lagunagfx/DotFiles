@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type = Package
+Target = avahi
+
+[Action]
+Description = Fix avahi-discover.desktop, bssh.desktop and bvnc.desktop's spanish name and category assignation
+When = PostTransaction
+Exec = /etc/pacman.d/hooks/avahi.action

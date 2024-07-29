@@ -1,0 +1,3 @@
+#!/bin/sh
+/usr/sbin/sed -i 's/^Categories\=Graphics\;3DGraphics\;/Categories\=Engineering\;/' /usr/share/applications/PrusaSlicer.desktop
+/usr/sbin/sed -i 's/^Categories\=Graphics\;3DGraphics\;/Categories\=Engineering\;/' /usr/share/applications/PrusaGcodeviewer.desktop

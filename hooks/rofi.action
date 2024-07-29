@@ -1,0 +1,5 @@
+#!/bin/sh
+
+[ -z $( grep ^Categories= /usr/share/applications/rofi.desktop ) ] && $( /usr/bin/echo "Categories=Utility;" | sudo tee -a /usr/share/applications/rofi.desktop )
+[ -z $( grep ^Categories= /usr/share/applications/rofi-theme-selector.desktop ) ] && $( /usr/bin/echo "Categories=Settings;" | sudo tee -a /usr/share/applications/rofi-theme-selector.desktop )
+

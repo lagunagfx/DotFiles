@@ -1,7 +1,7 @@
 Name=Accesories
 Name[es]=Accesorios
 Icon=applications-accessories
-Categories=Accessibility;Utility;TerminalEmulator
+Categories=Accessibility;Utility;TerminalEmulator;FileTools;FileManager;
 
 Name=Office
 Name[es]=Oficina

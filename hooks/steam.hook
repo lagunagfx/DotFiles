@@ -2,9 +2,9 @@
 Operation = Upgrade
 Operation = Install
 Type = Package
-Target = steam-manjaro
+Target = steam
 
 [Action]
-Description = Fix steam.desktop's category order
+Description = Fix steam.desktop's category
 When = PostTransaction
-Exec = /usr/sbin/sed -i 's/Categories\=Network\;FileTransfer\;Game\;/Categories\=Game\;Network\;FileTransfer\;/g' /usr/share/applications/steam.desktop 
+Exec = /usr/sbin/sed -i 's/Categories\=Network\;FileTransfer\;Game\;/Categories\=Game\;/g' /usr/share/applications/steam.desktop 

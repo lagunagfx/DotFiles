@@ -3,9 +3,6 @@
 ### uncomment next line
 # ~/.screenlayout/dual-head.sh
 
-### compositor
-# sleep 1; manjaro-compositor --start &
-picom &
 ### Openbox autostart
 # sleep 1; ob-autostart -d &
 
@@ -30,15 +27,19 @@ sleep 0.5; tint2 &
 conky -d -c ~/.config/conky/laguna_sysinfo_icewm.conkyrc
 conky -d -c ~/.config/conky/laguna_shortcuts_icewm.conkyrc
 
+# Compositor
+# sleep 1; manjaro-compositor --start &
+sleep 1 ; picom &
+
 # Applets
 
-# PulseAudio VolumeIcon applet
-sleep 0.5; volumeicon &
 ### Network Manager applet
-sleep 0.5; nm-applet &
+sleep 1; nm-applet &
 # NextCloud GUI client
-sleep 0.5 ; nextcloud &
+sleep 1 ; nextcloud &
 # Seafile GUI client
-sleep 0.5; seafile-applet &
+sleep 1; seafile-applet &
+# PulseAudio VolumeIcon applet
+sleep 1; volumeicon &
 # clipman
 # blueman-applet

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# avahi-discover
+/usr/sbin/sed -i 's/^Name\[es\]\=Navegador\ Zeroconf\ de\ Avahi/Name\[es\]\=Navegador\ Avahi\ Zeroconf/' /usr/share/applications/avahi-discover.desktop
+/usr/sbin/sed -i 's/^Categories\=\\;/Categories\=Network\;/' /usr/share/applications/avahi-discover.desktop
+# bssh
+/usr/sbin/sed -i 's/^Name\[es\]\=Examinador\ de\ servidores\ SSH\ de\ Avahi/Name\[es\]\=Navegador\ Avahi\ SSH/' /usr/share/applications/bssh.desktop
+# bvnc
+/usr/sbin/sed -i 's/^Name\[es\]\=Examinador\ de\ servidores\ VNC\ de\ Avahi/Name\[es\]\=Navegador\ Avahi\ VNC/' /usr/share/applications/bvnc.desktop

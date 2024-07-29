@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type = Package
+Target = winetricks
+
+[Action]
+Description = Fix winetricks.desktop's category assignation
+When = PostTransaction
+Exec = /usr/sbin/sed -i 's/^Categories\=Utility\;/Categories\=Wine\;/' /usr/share/applications/winetricks.desktop

@@ -1,0 +1,11 @@
+[Unit]
+Description=Restart firewire support after sleep
+After=suspend.target hibernate.target hybrid-sleep.target
+
+[Service]
+User=root
+Type=oneshot
+ExecStart=/usr/bin/modprobe snd_bebob
+
+[Install]
+WantedBy=suspend.target hibernate.target hybrid-sleep.target

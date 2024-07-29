@@ -55,6 +55,12 @@ endif
 " * Makes vimwiki markdown links as [text](text.md) instead of [text](text)
 let g:vimwiki_markdown_link_ext = 1
 
+if has('syntax')
+    syntax enable             " Turn on syntax highlighting
+    silent! colorscheme vim " Custom color scheme
+endif
+
+
 " * General options
 
 map <C-i><up> :tabr<cr>
@@ -63,6 +69,7 @@ map <C-i><left> :tabp<cr>
 map <C-i><right> :tabn<cr>
 
 syntax on
+
 set tabstop=4
 set shiftwidth=4
 set number

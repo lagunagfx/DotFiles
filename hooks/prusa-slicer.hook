@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type = Package
+Target = prusa-slicer
+
+[Action]
+Description = Fix both PrusaSlicer.desktop and PrusaGcodeviewer.desktop category assignation
+When = PostTransaction
+Exec = /etc/pacman.d/hooks/prusa-slicer.action

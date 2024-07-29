@@ -1,0 +1,7 @@
+#!/bin/sh
+
+[ -z $( grep ^NoDisplay=true /usr/share/applications/zynaddsubfx-alsa.desktop ) ] && $( /usr/bin/echo "NoDisplay=true" | sudo tee -a /usr/share/applications/zynaddsubfx-alsa.desktop )
+[ -z $( grep ^NoDisplay=true /usr/share/applications/zynaddsubfx-oss.desktop ) ] && $( /usr/bin/echo "NoDisplay=true" | sudo tee -a /usr/share/applications/zynaddsubfx-oss.desktop )
+[ -z $( grep ^NoDisplay=true /usr/share/applications/zynaddsubfx-jack-multi.desktop ) ] && $( /usr/bin/echo "NoDisplay=true" | sudo tee -a /usr/share/applications/zynaddsubfx-jack-multi.desktop )
+[ -z $( grep ^NoDisplay=true /usr/share/applications/zynaddsubfx-jack.desktop ) ] && $( /usr/bin/echo "NoDisplay=true" | sudo tee -a /usr/share/applications/zynaddsubfx-jack.desktop )
+

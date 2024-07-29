@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type = Package
+Target = rofi
+
+[Action]
+Description = Fix rofi.desktop's  category assignation
+When = PostTransaction
+Exec = /etc/pacman.d/hooks/rofi.action

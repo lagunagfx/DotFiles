@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type = Package
+Target = steam-native
+
+[Action]
+Description = Fix steam-native.desktop's category
+When = PostTransaction
+Exec = /usr/sbin/sed -i 's/Categories\=Network\;FileTransfer\;Game\;/Categories\=Game\;/g' /usr/share/applications/steam-native.desktop 
