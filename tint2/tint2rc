@@ -104,7 +104,7 @@ border_color_pressed = #999999 100
 
 #-------------------------------------
 # Panel
-panel_items = P:LTSBC
+panel_items = P:LTS:C
 panel_size = 100% 30
 panel_margin = 0 0
 panel_padding = 2 1 2

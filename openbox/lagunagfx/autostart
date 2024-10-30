@@ -3,43 +3,36 @@
 ### uncomment next line
 # ~/.screenlayout/dual-head.sh
 
-### Openbox autostart
-# sleep 1; ob-autostart -d &
-
-# NOT visible elements
-
 ### PolicyKit authentication
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 ### Required for xfce settings to work
-sleep 0.5; xfsettingsd --replace &
+xfsettingsd --replace &
 # side shortcuts for file managers
 #xdg-user-dirs-gtk-update &
-sleep 0.5; xdg-user-dirs-update &
+xdg-user-dirs-update &
 # enable numlock
-sleep 0.5; numlockx &
+numlockx &
 ### launch thunar in daemon mode
-sleep 0.5; thunar --daemon &
+thunar --daemon &
+# Compositor
+# sleep 1; manjaro-compositor --start &
+picom &
 # nitrogen (wallpaper manager)
-sleep 0.5; nitrogen --restore &
+nitrogen --restore &
 # tint2 (taskbar)
-sleep 0.5; tint2 &
+env G_SLICE=always-malloc tint2 &
 # conky (onscreen info)
 conky -d -c ~/.config/conky/laguna_sysinfo_icewm.conkyrc
 conky -d -c ~/.config/conky/laguna_shortcuts_icewm.conkyrc
-
-# Compositor
-# sleep 1; manjaro-compositor --start &
-sleep 1 ; picom &
-
 # Applets
 
-### Network Manager applet
-sleep 1; nm-applet &
+## Network Manager applet
+nm-applet &
 # NextCloud GUI client
-sleep 1 ; nextcloud &
+nextcloud &
 # Seafile GUI client
-sleep 1; seafile-applet &
-# PulseAudio VolumeIcon applet
-sleep 1; volumeicon &
+seafile-applet &
 # clipman
 # blueman-applet
+tint2-daemon &
+volumeicon &

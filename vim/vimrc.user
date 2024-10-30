@@ -63,10 +63,10 @@ endif
 
 " * General options
 
-map <C-i><up> :tabr<cr>
-map <C-i><down> :tabl<cr>
-map <C-i><left> :tabp<cr>
-map <C-i><right> :tabn<cr>
+map <C-a><up> :tablast<cr>
+map <C-a><down> :tabfirst<cr>
+map <C-a><left> :tabp<cr>
+map <C-a><right> :tabn<cr>
 
 syntax on
 

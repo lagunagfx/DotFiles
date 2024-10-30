@@ -128,7 +128,7 @@
         - tutka
       state: absent
 
-  - name: audio AUR audio plugins Repeater the CHOWdhury Suite 
+  - name: AUR audio plugins - Regrader and the CHOWdhury Suite 
     become: yes
     become_user: aurbuilder
     kewlfft.aur.aur:
@@ -142,6 +142,15 @@
         - chowmultitool-bin
         - chowphaser-bin
         - chowtapemodel-bin  
+      state: present
+
+  - name: AUR audio plugins - the AirWindows suite
+    become: yes
+    become_user: aurbuilder
+    kewlfft.aur.aur:
+      use: paru
+      name:
+        - airwindows-lv2
       state: present
 
 # end of task
