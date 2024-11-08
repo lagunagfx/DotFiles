@@ -1,0 +1,38 @@
+---
+# description: default configuration and global environment variables
+
+  - name: for ARCH distros, do NOT set PATH definitions on .profile
+    ansible.builtin.blockinfile:
+      path: ~/.profile
+      block: |
+        if [ -d "$HOME/.local/bin" ];
+        then
+          PATH="$HOME/.local/bin:$PATH"
+        fi         
+      state: absent
+    when: ansible_facts['distribution'] == "Archlinux"
+  
+  - name: neither set PATH definitions on .bash_profile
+    ansible.builtin.blockinfile:
+      path: ~/.bash_profile
+      block: |
+        if [ -d "$HOME/.local/bin" ];
+        then
+          PATH="$HOME/.local/bin:$PATH"
+        fi         
+      state: absent
+    when: ansible_facts['distribution'] == "Archlinux"
+
+  - name: instead DO set PATH definitions on .bashrc
+    ansible.builtin.blockinfile:
+      path: ~/.bashrc
+      marker: "# {mark} ANSIBLE MANAGED BLOCK SetPath"
+      block: |
+        if [ -d "$HOME/.local/bin" ];
+        then
+          PATH="$HOME/.local/bin:$PATH"
+        fi         
+      state: present
+    when: ansible_facts['distribution'] == "Archlinux"
+
+# end of tasks

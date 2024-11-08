@@ -58,13 +58,14 @@ set -g status-left "$div1[#S] #{?window_zoomed_flag,#[bold]Z ,}$div2 "
 set -g window-status-current-format "#[bg=$palette2]#[fg=brightwhite]#[bold]#I:#W*"
 set -g window-status-format "#I:#W#{?window_last_flag,-,}"
 set -g window-status-separator " | "
-set -g status-right "#[fg=white] #{window_width}x#{window_height}#{?client_utf8, utf8,} $div3 cpu #{cpu_percentage} #{cpu_temp} mem #{ram_percentage} $div4 root #{df_percent} home #{df_percent_private1} $div5 uptime $div6 %Y/%m/%d %H:%M "
+set -g status-right "#[fg=white] #{window_width}x#{window_height}#{?client_utf8, utf8,} $div3 cpu #{cpu_percentage} #{cpu_temp} mem #{ram_percentage} $div4 root #{df_percent} home #{df_percent_private1} $div5 uptime #{lgfx_uptime} $div6 %Y/%m/%d %H:%M "
 
 # plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'tmux-plugins/tmux-cpu'
 set -g @plugin 'tassaron/tmux-df'
+set -g @plugin 'lagunagfx/tmux-uptime'
 set -g @df_cmd_private1 "/home"
 # set -g @plugin 'tmux-plugins/tmux-net-speed'
 # set -g @net_speed_format "u %6s d %6s"
@@ -72,3 +73,11 @@ set -g @df_cmd_private1 "/home"
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
+
+# colours
+# 1:"colour197"
+# 2:"colour203"
+# 3:"colour209"
+# 4:"colour215"
+# 5:"colour221"
+# 6:"colour227"

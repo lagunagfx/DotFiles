@@ -88,11 +88,11 @@
     ansible.builtin.package:
       name:
         - maxcso
-    when: ansible.builtin.page['distribution'] == "Archlinux"
+    when: ansible_facts['distribution'] == "Archlinux"
 
   # paru -Ss applyppf ape
 
-  - ansible.builtin.import_tasks: roles/common/tasks/cli-pass.yml
+  # - ansible.builtin.import_tasks: roles/common/tasks/cli-pass.yml
   - ansible.builtin.import_tasks: roles/common/tasks/cli-vim.yml
   - ansible.builtin.import_tasks: roles/common/tasks/cli-tmux.yml
 
