@@ -28,60 +28,29 @@ bind -n M-Down select-pane -D
 unbind C-r
 bind -n C-r send-prefix
 
-# colours
-palette1="colour055"
-palette2="colour061"
-palette3="colour067"
-palette4="colour073"
-palette5="colour079"
-palette6="colour085"
-
-# style division
-div1="#[bg=$palette1]#[fg=white] "
-div2="#[bg=$palette2]#[fg=default]"
-div3="#[bg=$palette3]#[fg=default]"
-div4="#[bg=$palette4]#[fg=default]"
-div5="#[bg=$palette5]#[fg=default]"
-div6="#[bg=$palette6]#[fg=default]"
-
-# colours
-palette1="colour055"
-palette2="colour061"
-palette3="colour067"
-palette4="colour073"
-palette5="colour079"
-palette6="colour085"
-
-# style division
-div1="#[bg=$palette1]#[fg=white] "
-div2="#[bg=$palette2]#[fg=default]"
-div3="#[bg=$palette3]#[fg=default]"
-div4="#[bg=$palette4]#[fg=default]"
-div5="#[bg=$palette5]#[fg=default]"
-div6="#[bg=$palette6]#[fg=default]"
-
 # clock
-setw -g clock-mode-colour $palette2
+setw -g clock-mode-colour $colour061
 
 # window status
-set -g status-bg "$palette2"
+set -g status-bg "colour061"
 set -g status-fg "black"
-set -g pane-border-style "fg=$palette2"
+set -g pane-border-style "fg=colour061"
 set -g pane-active-border-style "fg=brightwhite"
 
 set -g status-left-length 35
 set -g status-right-length 125
-set -g status-left "$div1[#S] #{?window_zoomed_flag,#[bold]Z ,}$div2 "
-set -g window-status-current-format "#[bg=$palette2]#[fg=brightwhite]#[bold]#I:#W*"
+set -g status-left "#[bg=colour055]#[fg=white][#S] #{?window_zoomed_flag,#[bold]Z ,}#[bg=colour061]#[fg=default] "
+set -g window-status-current-format "#[bg=colour061]#[fg=brightwhite]#[bold]#I:#W*"
 set -g window-status-format "#I:#W#{?window_last_flag,-,}"
 set -g window-status-separator " | "
-set -g status-right "#[fg=white] #{window_width}x#{window_height}#{?client_utf8, utf8,} $div3 cpu #{cpu_percentage} #{cpu_temp} mem #{ram_percentage} $div4 root #{df_percent} home #{df_percent_private1} $div5 uptime $div6 %Y/%m/%d %H:%M "
+set -g status-right "#[fg=white] #{window_width}x#{window_height}#{?client_utf8, utf8,} #[bg=colour067]#[fg=default] cpu #{cpu_percentage} #{cpu_temp} mem #{ram_percentage} #[bg=colour073]#[fg=default] root #{df_percent} home #{df_percent_private1} #[bg=colour079]#[fg=default] uptime #{lgfx_uptime} #[bg=colour085]#[fg=default] %Y/%m/%d %H:%M "
 
 # plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'tmux-plugins/tmux-cpu'
 set -g @plugin 'tassaron/tmux-df'
+set -g @plugin 'lagunagfx/tmux-uptime'
 set -g @df_cmd_private1 "/home"
 # set -g @plugin 'tmux-plugins/tmux-net-speed'
 # set -g @net_speed_format "u %6s d %6s"
@@ -89,3 +58,11 @@ set -g @df_cmd_private1 "/home"
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
+
+# colours
+# 1:"colour055"
+# 2:"colour061"
+# 3:"colour067"
+# 4:"colour073"
+# 5:"colour079"
+# 6:"colour085"
