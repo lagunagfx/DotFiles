@@ -7,9 +7,9 @@ SessionSaveVersion=true
 [Geometry]
 qjackctlConnectionsForm\geometry="@ByteArray(\x1\xd9\xd0\xcb\0\x3\0\0\0\0\0\0\0\0\0,\0\0\x1\xdf\0\0\x1k\0\0\0\0\0\0\0,\0\0\x1\xdf\0\0\x1k\0\0\0\0\0\0\0\0\x5V\0\0\0\0\0\0\0,\0\0\x1\xdf\0\0\x1k)"
 qjackctlConnectionsForm\visible=false
-qjackctlGraphForm\geometry=@ByteArray(\x1\xd9\xd0\xcb\0\x3\0\0\0\0\0\x2\0\0\0\x18\0\0\x5]\0\0\x4\x1f\0\0\0\x3\0\0\0\x30\0\0\x5\\\0\0\x4\x1e\0\0\0\0\0\0\0\0\x5V\0\0\0\x3\0\0\0\x30\0\0\x5\\\0\0\x4\x1e)
+qjackctlGraphForm\geometry=@ByteArray(\x1\xd9\xd0\xcb\0\x3\0\0\0\0\x1\xd1\0\0\0\x18\0\0\x5\xae\0\0\x3J\0\0\x1\xd2\0\0\0\x30\0\0\x5\xad\0\0\x3I\0\0\0\0\0\0\0\0\a\x80\0\0\x1\xd2\0\0\0\x30\0\0\x5\xad\0\0\x3I)
 qjackctlGraphForm\visible=false
-qjackctlMainForm\geometry="@ByteArray(\x1\xd9\xd0\xcb\0\x3\0\0\0\0\x3u\0\0\0 \0\0\x5>\0\0\0\x9e\0\0\x3v\0\0\0\x38\0\0\x5=\0\0\0\x9d\0\0\0\0\0\0\0\0\x5V\0\0\x3v\0\0\0\x38\0\0\x5=\0\0\0\x9d)"
+qjackctlMainForm\geometry=@ByteArray(\x1\xd9\xd0\xcb\0\x3\0\0\0\0\0\0\0\0\0\x18\0\0\x1\xc9\0\0\0\x96\0\0\0\x1\0\0\0\x30\0\0\x1\xc8\0\0\0\x95\0\0\0\0\0\0\0\0\a\x80\0\0\0\x1\0\0\0\x30\0\0\x1\xc8\0\0\0\x95)
 qjackctlMainForm\visible=true
 qjackctlMessagesStatusForm\geometry="@ByteArray(\x1\xd9\xd0\xcb\0\x3\0\0\0\0\0\0\0\0\0,\0\0\x1\xdf\0\0\x1k\0\0\0\0\0\0\0,\0\0\x1\xdf\0\0\x1k\0\0\0\0\0\0\0\0\x5V\0\0\0\0\0\0\0,\0\0\x1\xdf\0\0\x1k)"
 qjackctlMessagesStatusForm\visible=false
@@ -19,7 +19,7 @@ qjackctlSessionForm\geometry="@ByteArray(\x1\xd9\xd0\xcb\0\x3\0\0\0\0\0\0\0\0\0,
 qjackctlSessionForm\visible=false
 
 [GraphCanvas]
-CanvasRect=@Variant(\0\0\0\x14\xc0\x8f\x42\xa8oX\x81\xae\xc0z\xcf\xdfQ\x1&B@\x94\xd4Z\xeb\xcf\x3\x2@\x89\x93\xbf)\x8a'\a)
+CanvasRect="@Variant(\0\0\0\x14\xc0\x8e\x9e\x98z\0;G\xc0\x87\x94\x9e\x9d\xed\xfe\xab@\x95\x1e<=\0\x1d\xa3@\x99\xb7`%\xff\f|)"
 CanvasZoom=0.8608643161799165
 
 [GraphColors]
@@ -35,7 +35,7 @@ CanvasZoom=0.8608643161799165
 0xb91441cf=#006b00
 
 [GraphLayout]
-qjackctlGraphForm=@ByteArray(\0\0\0\xff\0\0\0\0\xfd\0\0\0\0\0\0\x5Z\0\0\x3\x96\0\0\0\x4\0\0\0\x4\0\0\0\b\0\0\0\b\xfc\0\0\0\x1\0\0\0\x2\0\0\0\x1\0\0\0\xe\0T\0o\0o\0l\0\x42\0\x61\0r\x1\0\0\0\0\xff\xff\xff\xff\0\0\0\0\0\0\0\0)
+qjackctlGraphForm=@ByteArray(\0\0\0\xff\0\0\0\0\xfd\0\0\0\0\0\0\x3\xdc\0\0\x2\xc1\0\0\0\x4\0\0\0\x4\0\0\0\b\0\0\0\b\xfc\0\0\0\x1\0\0\0\x2\0\0\0\x1\0\0\0\xe\0T\0o\0o\0l\0\x42\0\x61\0r\x1\0\0\0\0\xff\xff\xff\xff\0\0\0\0\0\0\0\0)
 
 [GraphNodePos]
 --help=@Variant(\0\0\0\x1a\xc0\\\0\0\0\0\0\0\xc0i\0\0\0\0\0\0)
@@ -56,8 +56,10 @@ qjackctlGraphForm=@ByteArray(\0\0\0\xff\0\0\0\0\xfd\0\0\0\0\0\0\x5Z\0\0\x3\x96\0
 135%3ARenoise%20MIDI%20Output=@Variant(\0\0\0\x1a\xc0\\\0\0\0\0\0\0\xc0R\0\0\0\0\0\0)
 136%3ARenoise%20MIDI%20Input=@Variant(\0\0\0\x1a\xc0X\0\0\0\0\0\0@H\0\0\0\0\0\0)
 137%3ARenoise%20MIDI%20Output=@Variant(\0\0\0\x1a\xc0<\0\0\0\0\0\0@H\0\0\0\0\0\0)
-14%3AMidi%20Through%3AInput=@Variant(\0\0\0\x1a@lh5\xa1\x16\x11V\xc0%\x8f\xfe\x39*\xf0\n)
-14%3AMidi%20Through%3AOutput=@Variant(\0\0\0\x1a\xc0\x8b\xfe\xa8oX\x81\xae\xc0#R\xd5\xb9\xa8\x81*)
+14%3AMidi%20Through%3AInput=@Variant(\0\0\0\x1a\xc0\x1c\x91&\x99\x34\x32\x80\xc0x\xeb\xcb]\x17\x84\x95)
+14%3AMidi%20Through%3AOutput=@Variant(\0\0\0\x1a\xc0\x8a\xc0\xe1G\xfd\x96\xde\xc0x/F\xbf\xd7\xe0\xe2)
+20%3AAkai%20MPD24%3AInput=@Variant(\0\0\0\x1a\xc0\x30'\xa1\x8a\x8d\xc9\xd6\xc0p\xabn\xb6\xd1/\x1a)
+20%3AAkai%20MPD24%3AOutput=@Variant(\0\0\0\x1a\xc0\x8aR\x7f\b&\xab\xf4\xc0p\n\xac\x94\xd7\x8d\xf8)
 20%3AM-Track%3AInput=@Variant(\0\0\0\x1a@i\xeb\x88rZ\xf6\xe7@Ny\xb8\x18\x41\xd7H)
 20%3AM-Track%3AOutput=@Variant(\0\0\0\x1a\xc0\x8c*\xe5\x93\xb5~\xea@P)]\xff\"8O)
 20%3AQUNEO%3AInput=@Variant(\0\0\0\x1a@p@\0\0\0\0\0@L\0\0\0\0\0\0)
@@ -66,18 +68,30 @@ qjackctlGraphForm=@ByteArray(\0\0\0\xff\0\0\0\0\xfd\0\0\0\0\0\0\x5Z\0\0\x3\x96\0
 20%3AiO4%3AOutput=@Variant(\0\0\0\x1a\xc0\x8d\x92\x45]\xcf\xa6\x34\xc0R\xa5\xfb\xb3\xc4\x16\x8c)
 24%3AAkai%20MPD24%3AInput=@Variant(\0\0\0\x1a@jm4:\xc8\x38\xcb\xc0Y\a\xbf'\x80\xa5\xdc)
 24%3AAkai%20MPD24%3AOutput=@Variant(\0\0\0\x1a@\x1d\xd6\x8b\xc8\xd0\xc9\x80\xc0qN\rV\xdc\x81\x94)
+24%3ALaunchpad%3AInput=@Variant(\0\0\0\x1a@\fc\xbc}\xee\xe1@\xc0\x62\xe5\x30$\xf7\x9b\xf9)
+24%3ALaunchpad%3AOutput=@Variant(\0\0\0\x1a\xc0\x8b\x14\x8fr\b\xb9!\xc0\x62Q\xc2\xa4\xb3\xb4\xbc)
+28%3AArturia%20BeatStep%3AInput=@Variant(\0\0\0\x1a\xc0\x32}\x6\x31J9\x98\xc0U\xe6\xc7\x42\x90\x91\x1f)
+28%3AArturia%20BeatStep%3AOutput=@Variant(\0\0\0\x1a\xc0\x8a\x62\xf1T\xb7zC\xc0T\x93\x8b\xd6\xf6\xed\xf6)
 28%3AKeystation%20Pro%2088%3AInput="@Variant(\0\0\0\x1a@jR=\xc8\"\xe4\x87@J\xa1\x8a\x2y\xec,)"
 28%3AKeystation%20Pro%2088%3AOutput=@Variant(\0\0\0\x1a\xc0\x8bJL\x8b\xf7\xfa\x99@J\xac\x1b|\xc1\xdd\xbc)
-ADLplug=@Variant(\0\0\0\x1a\xc0 \0\0\0\0\0\0\xc0 \0\0\0\0\0\0)
+28%3AiO4%3AInput=@Variant(\0\0\0\x1a@p\0\0\0\0\0\0@N\0\0\0\0\0\0)
+28%3AiO4%3AOutput=@Variant(\0\0\0\x1a\xc0q\0\0\0\0\0\0@H\0\0\0\0\0\0)
+32%3AArturia%20BeatStep%3AInput=@Variant(\0\0\0\x1a\xc0\x33\xa8R\xe3\x1c\x32p\xc0U\xd3\xfb}X\xc9\xec)
+32%3AArturia%20BeatStep%3AOutput=@Variant(\0\0\0\x1a\xc0\x8a\x63\x8b\a\xee\x13\x62\xc0T/$\x4\xa8\x62\x42)
+32%3AiO4%3AInput=@Variant(\0\0\0\x1a@F\x91S\xe2\xa3\x63>\xc0t\xce\x93\xf7Y\x5\x32)
+32%3AiO4%3AOutput=@Variant(\0\0\0\x1a\xc0\x8c\\g\xa3\xde\x81\a\xc0t\x13\xa6\xf1\x86\x8a`)
+ADLplug=@Variant(\0\0\0\x1a\xc0\x63\x80&\x97\x9c\xf0>\xc0\x84\xd1\xa7\xc3\x38z\xef)
+Bitwig%20Studio=@Variant(\0\0\0\x1a\xc0z\xfd\xbb\xaaM\x96\xfc\xc0\x82\xc7\x30\xf1W`\x90)
 Cardinal=@Variant(\0\0\0\x1a\xc0gG_\x1e\xa1\x12}\xc0ow\x80\xc6\xc0\x33\x65)
 Hydrogen=@Variant(\0\0\0\x1a\xc0~\xc0\0\0\0\0\0\xc0n\x80\0\0\0\0\0)
 PortAudio=@Variant(\0\0\0\x1a\xc0\x30\0\0\0\0\0\0\xc0@\0\0\0\0\0\0)
-PulseAudio%20JACK%20Sink="@Variant(\0\0\0\x1a@%\xb9\xd3\xd1\x37\xe0\xd0\xc0y\xbeY;W\xee\xac)"
-PulseAudio%20JACK%20Source="@Variant(\0\0\0\x1a\xc0\x85\x39;W\xee\xac\x66\xc0y\xb3\x1L\xab\x88r)"
-REAPER=@Variant(\0\0\0\x1a\xc0u\xaf\x93\xf6\x43m\x8e\xc0r1n\x9e+\x89\xec)
+PulseAudio%20JACK%20Sink=@Variant(\0\0\0\x1a\xc0i-\xb1\xabm\xbd\xe6\xc0\x87\x90\x9e\x9d\xed\xfe\xab)
+PulseAudio%20JACK%20Source="@Variant(\0\0\0\x1a\xc0\x84<fV\xfd,g\xc0\x87\x43x\xa6{\x7f\x45)"
+REAPER=@Variant(\0\0\0\x1a\xc0y\xb0\aJ\xf1y\r\xc0\x83\xde\\f\xcd!\x95)
 SuperCollider=@Variant(\0\0\0\x1a\xc0x%\xe7\a\xa1\xd2\xbe\xc0qN\xaf\xf4\xe6\x13H)
-a2j%3AInput=@Variant(\0\0\0\x1a@f\xb3\x3\x98h\xb5\x30\xc0i\x87j\x9b\xae\x66O)
-a2j%3AOutput=@Variant(\0\0\0\x1a\xc0\x84g:\x97>\x9c\xa0@i\x9e\xfc\x9e\x2\x97q)
+Waveform=@Variant(\0\0\0\x1a\xc0t@\0\0\0\0\0\xc0y\xc0\0\0\0\0\0)
+a2j%3AInput=@Variant(\0\0\0\x1a\xc0P\xce\xe0\xb4j t\xc0~\x17\xdb\x11\x19\x1c\xd9)
+a2j%3AOutput="@Variant(\0\0\0\x1a\xc0\x88\xfa\x98z\0;G\xc0}!\x3\x61\xfdh\x90)"
 ams_1="@Variant(\0\0\0\x1a\xc0;\xe\xaf\xf4\xe6\x13H\xc0q\x9a~\x4)\xb8\xc5)"
 ardour="@Variant(\0\0\0\x1a\xc0u\xff,\xa2ra!\xc0\x63\x93\xb2n\x93\xde\x33)"
 jack_capture=@Variant(\0\0\0\x1a\xc0u\0\0\0\0\0\0\xc0\x10\0\0\0\0\0\0)
@@ -86,8 +100,8 @@ jackrec=@Variant(\0\0\0\x1a\xc0u\0\0\0\0\0\0\xc0g\x80\0\0\0\0\0)
 renoise=@Variant(\0\0\0\x1a\xc0q\xeb\xd4\x6h\x9d\x87\xc0w7&\xceM\xc2\x64)
 renoise-01=@Variant(\0\0\0\x1a@N\0\0\0\0\0\0\xc0U\0\0\0\0\0\0)
 renoise-02=@Variant(\0\0\0\x1a\xc0^\0\0\0\0\0\0\x80\0\0\0\0\0\0\0)
-system%3AInput=@Variant(\0\0\0\x1a@o\xed\x8c\x9a]a\xec\xc0z\xc7\xdfQ\x1&B)
-system%3AOutput=@Variant(\0\0\0\x1a\xc0\x8c\xd7\xb0L<\xa4\x9a\xc0y\xcd\x13~\f\xfe\xb2)
+system%3AInput=@Variant(\0\0\0\x1a@?\r\xffW8\xce\x9e\xc0\x87}P\xd4\xb3\n\x3)
+system%3AOutput=@Variant(\0\0\0\x1a\xc0\x8b\x95\x8a\xbf\x66\a\x89\xc0\x87M\xdf\x37\xc0U\xc6)
 x42%20Instrument%20Tuner=@Variant(\0\0\0\x1a\xc0v\0\0\0\0\0\0\xc0g\x80\0\0\0\0\0)
 
 [GraphView]
@@ -168,7 +182,7 @@ TransportButtons=true
 XrunRegex=xrun of at least ([0-9|\\.]+) msecs
 
 [Presets]
-DefPreset=LenovoThinkpadx230_Intel-HDA_ALC269VC_16b44k_256f
+DefPreset=LenovoThinkpadx230_Alesis-iO4_16b44k_256f
 OldPreset=
 Preset1=LenovoThinkpadx230_Intel-HDA_ALC269VC_16b44k_256f
 Preset2=LenovoThinkpadx230_Alesis-iO4_16b44k_256f
@@ -203,7 +217,7 @@ LenovoThinkpadx230_Alesis-iO4_16b44k_256f\InChannels=0
 LenovoThinkpadx230_Alesis-iO4_16b44k_256f\InDevice=
 LenovoThinkpadx230_Alesis-iO4_16b44k_256f\InLatency=0
 LenovoThinkpadx230_Alesis-iO4_16b44k_256f\Interface=hw:iO4
-LenovoThinkpadx230_Alesis-iO4_16b44k_256f\MidiDriver=seq
+LenovoThinkpadx230_Alesis-iO4_16b44k_256f\MidiDriver=ninguno
 LenovoThinkpadx230_Alesis-iO4_16b44k_256f\Monitor=false
 LenovoThinkpadx230_Alesis-iO4_16b44k_256f\NoMemLock=false
 LenovoThinkpadx230_Alesis-iO4_16b44k_256f\OutChannels=0

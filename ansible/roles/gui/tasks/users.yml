@@ -25,11 +25,17 @@
       create: yes
       mode: 0644
       validate: 'visudo -cf %s'
-  
+
+  - name: correcting a previous mistake, will be deleting /var/lib/AccountService (WITHOUT the S)
+    become: yes
+    ansible.builtin.file:
+      path: /var/lib/AccountService/
+      state: absent
+
   - name: set the 'aurbuilder' account as system user so it doesn't show in the login prompt
     become: yes
     ansible.builtin.blockinfile:
-      path: /var/lib/AccountService/users/aurbuilder
+      path: /var/lib/AccountsService/users/aurbuilder
       create: true
       block: |
         [User]
