@@ -1,0 +1,251 @@
+upstream php-handler {
+	server 127.0.0.1:9000;
+	#server unix:/run/php/php7.0-fpm.sock;
+}
+
+server {
+	listen 80;
+	server_name www.lagunalabs.eu;
+	#return 301 https://$server_name$request_uri;  # enforce https
+	rewrite ^ https://$http_host$request_uri? permanent;
+}
+
+server {
+
+	# NGINX general settings
+	# last updated : 2017/03/15
+
+	listen 443 ssl;
+	server_name www.lagunalabs.eu;
+
+	ssl_certificate /etc/ssl/laguna/www_lagunalabs_eu_ssl-bundle_valid_20200308.crt;
+	ssl_certificate_key /etc/ssl/laguna/lagunalabs_4096bit.key;
+
+	charset utf-8;
+
+	proxy_set_header X-Forwarded-For $remote_addr;
+
+	# WordPress settings
+	# last updated : 2015-01-27
+
+	location /blog {
+		
+		root /mnt/disk1/web/;
+
+		access_log	/var/log/nginx/wordpress-access.log;
+		error_log	/var/log/nginx/wordpress-error.log;
+
+		index index.php;
+		try_files $uri $uri/ /blog/index.php?$args;
+
+		location ~ \.php$ {
+			# NOTE: You should hace "cgi.fix_pathinfo = 0" in php.ini
+			include 					fastcgi_params;
+			fastcgi_intercept_errors 	on;
+			fastcgi_pass				php-handler;
+			fastcgi_index				index.php;
+		}
+	}
+	
+	# Seafile settings
+	# last updated : 2017-03-15
+
+	location /seafile {	
+		fastcgi_pass    127.0.0.1:8000;
+        fastcgi_param   SCRIPT_FILENAME     $document_root$fastcgi_script_name;
+        fastcgi_param   PATH_INFO           $fastcgi_script_name;
+ 		fastcgi_param	SERVER_PROTOCOL		$server_protocol;
+        fastcgi_param	QUERY_STRING        $query_string;
+        fastcgi_param	REQUEST_METHOD      $request_method;
+        fastcgi_param	CONTENT_TYPE        $content_type;
+        fastcgi_param	CONTENT_LENGTH      $content_length;
+        fastcgi_param	SERVER_ADDR         $server_addr;
+        fastcgi_param	SERVER_PORT         $server_port;
+        fastcgi_param	SERVER_NAME         $server_name;
+        fastcgi_param	REMOTE_ADDR         $remote_addr;
+		fastcgi_param	HTTPS				on;
+		fastcgi_param	HTTP_SCHEME			https;
+
+        access_log      /var/log/nginx/seahub.access.log;
+        error_log       /var/log/nginx/seahub.error.log;
+	}
+
+	location /seafhttp {
+        rewrite ^/seafhttp(.*)$ $1 break;
+        proxy_pass http://127.0.0.1:8082;
+        client_max_body_size 0;
+	}
+
+	location /seafmedia {
+		rewrite ^/seafmedia(.*)$ /media$1 break;
+        root /home/jorge/apps/seafile-server/seafile-server-latest/seahub;		
+	}
+
+	# ownCloud settings
+	# last updated : 2015-03-29
+
+	location /owncloud {
+
+		root /mnt/disk1/web/;
+
+		add_header Strict-Transport-Security "max-age=15768000; includeSubDomains; preload;";
+		add_header X-Content-Type-Options nosniff;
+		add_header X-Frame-Options "SAMEORIGIN";
+		add_header X-XSS-Protection "1; mode=block";
+		add_header X-Robots-Tag none;
+		add_header X-Download-Options noopen;
+		add_header X-Permitted-Cross-Domain-Policies none;
+		client_max_body_size 10G; # set max upload size
+		fastcgi_buffers 64 4K;
+
+		# disable gzip to avoid the removal of the ETag header
+		gzip off;
+
+		rewrite ^/caldav(.*)$ /remote.php/caldav$1 redirect;
+		rewrite ^/carddav(.*)$ /remote.php/carddav$1 redirect;
+		rewrite ^/webdav(.*)$ /remote.php/webdav$1 redirect;
+
+		index index.php;
+		try_files $uri $uri/ index.php;
+		error_page 403 /core/templates/403.php;
+		error_page 404 /core/templates/404.php;
+
+		location ~ ^/owncloud/(?:\.htaccess|data|config|db_structure\.xml|README) {
+			deny all;
+		}
+
+		location ~ ^/robots.txt {
+			allow all;
+			log_not_found off;
+			access_log off;
+	   	}
+	
+		# The following 2 rules are only needed with webfinger
+    	rewrite ^/.well-known/host-meta /public.php?service=host-meta last;
+    	rewrite ^/.well-known/host-meta.json /public.php?service=host-meta-json last;
+
+		rewrite ^/.well-known/carddav /remote.php/carddav/ redirect;
+		rewrite ^/.well-known/caldav /remote.php/caldav/ redirect;
+
+		rewrite ^(/core/doc/[^\/]+/)$ $1/index.html;
+
+	    location ~ \.php(?:$|/) {
+			fastcgi_split_path_info ^(.+\.php)(/.+)$;
+			include 		fastcgi_params;
+			fastcgi_param	SCRIPT_FILENAME $document_root$fastcgi_script_name;
+			fastcgi_param	PATH_INFO $fastcgi_path_info;
+			fastcgi_param	HTTPS on;
+			fastcgi_param	modHeadersAvailable true;
+			fastcgi_pass 	php-handler;
+			fastcgi_intercept_errors on;
+		}
+
+	    # Optional: set long EXPIRES header on static assets
+    	location ~* \.(?:jpg|jpeg|gif|bmp|ico|png|css|js|swf)$ {
+			expires 30d;
+	        # Optional: Don't log access to assets
+			access_log off;
+    	}
+	}
+
+	# Ghost blogging
+	# last updated : 2014-09-25
+	
+	#location /blog {
+	#	proxy_set_header	X-Real-IP		$remote_addr;
+	#	proxy_set_header	X-NginX-Proxy 	true;
+	#	proxy_set_header	HOST			$http_host;
+	#	proxy_redirect		off;
+	#	proxy_pass 		http://127.0.0.1:2368;
+	#}
+
+	# Tiny Tiny RSS
+	# last updated : 2015-06-04
+
+	location /tt-rss {
+		index index.php;
+		root /mnt/disk1/web/;
+	
+		location ~* \.php$ {
+		    include 		fastcgi_params;
+			fastcgi_param 	SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        	fastcgi_pass	php-handler;  # IP/port that php-fcgi process listens on
+        	fastcgi_index	index.php;
+    	}
+	}
+
+	# webcam monitoring
+	# last updated : 2015-02-09
+
+	location /camera {
+		root /mnt/disk1/web/;
+
+		index	index.php;
+
+        location ~ \.php$ {
+            # NOTE: You should hace "cgi.fix_pathinfo = 0" in php.ini
+            include                     fastcgi_params;
+            fastcgi_intercept_errors    on;
+            fastcgi_pass                php-handler;
+            fastcgi_index               index.php;
+        }		
+	}
+
+	# Transmission
+	# last updated : 2016-08-22
+
+	location /transmission {
+		proxy_set_header	Host $http_host;
+		proxy_set_header	X-Real-IP $remote_addr;
+		proxy_set_header	X-Forwarded-For	$proxy_add_x_forwarded_for;
+		proxy_redirect 		off;
+		proxy_pass 			http://mediabook:9091;
+	}
+
+
+	# Ubooquity
+	# last updated : 2017-12-13i
+
+	location /ubooquity {
+		#sub_filter			'theme/' 'ubooquity/theme/';
+		#sub_filter			'scripts/' 'ubooquity/scripts/';
+		#sub_filter_types	text/html text/css text/javascript;
+		#sub_filter_once		off;
+		proxy_pass			http://localhost:2202/ubooquity;
+	}
+
+	location /ubooquity/admin {
+		proxy_pass			http://localhost:2203/ubooquity/admin;
+	}
+
+	location /ubooquity/admin-res {
+		proxy_pass			http://localhost:2203/ubooquity/admin-res;
+	}
+
+	location /ubooquity/admin-api {
+		proxy_pass			http://localhost:2203/admin-api;
+	}
+
+
+	# Syncthing
+	# last updated : 2015-07-17
+
+	#location /syncthing/ {
+	#	proxy_set_header	Host $http_host;
+    #	proxy_set_header	X-Real-IP   $remote_addr;
+    #   proxy_set_header	X-Forwarded-For $proxy_add_x_forwarded_for;
+	#	proxy_set_header	X-Forwarded-Proto $scheme;
+	#	proxy_pass			http://raspberry:8384/;
+	#}
+
+	# enable router config access
+	#location / {
+        #proxy_set_header    X-Real-IP   $remote_addr;
+        #proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
+        #proxy_set_header    Host        $http_host;
+        #proxy_redirect      off;
+        #proxy_pass          http://192.168.1.1;		
+	#}
+	
+}
+

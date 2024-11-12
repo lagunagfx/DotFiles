@@ -1,0 +1,18 @@
+XTerm.vt100.metaSendsEscape: true
+
+Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
+
+XTerm*faceName: Liberation Sans Mono
+XTerm*faceSize: 9
+
+URxvt.font: xft:monospace:size=9
+URxvt.letterSpace: -1
+
+URxvt.scrollBar:	false
+
+!URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+!URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+
+URxvt.background:	black
+URxvt.foreground:	white

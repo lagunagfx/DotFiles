@@ -1,0 +1,43 @@
+##
+# Host Database
+#
+# localhost is used to configure the loopback interface
+# when the system is booting.  Do not change this entry.
+##
+127.0.0.1	localhost
+255.255.255.255	broadcasthost
+::1             localhost 
+fe80::1%lo0	localhost
+
+# LagunaLabs farm
+
+192.168.1.02	badulaque		# Desktop Rizen PC (Estudio Dos, Madrid)
+192.168.1.03	peluso			# Apple Macbook Pro mid 2012
+192.168.1.04	fosito			# Apple Macbook Pro mid 2012 (Estudio Uno, Madrid)
+192.168.1.05	regalon			# Lenovo Thinkpad t430 (Estudio Uno, Madrid)
+192.168.1.06	aracuan			# Lenovo Thinkpad x230
+192.168.1.07	luivo			# Lenovo Thinkpad x220
+192.168.1.08	copodenieve		# Samsung NP530U3B i3 ultrabook, 2013	
+192.168.1.09	venerable		# Desktop Intel Core 2 Duo PC 
+
+192.168.1.10	malulo			# Apple Macbook 13" White, early 2008 (Estudio Dos, Madrid)
+192.168.1.11	locuelo			# Apple Mac Mini 2.1, Intel Core 2 Duo (Estudio Uno, Madrid)
+192.168.1.		cachivache		# Samsung NP-R540 Intel Pentium P6100 15" 2013
+
+192.168.1.20	vaiobook
+192.168.1.21	soundbook1
+192.168.1.22	soundbook2
+192.168.1.11	retropie1
+192.168.1.12	retropie2
+
+192.168.1.30	cloudbook		# Netbook server (Estudio Dos, Madrid)
+
+192.168.1.40	iphonese
+192.168.1.41	iphone5s
+192.168.1.42	ipad4
+192.168.1.44	ipad6gen
+192.168.1.45	iphonesejpa
+192.168.1.46	iphone5jpa
+192.168.1.47	ipad2minijpa
+
+192.168.1.101	mediabook		# Netbook server (Estudio Dos, Madrid)

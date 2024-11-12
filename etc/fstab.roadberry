@@ -1,0 +1,6 @@
+# Seagate Expansion 2TB : Comprado 2013/11/19 (Baza) | Formateado 2013/11/19
+UUID="f94da4bd-1f25-49bd-aa31-44e067eaa10d"	/mnt/disk1	ext4	async,noatime,nodiratime
+# Seagate Expansion 4TB : Comprado 2017/10/07 | Formateado 2017/10/30
+UUID="50974238-b0bb-4873-b99f-02f10964c955"	/mnt/disk2	ext4	async,noatime,nodiratime,noexec
+# Iomega 1TB
+UUID="b711fd7f-abbf-4376-896d-f628be2f1979"	/mnt/disk3	ext4	async,noatime,nodiratime,noexec
