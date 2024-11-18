@@ -5,7 +5,7 @@ conky.config = {
 	cpu_avg_samples = 2,
 	default_color = 'ffffff',
 	double_buffer = true,
-	font = 'DejaVu Sans Condensed:size=9',
+	font = 'Roboto:style=Regular:size=9',
 	draw_shades = false,
 	gap_x = 24,
 	gap_y = 48,

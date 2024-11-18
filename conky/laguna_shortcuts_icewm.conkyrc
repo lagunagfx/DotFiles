@@ -12,10 +12,10 @@ conky.config = {
 	minimum_width = 225,
 	no_buffers = true,
 	own_window = true,
+	own_window_class = "Conky",
+	own_window_type = 'override',
 	own_window_argb_visual = true,
 	own_window_transparent = true,
-	own_window_type = 'override',
-	own_window_class = "Conky",
 	update_interval = 60.0,
 	use_xft = true,
 }

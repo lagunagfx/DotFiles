@@ -5,6 +5,6 @@ Type = Package
 Target = lightdm-gtk-greeter-settings
 
 [Action]
-Description = Set scummvm.desktop's primary category to Game
+Description = remove "Utility" from lightdm-gtk-greeter.desktop category
 When = PostTransaction
 Exec = /usr/sbin/sed -i 's/\;Utility\;/\;/g' /usr/share/applications/lightdm-gtk-greeter-settings.desktop 
