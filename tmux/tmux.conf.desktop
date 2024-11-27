@@ -39,7 +39,7 @@ set -g pane-active-border-style "fg=brightwhite"
 
 set -g status-left-length 35
 set -g status-right-length 125
-set -g status-left "#[bg=colour055]#[fg=white][#S] #{?window_zoomed_flag,#[bold]Z ,}#[bg=colour061]#[fg=default] "
+set -g status-left "#[bg=colour055]#[fg=white] [#S] #{?window_zoomed_flag,#[bold]Z ,}#[bg=colour061]#[fg=default] "
 set -g window-status-current-format "#[bg=colour061]#[fg=brightwhite]#[bold]#I:#W*"
 set -g window-status-format "#I:#W#{?window_last_flag,-,}"
 set -g window-status-separator " | "
