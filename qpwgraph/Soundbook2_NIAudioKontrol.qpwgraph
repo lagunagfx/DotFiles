@@ -1,0 +1,22 @@
+<!DOCTYPE patchbay>
+<patchbay name="Soundbook2_NIAudioKontrol" version="0.6.1">
+ <items>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Audio Kontrol 1 Estéreo" port="Audio Kontrol 1:capture_FL"/>
+   <input node="renoise" port="renoise:input_01_left"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="renoise" port="renoise:output_01_left"/>
+   <input node="Audio Kontrol 1 Estéreo" port="Audio Kontrol 1:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="renoise" port="renoise:output_01_right"/>
+   <input node="Audio Kontrol 1 Estéreo" port="Audio Kontrol 1:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Audio Kontrol 1 Estéreo" port="Audio Kontrol 1:capture_FR"/>
+   <input node="renoise" port="renoise:input_01_right"/>
+  </item>
+ </items>
+</patchbay>
+

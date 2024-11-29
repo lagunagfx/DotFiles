@@ -3,11 +3,11 @@
 # different memory locations, so JACK will complain that it
 # cannot get mmap-based access. see below.
 
-pcm.multi {
+pcm.lexiconomega {
         type multi;
-        slaves.a.pcm "hw:0,0";
+        slaves.a.pcm "hw:Omega,0";
         slaves.a.channels 2;
-        slaves.b.pcm "hw:1,0";
+        slaves.b.pcm "hw:Omega,1";
         slaves.b.channels 2;
         bindings.0.slave a;
         bindings.0.channel 0;
@@ -22,7 +22,7 @@ pcm.multi {
 # JACK will be unhappy if there is no mixer to talk to, so we set
 # this to card 0. This could be any device but 0 is easy. 
 
-ctl.multi {
+ctl.lexiconomega {
         type hw;
         card 0;
 }
@@ -32,12 +32,12 @@ ctl.multi {
 
 pcm.ttable {
         type route;
-        slave.pcm "multi";
+        slave.pcm "lexiconomega";
         slave.channels 4;
-        ttable.0.0 1;
-        ttable.1.1 1;
         ttable.2.2 1;
         ttable.3.3 1;
+        ttable.0.0 1;
+        ttable.1.1 1;
 }
 # see above.
 ctl.ttable {
