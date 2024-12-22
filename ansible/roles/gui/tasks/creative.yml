@@ -78,7 +78,7 @@
         - furnace
       state: present
 
-  - name: install virtual instruments 'Cardinal','Dexed', 'Geonkick', 'SurgeXT' and 'Helm'.
+  - name: "install virtual instruments Cardinal, Dexed, Geonkick, SurgeXT, Helm and Odin".
     become: yes
     ansible.builtin.package:
       name:
@@ -87,6 +87,9 @@
         - geonkick
         - helm-synth
         - surge-xt
+        - odin-synthesizer-lv2
+        - odin-synthesizer-vst3
+        - odin-synthesizer-clap
       state: present
     when: inventory_hostname not in groups['netbook']
 
