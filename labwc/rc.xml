@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+
+<!--
+  This is a very simple config file with many options missing. For a complete
+  set of options with comments, see docs/rc.xml.all
+-->
+
+<labwc_config>
+
+  <theme>
+    <name>Matcha-dark-sea</name>
+    <cornerRadius>8</cornerRadius>
+    <font name="sans" size="10" />
+  </theme>
+<!--
+  <windowSwitcher>
+	<fields>
+      <field content="type" width="10%">
+      <field content="trimmed_identifier" width="90%">
+	</fields>
+  </windowSwitcher>
+-->
+  <desktops number="10">
+    <names>
+      <name>1</name>
+      <name>2</name>
+      <name>3</name>
+      <name>4</name>
+      <name>5</name>
+      <name>6</name>
+      <name>7</name>
+      <name>8</name>
+      <name>9</name>
+      <name>10</name>
+    </names>
+    <popupTime>800</popupTime>
+  </desktops>
+  
+  <keyboard>
+		<default />
+		<!--
+			After setting sfwBar defaults, let's unset some shortcurts
+		-->
+
+		<keybind key="A-Left">
+			<action name="None" />
+		</keybind>
+		<keybind key="A-Right">
+      		<action name="None" />
+		</keybind>
+		<keybind key="A-Up">
+			<action name="None" />
+		</keybind>
+		<keybind key="A-Down">
+      		<action name="None" />
+		</keybind>
+	 
+	<keybind key="S-W-Up">
+		<action name="ToggleMaximize" />
+	</keybind>
+
+	  <keybind key="A-Tab">
+		<action name="Execute" command="killall -SIGUSR1 sfwbar"/>
+	</keybind>
+<!-- native Window Switcher disabled
+	<keybind key="A-Tab">
+		<action name="NextWindow" />
+	</keybind>
+	<keybind key="S-Tab">
+		<action name="PreviousWindow" />
+	</keybind>
+-->
+    <keybind key="W-f">
+      <action name="ToggleFullscreen" />
+    </keybind>
+
+
+	<!--
+		Window TILING emulation
+	-->
+
+    <keybind key="W-1">
+      <action name="GoToDesktop" to="1" />
+    </keybind>
+    <keybind key="W-2">
+      <action name="GoToDesktop" to="2" />
+    </keybind>
+    <keybind key="W-3">
+      <action name="GoToDesktop" to="3" />
+    </keybind>
+    <keybind key="W-4">
+      <action name="GoToDesktop" to="4" />
+    </keybind>
+    <keybind key="W-5">
+      <action name="GoToDesktop" to="5" />
+    </keybind>
+    <keybind key="W-6">
+      <action name="GoToDesktop" to="6" />
+    </keybind>
+    <keybind key="W-7">
+      <action name="GoToDesktop" to="7" />
+    </keybind>
+    <keybind key="W-8">
+      <action name="GoToDesktop" to="8" />
+    </keybind>
+    <keybind key="W-9">
+      <action name="GoToDesktop" to="9" />
+    </keybind>
+    <keybind key="W-0">
+      <action name="GoToDesktop" to="10" />
+    </keybind>
+
+    <keybind key="S-W-1">
+      <action name="SendToDesktop" to="1" />
+    </keybind>
+    <keybind key="S-W-2">
+      <action name="SendToDesktop" to="2" />
+    </keybind>
+    <keybind key="S-W-3">
+      <action name="SendToDesktop" to="3" />
+    </keybind>
+    <keybind key="S-W-4">
+      <action name="SendToDesktop" to="4" />
+    </keybind>
+    <keybind key="S-W-5">
+      <action name="SendToDesktop" to="5" />
+    </keybind>
+    <keybind key="S-W-6">
+      <action name="SendToDesktop" to="6" />
+    </keybind>
+    <keybind key="S-W-7">
+      <action name="SendToDesktop" to="7" />
+    </keybind>
+    <keybind key="S-W-8">
+      <action name="SendToDesktop" to="8" />
+    </keybind>
+    <keybind key="S-W-9">
+      <action name="SendToDesktop" to="9" />
+    </keybind>
+    <keybind key="S-W-0">
+      <action name="SendToDesktop" to="10" />
+    </keybind>
+
+    <!-- Use a different terminal emulator -->
+    <keybind key="W-Return">
+      <action name="Execute" command="alacritty" />
+    </keybind>
+    <keybind key="W-r">
+      <action name="Execute" command="wofi --show drun --allow-images" />
+    </keybind>
+    <keybind key="C-W-f">
+      <action name="Execute" command="thunar" />
+    </keybind>
+    <keybind key="C-W-w">
+      <action name="Execute" command="firefox-developer-edition" />
+    </keybind>
+    <keybind key="C-W-m">
+      <action name="Execute" command="thunderbird" />
+    </keybind>
+    <!--
+      Remove a previously defined keybind
+      A shorter alternative is <keybind key="W-F4" />
+    -->
+    <keybind key="W-F4">
+      <action name="None" />
+    </keybind>
+    <keybind key="W-Print">
+	  <action name="Execute" command="maim ~/Imágenes/screenshot/$( date +%s ).png" />
+    </keybind>
+    <keybind key="C-A-Delete">
+      <action name="Execute" command="wofi-script-power" />
+    </keybind>
+  </keyboard>
+
+  <mouse>
+    <default />
+    <!-- Show a custom menu on desktop right click -->
+    <context name="Root">
+      <mousebind button="Right" action="Press">
+      <action name="ShowMenu" menu="some-custom-menu" />
+      </mousebind>
+    </context>
+  </mouse>
+
+</labwc_config>

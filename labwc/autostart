@@ -1,0 +1,59 @@
+# Example autostart file
+
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+dbus-update-activation-environment --all
+
+# GNOME schema
+gsettings set org.gnome.desktop.interface gtk-theme 'Matcha-dark-sea'
+gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark-Maia'
+gsettings set org.gnome.desktop.interface cursor-theme 'xcursor-breeze'
+gsettings set org.gnome.desktop.interface font-name 'Roboto Regular 9'
+gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:close'
+
+# turn off 2nd monitor
+wlr-randr --output DP-1 --off > /dev/null 2>&1 &
+# Set background color.
+# swaybg -c '#113344' >/dev/null 2>&1 &
+swaybg --image ~/Imágenes/wallpaper/1920x1080/1920x1080_GhostInTheShell_NoLogo.jpg > /dev/null 2>&1 &
+
+# Configure output directives such as mode, position, scale and transform.
+# Use wlr-randr to get your output names
+# Example ~/.config/kanshi/config below:
+#   profile {
+#     output HDMI-A-1 position 1366,0
+#     output eDP-1 position 0,0
+#   }
+kanshi >/dev/null 2>&1 &
+
+# Launch a panel such as yambar or waybar.
+# waybar >/dev/null 2>&1 &
+sfwbar >/dev/null 2>&1 &
+
+# Enable notifications. Typically GNOME/KDE application notifications go
+# through the org.freedesktop.Notifications D-Bus API and require a client such
+# as mako to function correctly. Thunderbird is an example of this.
+mako >/dev/null 2>&1 &
+
+# System Tray applets
+nm-applet > /dev/null 2>&1 &
+blueman-applet > /dev/null 2>&1 &
+nextcloud > /dev/null 2>&1 &
+seafile-applet > /dev/null 2>&1 &
+# Conky
+conky -d -c ~/.config/conky/laguna_shortcurts_wayland.conkyrc
+
+# Lock screen after 5 minutes; turn off display after another 5 minutes.
+#
+# Note that in the context of idle system power management, it is *NOT* a good
+# idea to turn off displays by 'disabling outputs' for example by
+# `wlr-randr --output <whatever> --off` because this re-arranges views
+# (since a837fef). Instead use a wlr-output-power-management client such as
+# https://git.sr.ht/~leon_plickat/wlopm
+#	timeout 300 'swaylock -f -c 304000' \
+
+#swayidle -w \
+#	timeout 300 'swaylock -f -S --effect-blur 2x5'
+#	timeout 900 'wlopm --off \*' \
+#	resume 'wlopm --on \*' \
+#	before-sleep 'swaylock -f -c 000000' >/dev/null 2>&1 &
+
