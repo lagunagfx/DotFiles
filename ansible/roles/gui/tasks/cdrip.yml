@@ -1,0 +1,33 @@
+---
+# description:
+
+  - name: installing prerequisites for ABCDE cd ripper
+    become: yes
+    ansible.builtin.package:
+      name:
+        - cdparanoia
+        - python-eyed3
+        - wavpack
+        - glyr
+        - libdiscid
+        - vorbis-tools
+        - opus-tools
+      state: present
+
+  - name: installing some more prerequisites from the AUR
+    become-user: aur-builder
+    ansible
+      name:
+        - cd-discid
+        - vorbisgain
+      state: present
+
+  - name: enable realtime support for better audio latencies
+    become: yes
+    ansible.builtin.package:
+      name:
+        - abcde
+        - abcde-musicbrainz-meta
+      state: present
+
+# end of task

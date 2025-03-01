@@ -165,7 +165,7 @@
       <action name="None" />
     </keybind>
     <keybind key="W-Print">
-	  <action name="Execute" command="maim ~/Imágenes/screenshot/$( date +%s ).png" />
+	  <action name="Execute" command="wayland-screenshot --now" />
     </keybind>
     <keybind key="C-A-Delete">
       <action name="Execute" command="wofi-script-power" />
