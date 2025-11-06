@@ -1,4 +1,6 @@
 [user]
 	name = Jorge Barrientos Poisson
-	email = lagunagfx@lagunagfx.eu
+	email = lagunagfx@lagunagfx.com
 	#email = 5765101+lagunagfx@users.noreply.github.com
+[credential]
+	helper = osxkeychain
