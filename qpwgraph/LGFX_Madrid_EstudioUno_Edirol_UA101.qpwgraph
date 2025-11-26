@@ -1,0 +1,30 @@
+<!DOCTYPE patchbay>
+<patchbay name="LGFX_Madrid_EstudioUno_Edirol_UA101" version="0.9.5">
+ <items>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="EDIROL UA-101 Multicanal" port="UA-101:capture_AUX3"/>
+   <input node="NETJACK2 to soundbook1" port="NETJACK2 to soundbook1:playback_AUX1"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="EDIROL UA-101 Multicanal" port="UA-101:capture_AUX5"/>
+   <input node="NETJACK2 to soundbook1" port="NETJACK2 to soundbook1:playback_AUX1"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="EDIROL UA-101 Multicanal" port="UA-101:capture_AUX2"/>
+   <input node="NETJACK2 to soundbook1" port="NETJACK2 to soundbook1:playback_AUX0"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="EDIROL UA-101 Multicanal" port="UA-101:capture_AUX6"/>
+   <input node="NETJACK2 to soundbook1" port="NETJACK2 to soundbook1:playback_AUX0"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="EDIROL UA-101 Multicanal" port="UA-101:capture_AUX7"/>
+   <input node="NETJACK2 to soundbook1" port="NETJACK2 to soundbook1:playback_AUX1"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="EDIROL UA-101 Multicanal" port="UA-101:capture_AUX4"/>
+   <input node="NETJACK2 to soundbook1" port="NETJACK2 to soundbook1:playback_AUX0"/>
+  </item>
+ </items>
+</patchbay>
+
