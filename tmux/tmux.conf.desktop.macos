@@ -1,0 +1,92 @@
+set -g default-terminal "xterm-256color"
+#set -ga terminal-overrides ',xterm-256color:RGB'
+
+# amount of time for which status line messages are displayed ( 0 to wait for keypress )
+set -g display-time 0
+setw -g automatic-rename off
+set -g status-interval 5
+
+# split panes using | and -
+bind | split-window -h
+bind - split-window -v
+unbind '"'
+unbind %
+
+# reload config file (change file location to your the tmux.corf you want to use)
+bind r source-file ~/.tmux.conf \; display 'Reloaded tmux config'
+
+# use shift + arrow key to move between windows in a session
+bind -n S-Left previous-window
+bind -n S-Right next-window
+
+# switch panes using Alt-arrow without prefix
+bind -n M-Left select-pane -L
+bind -n M-Right select-pane -R
+bind -n M-Up select-pane -U
+bind -n M-Down select-pane -D
+
+# send modifier to nested tmux session
+unbind C-r
+bind -n C-r send-prefix
+
+# colours
+palette1="colour055"
+palette2="colour061"
+palette3="colour067"
+palette4="colour073"
+palette5="colour079"
+palette6="colour085"
+
+# style division
+div1="#[bg=$palette1]#[fg=white] "
+div2="#[bg=$palette2]#[fg=default]"
+div3="#[bg=$palette3]#[fg=default]"
+div4="#[bg=$palette4]#[fg=default]"
+div5="#[bg=$palette5]#[fg=default]"
+div6="#[bg=$palette6]#[fg=default]"
+
+# colours
+palette1="colour055"
+palette2="colour061"
+palette3="colour067"
+palette4="colour073"
+palette5="colour079"
+palette6="colour085"
+
+# style division
+div1="#[bg=$palette1]#[fg=white] "
+div2="#[bg=$palette2]#[fg=default]"
+div3="#[bg=$palette3]#[fg=default]"
+div4="#[bg=$palette4]#[fg=default]"
+div5="#[bg=$palette5]#[fg=default]"
+div6="#[bg=$palette6]#[fg=default]"
+
+# clock
+setw -g clock-mode-colour $palette2
+
+# window status
+set -g status-bg "$palette2"
+set -g status-fg "black"
+set -g pane-border-style "fg=$palette2"
+set -g pane-active-border-style "fg=brightwhite"
+
+set -g status-left-length 35
+set -g status-right-length 125
+set -g status-left "$div1[#S] #{?window_zoomed_flag,#[bold]Z ,}$div2 "
+set -g window-status-current-format "#[bg=$palette2]#[fg=brightwhite]#[bold]#I:#W*"
+set -g window-status-format "#I:#W#{?window_last_flag,-,}"
+set -g window-status-separator " | "
+set -g status-right "#[fg=white] #{window_width}x#{window_height}#{?client_utf8, utf8,} $div3 cpu #{cpu_percentage} #{cpu_temp} mem #{ram_percentage} $div4 root #{df_percent} home #{df_percent_private1} $div5 uptime $div6 %Y/%m/%d %H:%M "
+
+# plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-cpu'
+set -g @plugin 'tassaron/tmux-df'
+set -g @df_cmd_private1 "/home"
+# set -g @plugin 'tmux-plugins/tmux-net-speed'
+# set -g @net_speed_format "u %6s d %6s"
+# set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'
