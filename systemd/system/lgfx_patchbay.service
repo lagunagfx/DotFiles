@@ -1,0 +1,22 @@
+# LagunaGFX's setup for Raspberry Pi's automated MIDI box routing
+#
+# based on Mad Kjeldgaards work published in his Hyaline System's blog
+# https://hyaline.systems/blog/linux-audio-startup/
+
+[Unit]
+Requires=audio.target
+After=sound.target
+Description=Make all necessary connections between MIDI inputs and outputs
+
+[Service]
+Type=simple
+User=dietpi
+Group=audio
+ExecStart=/usr/bin/bash /home/dietpi/.local/bin/lgfx_patchbay
+
+#ExecStartPost=/usr/bin/jack_wait -w -t 10
+Restart=on-failure
+TimeoutSec=30
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,24 @@
+# LagunaGFX's setup for Raspberry Pi's automated MIDI box routing
+#
+# based on Mad Kjeldgaards work published in his Hyaline System's blog
+# https://hyaline.systems/blog/linux-audio-startup/
+
+[Unit]
+Requires=lgfx_jackaudio.service
+#After=network.target sound.target dbus.service
+Description=Bridges ALSA MIDI devices to JACK
+
+[Service]
+Type=simple
+User=dietpi
+Group=audio
+LimitRTPRIO=99
+LimitMEMLOCK=infinity
+ExecStart=/usr/bin/a2jmidid -e
+
+#ExecStartPost=/usr/bin/jack_wait -w -t 10
+Restart=on-failure
+TimeoutSec=30
+
+[Install]
+WantedBy=multi-user.target
